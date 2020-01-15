@@ -1,0 +1,47 @@
+{
+  "connection": "default",
+  "collectionName": "restorany",
+  "info": {
+    "name": "Рестораны"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Sort": {
+      "type": "integer"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "string"
+    },
+    "Work_time": {
+      "type": "text"
+    },
+    "interior": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "latitude": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "string"
+    },
+    "feedback": {
+      "via": "restaurant",
+      "collection": "otzyvy"
+    }
+  }
+}

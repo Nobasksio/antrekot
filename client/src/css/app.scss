@@ -1,0 +1,139 @@
+// app global css in SCSS form
+
+@font-face {
+  font-family: mblack;
+  src: url(./fonts/Montserrat-Black.otf);
+}
+
+@font-face {
+  font-family: mbold;
+  src: url(./fonts/Montserrat-Bold.otf);
+}
+
+@font-face {
+  font-family: mregular;
+  src: url(./fonts/Montserrat-Regular.otf);
+}
+
+@font-face {
+  font-family: lumios;
+  src: url(./fonts/Lumios_Marker.otf);
+}
+
+.my-black {
+  font-family: 'mblack';
+}
+
+.my-mbold {
+  font-family: 'mbold';
+}
+
+.lumios {
+  font-family: lumios;
+}
+
+.mregular {
+  font-family: mregular;
+}
+.q-item__section{
+  padding-left: 0px;
+  margin-left: 24px;
+}
+
+.test{
+  color: #ffffff;
+}
+ .q-router-link--exact-active >.q-item__section > div > .test {
+
+  float:left;
+  color: #ffffff;
+  border-bottom: 3px solid #ffffff;
+  padding-bottom: 0px;
+}
+
+.tl_padding_page {
+  padding-top: 54px;
+}
+
+.q-tab__indicator {
+  background: #E84437;
+  bottom: 3px;
+  z-index: 120;
+
+}
+
+.q-tab__label {
+  line-height: 1em;
+  letter-spacing: 0.25em;
+}
+
+.q-tab__content {
+  z-index: 100;
+  position: relative;
+
+}
+
+.q-rating__icon {
+  margin-right: 10px;
+}
+
+.text-36 {
+  font-size: 36px;
+}
+
+.ymaps-2-1-75-ground-pane {
+
+  filter: grayscale(1);
+
+  -ms-filter: grayscale(1);
+
+  -webkit-filter: grayscale(1);
+
+  -moz-filter: grayscale(1);
+
+  -o-filter: grayscale(1);
+
+}
+
+.red-delimeter {
+  position: absolute;
+  width: 184px;
+  height: 3px;
+
+  /* Main red */
+  background: #E84437;
+}
+
+
+
+.lspacing25{
+  letter-spacing: 0.25em;
+}
+.lspacing10{
+  letter-spacing: 0.1em;
+}
+.text-12{
+  font-size: 12px;
+}
+
+.q-btn_my_black {
+
+  font-size: 10px;
+  padding: 7px 0px;
+  border: 3px solid #FFFFFF;
+  border-radius: 0px;
+  letter-spacing: 0.25em;
+  font-family: 'mbold';
+  background: #000000 !important;
+}
+
+.q-card{
+  background-color: transparent;
+}
+.active_card_contact.q-expansion-item--expanded{
+  background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+}
+
+.text-typical{
+  text-transform: none;
+}

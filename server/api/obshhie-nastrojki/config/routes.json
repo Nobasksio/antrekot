@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/obshhie-nastrojkis",
+      "handler": "obshhie-nastrojki.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/obshhie-nastrojkis/count",
+      "handler": "obshhie-nastrojki.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/obshhie-nastrojkis/:id",
+      "handler": "obshhie-nastrojki.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/obshhie-nastrojkis",
+      "handler": "obshhie-nastrojki.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/obshhie-nastrojkis/:id",
+      "handler": "obshhie-nastrojki.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/obshhie-nastrojkis/:id",
+      "handler": "obshhie-nastrojki.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

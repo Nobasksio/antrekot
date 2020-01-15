@@ -1,0 +1,42 @@
+{
+  "connection": "default",
+  "collectionName": "otzyvy",
+  "info": {
+    "name": "Отзывы"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "answer": {
+      "type": "text"
+    },
+    "rate": {
+      "type": "enumeration",
+      "enum": [
+        "_1",
+        "_2",
+        "_3",
+        "_4",
+        "_5"
+      ]
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "restaurant": {
+      "model": "restorany",
+      "via": "feedback"
+    }
+  }
+}

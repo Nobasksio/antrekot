@@ -1,0 +1,25 @@
+{
+  "connection": "default",
+  "collectionName": "menu_links",
+  "info": {
+    "name": "Меню"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "richtext"
+    },
+    "sort_index": {
+      "type": "integer"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/akcziis",
+      "handler": "akczii.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/akcziis/count",
+      "handler": "akczii.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/akcziis/:id",
+      "handler": "akczii.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/akcziis",
+      "handler": "akczii.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/akcziis/:id",
+      "handler": "akczii.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/akcziis/:id",
+      "handler": "akczii.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

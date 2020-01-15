@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/otzyvies",
+      "handler": "otzyvy.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/otzyvies/count",
+      "handler": "otzyvy.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/otzyvies/:id",
+      "handler": "otzyvy.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/otzyvies",
+      "handler": "otzyvy.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/otzyvies/:id",
+      "handler": "otzyvy.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/otzyvies/:id",
+      "handler": "otzyvy.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

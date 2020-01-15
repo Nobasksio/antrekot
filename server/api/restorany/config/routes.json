@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/restoranies",
+      "handler": "restorany.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/restoranies/count",
+      "handler": "restorany.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/restoranies/:id",
+      "handler": "restorany.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/restoranies",
+      "handler": "restorany.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/restoranies/:id",
+      "handler": "restorany.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/restoranies/:id",
+      "handler": "restorany.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

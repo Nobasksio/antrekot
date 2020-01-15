@@ -1,0 +1,28 @@
+{
+  "info": {
+    "name": "Общие настройки"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Bonus": {
+      "type": "richtext"
+    },
+    "first_string": {
+      "type": "string"
+    },
+    "second_string": {
+      "type": "string"
+    },
+    "main_bg_img": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    }
+  },
+  "connection": "default",
+  "collectionName": "obshhie_nastrojki"
+}
