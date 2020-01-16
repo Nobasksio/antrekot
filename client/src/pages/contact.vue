@@ -1,9 +1,9 @@
 <template >
-    <q-page class="" style="height: 1px;" >
+    <q-page class="bg-black" style="height: 1px;" >
         <div class="row tl_padding_page" >
 
             <div class="col-auto justify-center items-center content-center " >
-                <div class="text-h4 text-white zag text-center" >
+                <div class="text-h4 text-white zag text-center">
                     Контакты
                 </div >
                 <div class="tag col" >
@@ -16,89 +16,53 @@
 
         </div >
 
-        <q-list dark class="rounded-borders my-mbold lspacing25 contact-xs" >
-            <contact-item-mobile>
-
-            </contact-item-mobile>
-            <contact-item-mobile>
-
-            </contact-item-mobile>
-            <contact-item-mobile>
-
-            </contact-item-mobile>
-            <contact-item-mobile>
+        <q-list dark class="rounded-borders my-mbold lspacing25 contact-xs" v-if="width < 600">
+            <contact-item-mobile :restaurant="rest" :key="`contxs${rest.id}`" v-for="rest in restaurants">
 
             </contact-item-mobile>
         </q-list >
-        <div class="row contact-md align-items-stretch h-100" >
+        <div class="row contact-md align-items-stretch h-100" v-else-if="width < 1200">
             <div class="col-sm-3 col-4 bg-black" >
-                <contact-item >
-
-                </contact-item >
-                <contact-item >
-
-                </contact-item >
-                <contact-item >
-
-                </contact-item >
-                <contact-item >
-
-                </contact-item >
-                <contact-item >
+                <contact-item :restaurant="rest" :key="`contmd${rest.id}`" v-for="rest in restaurants">
 
                 </contact-item >
             </div >
             <div class="col-sm-9 col-8 " >
                 <yandex-map class="yandex-map"
                             :controls="[]"
-                            zoom="17"
-                            :coords="[55.7522, 37.6156]" >
+                            :zoom="zoom"
+                            :coords="[choosenRest.latitude, choosenRest.longitude]" >
                     <ymap-marker
-                            :key="1"
-                            :marker-id="2"
-                            hint-content="Hint content 1"
+                            :key="`markmd${rest_item.id}`"
+                            :marker-id="rest_item.id"
+                            :hint-content="rest_item.Name"
                             :icon="{color: 'red'}"
-
-
-                            :coords="[55.7522, 37.6156]"
+                            :coords="[rest_item.latitude,rest_item.longitude]"
+                            v-for="rest_item in restaurants"
 
                     ></ymap-marker >
-
                 </yandex-map >
             </div >
         </div >
-        <div class="my-map " >
+        <div class="my-map " v-else>
             <yandex-map class="yandex-map"
                         :controls="[]"
-                        zoom="17"
-                        :coords="[55.7522, 37.6156]" >
+                        :zoom="zoom"
+                        :coords="[choosenRest.latitude, choosenRest.longitude]" >
                 <ymap-marker
-                        :key="1"
-                        :marker-id="2"
-                        hint-content="Hint content 1"
+                        :key="`mark${rest_item.id}`"
+                        :marker-id="rest_item.id"
+                        :hint-content="rest_item.Name"
                         :icon="{color: 'red'}"
-
-
-                        :coords="[55.7522, 37.6156]"
+                        :coords="[rest_item.latitude,rest_item.longitude]"
+                        v-for="rest_item in restaurants"
 
                 ></ymap-marker >
 
             </yandex-map >
         </div >
-        <div class="row justify-center contact-lg" >
-            <contact-item >
-
-            </contact-item >
-            <contact-item >
-
-            </contact-item >
-            <contact-item >
-
-            </contact-item >
-            <contact-item >
-
-            </contact-item >
-            <contact-item >
+        <div class="row justify-center contact-lg" v-if="width > 1200">
+            <contact-item :restaurant="rest" :key="`contb${rest.id}`" v-for="rest in restaurants">
 
             </contact-item >
         </div >
@@ -110,19 +74,31 @@
     import {yandexMap, ymapMarker} from 'vue-yandex-maps'
     import contactItem from '../components/contact/contact-item'
     import contactItemMobile from '../components/contact/contact-item-mobile'
+    import {mapState} from 'vuex';
     export default {
         name: "contact",
 
         components: {yandexMap, ymapMarker, contactItem,contactItemMobile},
+        preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
+            return store.dispatch('common/getRestaurant')
+        },
+        created() {
+            window.addEventListener('resize', this.updateWidth);
+        },
+        mounted: function(){
+
+        },
         data: function () {
             return {
                 tab: 1,
+                width:null,
                 settings: {
                     apiKey: '22d47171-61c4-429f-bfaf-c0a883e12290',
                     lang: 'ru_RU',
                     coordorder: 'latlong',
                     version: '2.1'
                 },
+                zoom:13,
                 menus: [
                     {
                         name: 'ОСНОВНОЕ', id: 1
@@ -138,6 +114,15 @@
                     }
                 ]
             }
+        },
+        methods:{
+            updateWidth() {
+                this.width = window.innerWidth;
+            },
+        },
+        computed: {
+            ...mapState('common', ['restaurants','choosenRest']),
+
         }
     }
 </script >
@@ -166,22 +151,6 @@
         z-index: 20;
         position: relative;
 
-    }
-
-    @media (max-width: 599px) {
-        .my-map {
-            display: none;
-        }
-
-        .contact-lg {
-            display: none;
-        }
-        .contact-md {
-            display: none;
-        }
-        .contact-xs{
-            display: block;
-        }
     }
 
     @media (max-width: 1200px) {
@@ -213,6 +182,22 @@
             display: none;
         }
     }
+    @media (max-width: 599px) {
+        .my-map {
+            display: none;
+        }
+
+        .contact-lg {
+            display: none;
+        }
+        .contact-md {
+            display: none;
+        }
+        .contact-xs{
+            display: block;
+        }
+    }
+
 
     @media (min-width: 1000px) {
         .yandex-map {

@@ -25,36 +25,15 @@
         </div >
         <div class="h-100" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
-                <q-tab-panel :name="1" class="q-px-none">
+                <q-tab-panel :name="item.id" class="q-px-none" :key="`tab${item.id}`"  v-for="(item, index) in menus">
                     <div class="text-h6" >
-                        <div style="text-align:center;" >
+                        <div style="text-align:center;" v-html="item.code">
 
-                            <iframe src="//v.calameo.com/?bkcode=00454428176af74b4581f&mode=viewer&clickto=view&clicktarget=_self"
-                                    width="100%" height="700px"
-                                    frameborder="0"
-                                    scrolling="no"
-                                    allowtransparency
-                                    allowfullscreen style="margin:0 auto;" ></iframe >
 
-                        <iframe src="//v.calameo.com/?bkcode=00454428176af74b4581f&mode=mini" width="100%"
-                                height="700px"
-                                frameborder="0"
-                                scrolling="no"
-                                allowtransparency
-                                style="margin:0 auto; background: #000000;" ></iframe >
+
 
                         </div>
                     </div >
-                </q-tab-panel >
-
-                <q-tab-panel :name="2" >
-                    <div class="text-h6" >Alarms</div >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </q-tab-panel >
-
-                <q-tab-panel :name="3" >
-                    <div class="text-h6" >Movies</div >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </q-tab-panel >
             </q-tab-panels >
         </div >
@@ -63,26 +42,33 @@
 </template >
 
 <script >
+    import { mapState } from 'vuex';
     export default {
         name: "menu",
+        preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
+            return store.dispatch('common/getMenu')
+        },
         data: function () {
             return {
                 tab: 1,
-                menus: [
-                    {
-                        name: 'ОСНОВНОЕ', id: 1
-                    },
-                    {
-                        name: 'БАРНОЕ', id: 2
-                    },
-                    {
-                        name: 'ДЕТСКОЕ', id: 3
-                    },
-                    {
-                        name: 'КОМБО-ОБЕД', id: 4
-                    }
-                ]
+                // menus: [
+                //     {
+                //         name: 'ОСНОВНОЕ', id: 1
+                //     },
+                //     {
+                //         name: 'БАРНОЕ', id: 2
+                //     },
+                //     {
+                //         name: 'ДЕТСКОЕ', id: 3
+                //     },
+                //     {
+                //         name: 'КОМБО-ОБЕД', id: 4
+                //     }
+                // ]
             }
+        },
+        computed:{
+            ...mapState('common',['menus'])
         }
     }
 </script >

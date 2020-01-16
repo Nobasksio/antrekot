@@ -35,7 +35,7 @@
                             Оценка
                         </div >
                         <q-rating
-                                v-model="ratingModel"
+                                v-model="feedback.rate"
                                 size="2em"
                                 color="grey"
                                 color-selected="warning"
@@ -47,7 +47,7 @@
                         <div class="text-white q-mb-sm" >
                             Имя
                         </div >
-                        <q-input dark outlined dense v-model="text" >
+                        <q-input dark outlined dense v-model="feedback.Name" >
                         </q-input >
                     </div >
 
@@ -55,7 +55,7 @@
                         <div class="text-white q-mb-sm" >
                             Телефон / email
                         </div >
-                        <q-input dark outlined dense v-model="text" >
+                        <q-input dark outlined dense v-model="feedback.Phone" >
                         </q-input >
                     </div >
 
@@ -66,16 +66,19 @@
                         <q-select dark
                                   outlined
                                   dense
-                                  v-model="model" :options="options" >
+                                  label="Гриль Бар"
+                                  option-label="Name"
+                                  option-value="id"
+                                  v-model="feedback.restaurant" :options="restaurants" >
 
                         </q-select >
                     </div >
                     <div class="q-mb-lg" >
                         <div class="text-white q-mb-sm" >
-                            Выберите бар
+                            Ваш отзыв
                         </div >
                         <q-input
-                                v-model="text"
+                                v-model="feedback.text"
                                 dark
                                 outlined
                                 dense
@@ -83,7 +86,7 @@
                         />
                     </div >
                     <div class="q-pb-md">
-                        <q-btn color="red" label="Отправить" class='text-uppercase q-btn_my_red' >
+                        <q-btn color="red" label="Отправить" class='text-uppercase q-btn_my_red' @click="save_feed">
                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" class="q-ml-sm"
                                  xmlns="http://www.w3.org/2000/svg" >
                                 <path d="M0.269457 11.1147C0.269457 11.474 0.560656 11.7652 0.919469 11.7648L19.7277 11.7647L16.211 15.2814C15.9555 15.5369 15.9555 15.9517 16.211 16.2072C16.4666 16.4628 16.8814 16.4628 17.1369 16.2072L21.7665 11.5777C21.8892 11.455 21.96 11.2888 21.96 11.1147C21.96 10.9406 21.8892 10.7744 21.7665 10.6518L17.1369 6.02217C16.8813 5.7666 16.4665 5.76664 16.211 6.02217C15.9555 6.27769 15.9555 6.69254 16.211 6.94806L19.7277 10.4647L0.919469 10.4647C0.560194 10.4647 0.268996 10.7559 0.269457 11.1147Z"
@@ -128,10 +131,15 @@
 
 <script >
     import feedbackItem from '../components/feedback/feedback-item'
+    import {mapState} from 'vuex';
+    const axios = require('axios').default;
     export default {
         name: "feedback",
         components:{
             feedbackItem
+        },
+        preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
+            return store.dispatch('common/getFeedbacks')
         },
         created() {
             window.addEventListener('resize', this.updateHeight);
@@ -142,85 +150,46 @@
                 text:null,
                 ratingModel: null,
                 showFeed:false,
-                feedbacks:[{
-                    height:0,
-                    bar:{
-                        Name:'Антрекот КМ'
-                    },
-                    rate:'_1',
-                    Name:'Мяу',
-                    ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                    answer:'eewrwe',
-                    date:'111'
+                feedback:{
+                    Name:null,
+                    ftext:null,
+                    rate:0,
+                    contact:null,
+                    restaurant:null,
+                    date: new Date(),
+                    answer:'',
+                    active:false
                 },
-                    {
-                        bar:{
-                            Name:'Антрекот КМ'
-                        },
-                        rate:'_1',
-                        Name:'Мяу',
-                        ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                        answer:'eewrwe',
-                        date:'111'
-                    },
-                    {
-                        bar:{
-                            Name:'Антрекот КМ'
-                        },
-                        rate:'_1',
-                        Name:'Мяу',
-                        ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                        answer:'eewrwe',
-                        date:'111'
-                    },
-                    {
-                        bar:{
-                            Name:'Антрекот КМ'
-                        },
-                        rate:'_1',
-                        Name:'Мяу',
-                        ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                        answer:'eewrwe',
-                        date:'111'
-                    },
-                    {
-                        bar:{
-                            Name:'Антрекот КМ'
-                        },
-                        rate:'_1',
-                        Name:'Мяу',
-                        ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                        answer:'eewrwe',
-                        date:'111'
-                    },
-                    {
-                        bar:{
-                            Name:'Антрекот КМ'
-                        },
-                        rate:'_1',
-                        Name:'Мяу',
-                        ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                        answer:'eewrwe',
-                        date:'111'
-                    },
-                    {
-                        bar:{
-                            Name:'Антрекот КМ'
-                        },
-                        rate:'_1',
-                        Name:'Мяу',
-                        ftext:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea est ipsa ipsum iure iusto mollitia pariatur, quasi quisquam repellendus, sequi ullam veniam, vitae voluptatum!',
-                        answer:'eewrwe',
-                        date:'111'
-                    },
-
-                ],
             }
         },
         methods:{
             updateHeight() {
                 this.height = window.innerHeight;
             },
+            save_feed(){
+                this.feedback.rate = "_"+this.feedback.rate
+                this.loading = true
+                axios.post(`http://185.22.61.189:2000/otzyvies`,
+                    this.feedback
+                )
+                    .then((res) => {
+                        console.log()
+                        this.feedback.rate = this.feedback.rate.substr(1,1)
+
+                        this.sent = true
+                        this.loading = false
+                    })
+                    .catch((error) => {
+
+                        this.loading = false
+                        this.error = true
+                    });
+
+            }
+        },
+        computed: {
+            ...mapState('common', ['restaurants','feedbacks']),
+
         }
     }
 </script >

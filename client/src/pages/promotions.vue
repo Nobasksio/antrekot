@@ -16,9 +16,7 @@
 
         </div >
         <div class="row q-px-lg-xl " >
-            <promotionItem></promotionItem>
-            <promotionItem></promotionItem>
-            <promotionItem></promotionItem>
+            <promotionItem :promo='promo' :key="promo.id" v-for="promo in promotions"></promotionItem>
         </div >
 
     </q-page >
@@ -26,10 +24,14 @@
 
 <script >
     import promotionItem from '../components/promotion/promotion-item'
+    import { mapState } from 'vuex';
     export default {
         name: "promotions",
         components:{
             promotionItem
+        },
+        preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
+            return store.dispatch('common/getPromotions')
         },
         data: function () {
             return {
@@ -49,6 +51,9 @@
                     }
                 ]
             }
+        },
+        computed:{
+            ...mapState('common',['promotions'])
         }
     }
 </script >

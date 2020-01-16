@@ -1,12 +1,13 @@
 <template >
-    <q-page class="flex flex-center main_b" >
+    <div>
+    <q-page class="flex flex-center main_b" :style='`background: url(http://185.22.61.189:2000/${ mainPageInfo.image.url }) no-repeat center center fixed;`'>
         <div class="full-width column  justify-center items-center content-center " >
             <q-space />
             <div class="col main_zag text-center" >
-                НОВОЕ МЕНЮ
+                {{mainPageInfo.fst}}
             </div >
             <div class="col lumios_zag" >
-                По любому поводу!
+                {{mainPageInfo.sst}}
             </div >
             <div class="col" >
                 <q-btn outline color="white" class='text-uppercase q-btn_my_black' label="посмотреть" @click="check()" >
@@ -19,8 +20,9 @@
             </div >
             <q-space />
         </div >
-    </q-page >
 
+    </q-page >
+    </div>
 
     <!--<div class="col main_b items-stretch " >-->
 
@@ -43,8 +45,13 @@
 
 <script >
     const axios = require('axios').default;
+    import { mapState } from 'vuex';
+
     export default {
         name: 'PageIndex',
+        preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
+            return store.dispatch('common/getAll')
+        },
         methods: {
             check() {
 
@@ -63,12 +70,14 @@
                     console.log(response)
                 })
             }
+        },
+        computed:{
+            ...mapState('common',['mainPageInfo','check'])
         }
     }
 </script >
 <style scope >
     .main_b {
-        background: url(/statics/main.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

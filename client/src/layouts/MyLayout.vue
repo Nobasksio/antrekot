@@ -1,12 +1,12 @@
 <template >
     <q-layout view="lHh LpR lFf" >
-
+        <check-page v-if="!check"></check-page>
         <q-drawer show-if-above
                   v-model="left"
                   side="left"
                   content-class="menu_drawer"
-                  width="263"
-                  breakpoint="1300"
+                  :width="263"
+                  :breakpoint="1300"
         >
             <div class="column justify-between fit" >
                 <div class="col-auto" >
@@ -37,7 +37,7 @@
                                 </q-item-section >
                             </q-item >
                         </q-list >
-                        <q-btn outline color="white" class='text-uppercase q-btn_my' label="Забронировать" />
+                        <q-btn outline color="white" class='text-uppercase q-btn_my' label="Вакансии" />
                     </div >
                 </div >
 
@@ -102,12 +102,16 @@
             </q-btn >
             <router-view />
         </q-page-container >
-
     </q-layout >
 </template >
 
 <script >
+    import { mapState } from 'vuex';
+    import checkPage from 'pages/check-page.vue';
     export default {
+        components:{
+            checkPage
+        },
         data() {
             return {
                 left: false,
@@ -118,9 +122,12 @@
                     {name: 'Контакты', link: '/contact'},
                     {name: 'Отзывы', link: '/feedback'},
                     {name: 'Интерьер', link: '/interior'},
-                    {name: 'Вакансия', link: '/vacancy'}
+                    // {name: 'Вакансия', link: '/vacancy'}
                 ]
             }
+        },
+        computed:{
+            ...mapState('age',['check','isOld'])
         }
     }
 </script >

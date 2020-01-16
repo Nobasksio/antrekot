@@ -1,5 +1,5 @@
 <template >
-    <q-layout view="lHh LpR lFf" >
+    <q-layout view="lHh LpR lFf" class="check">
         <q-page class="column main_b justify-between items-center " >
             <div class="col logo-check">
                 <q-img
@@ -20,7 +20,7 @@
                 </div >
                 <div class="col flex justify-center" >
                     <q-btn outline color="white"
-                           to="/"
+                           @click="setYoung"
                            class='text-uppercase q-btn_my_black q-mr-md' label="Нет" >
                         <svg width="23" height="23" viewBox="0 0 23 23" fill="none" class="q-ml-sm"
                              xmlns="http://www.w3.org/2000/svg" >
@@ -29,7 +29,7 @@
                         </svg >
                     </q-btn >
                     <q-btn outline color="white"
-                           to="/"
+                           @click="setOld"
                            class='text-uppercase q-btn_my_black' label="Да" >
                         <svg width="23" height="23" viewBox="0 0 23 23" fill="none" class="q-ml-sm"
                              xmlns="http://www.w3.org/2000/svg" >
@@ -50,12 +50,20 @@
 </template >
 
 <script >
+    import { mapState, mapActions } from 'vuex';
     export default {
-        name: "check-page"
+        name: "check-page",
+        methods:{
+            ...mapActions('age',['setOld','setYoung'])
+        },
+        computed:{
+            ...mapState('age',['check','isOld'])
+        }
     }
 </script >
 
 <style scoped >
+
     .main_b {
         background: url(/statics/check.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;

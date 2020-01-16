@@ -1,7 +1,7 @@
 <template >
     <q-expansion-item
             expand-separator
-            label="Карла маркса"
+            :label="restaurant.Name"
             class="text-white active_card_contact q-px-md q-pt-md text-uppercase"
     >
         <q-card class="" >
@@ -23,21 +23,21 @@
                         </div >
                     </div >
                     <div class="col-10 text-12" >
-                        ул. Сухэ-Батора, 18
+                        {{restaurant.Address}}
                     </div >
                 </div >
                 <div class="q-pb-md lspacing10" >
-                    8 (3952) 50-61-70
+                    {{restaurant.Phone}}
                 </div >
                 <div class="mregular text-12 text-typical" >
                     Режим работы
                 </div >
                 <div class="text-typical" >
-                    Круглосуточно
+                    <span v-html="restaurant.Work_time"></span>
                 </div >
                 <div class="text-center q-py-lg">
                     <q-btn outline color="white" class='text-uppercase q-btn_my_black' label="Показать на карте"
-                           @click="check()" >
+                           @click="" >
                     </q-btn >
                 </div >
             </q-card-section >
@@ -47,7 +47,9 @@
 
 <script >
     export default {
-        name: "contact-item-mobile"
+        name: "contact-item-mobile",
+        props:['restaurant'],
+
     }
 </script >
 

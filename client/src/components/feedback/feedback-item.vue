@@ -17,7 +17,7 @@
                         </q-rating>
                     </div>
                     <div class="caption grey--text lighten-1 q-py-none col-auto">
-                        <div class="pt-1" v-if="feedback.bar"> {{feedback.bar.Name}}</div>
+                        <div class="pt-1" v-if="feedback.bar"> {{feedback.restaurant.Name}}</div>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="row q-pb-md">
             <div class="col body-2">
-                {{feedback.ftext}}
+                {{feedback.text}}
             </div>
         </div>
         <feedback-answer :answer="feedback.answer">

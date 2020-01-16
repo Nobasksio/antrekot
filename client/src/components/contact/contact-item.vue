@@ -1,8 +1,11 @@
 <template >
-    <div class="card_contact">
-        <div class="col-2 text-white my-mbold blk_big_screen" >
-            <div class="q-pb-md lspacing25" >
-                КАРЛА  <br >МАРКСА
+
+        <div class="col-2 text-white my-mbold blk_big_screen card_contact"
+             v-if="width>1200"
+             :class="{ 'card_contact_active': choosenRest.id == restaurant.id}"
+             @click='setChoosenRest(restaurant)'>
+            <div class="q-pb-md lspacing25 text-uppercase" >
+                {{restaurant.Name}}
             </div >
             <div class="red-delimeter " >
 
@@ -21,24 +24,28 @@
                         </div >
                     </div >
                     <div class="col-10 text-12" >
-                        ул. Сухэ-Батора, 18
+                        {{restaurant.Address}}
                     </div >
                 </div >
                 <div class="q-pb-xl lspacing10" >
-                    8 (3952) 50-61-70
+                    {{restaurant.Phone}}
                 </div >
                 <div class="mregular text-12" >
                     Режим работы
                 </div >
                 <div >
-                    Круглосуточно
+                    <span v-html="restaurant.Work_time"></span>
                 </div >
             </div >
         </div >
 
-        <div class="col-12 text-white my-mbold blk_md_screen" >
-            <div class="q-pb-md lspacing25" >
-                КАРЛА  <br >МАРКСА
+        <div class="col-12 text-white my-mbold blk_md_screen card_contact"
+             v-else
+             :class="{ 'card_contact_active': choosenRest.id == restaurant.id}"
+             @click='setChoosenRest(restaurant)'
+        >
+            <div class="q-pb-md lspacing25 text-uppercase" >
+                {{restaurant.Name}}
             </div >
             <div class="red-delimeter " >
 
@@ -57,30 +64,48 @@
                         </div >
                     </div >
                     <div class="col-10 text-12" >
-                        ул. Сухэ-Батора, 18
+                        {{restaurant.Address}}
                     </div >
                 </div >
                 <div class="q-pb-xl lspacing10" >
-                    8 (3952) 50-61-70
+                    {{restaurant.Phone}}
                 </div >
                 <div class="mregular text-12" >
                     Режим работы
                 </div >
-                <div >
-                    Круглосуточно
+                <div class="text-uppercase">
+                   <span v-html="restaurant.Work_time"></span>
                 </div >
             </div >
         </div >
 
-    </div >
+
 
 
 </template >
 
 <script >
+    import {mapMutations, mapState} from 'vuex';
     export default {
         name: "contact-item",
-        props: ['active_bar'],
+        props: ['restaurant'],
+        created() {
+            window.addEventListener('resize', this.updateWidth);
+        },
+        data(){
+            return{
+                width:null,
+            }
+        },
+        methods:{
+            ...mapMutations('common', ['setChoosenRest']),
+            updateWidth() {
+                this.width = window.innerWidth;
+            },
+        },
+        computed:{
+            ...mapState('common',['choosenRest'])
+        }
     }
 </script >
 
@@ -90,11 +115,18 @@
         .card_contact {
             padding: 30px 20px;
         }
+        .card_contact_active{
+            background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+            padding: 60px 3%;
+            width: 20%;
+            margin-top: -30px;
+            position: relative;
+            z-index: 100000000000;
+        }
 
         .card_contact:hover {
             background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
             padding: 60px 3%;
-            margin: 0 50px;
             margin-top: -30px;
             position: relative;
             z-index: 100000000000;
@@ -127,7 +159,17 @@
         .card_contact {
             padding: 30px 20px;
         }
+        .card_contact_active{
+            background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+            margin: 0 0px;
+            position: relative;
+            z-index: 1000;
+            width: 100%;
+        }
 
+        .card_contact_active > .dop_contact_info{
+            display: block;
+        }
         .card_contact:hover {
             background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
             margin: 0 0px;
@@ -136,9 +178,10 @@
             width: 100%;
         }
 
-        .card_contact:hover > .blk_md_screen> .dop_contact_info {
+        .card_contact:hover > .dop_contact_info {
             display: block;
         }
+
     }
 
 </style >

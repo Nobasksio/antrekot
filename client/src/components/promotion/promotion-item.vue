@@ -1,11 +1,10 @@
 <template >
     <div class="col-12 col-md-6 q-pa-md" >
 
-
         <q-card class="my-card cursor-pointer" clickable v-ripple
                 @click="medium = !medium" >
             <q-img
-                    src="/statics/akc.jpg"
+                    :src="`http://185.22.61.189:2000/${promo.Image.url}`"
                     basic
             >
             </q-img >
@@ -16,17 +15,10 @@
             <q-card style="width: 600px; max-width: 80vw;" class="bg-black text-white" >
                 <q-img src="/statics/akc.jpg" />
 
-
                 <q-card-section >
-                    <div class=" mregular">
-                        <div class="col text-h6 ellipsis q-py-lg" >Играй в кости</div >
-                        <div >
-                            <p >Каждый раз при оплате счёта, у тебя есть шанс выиграть один из подарков. </p >
-                            <p > Выкинь три одинаковых
-                                кубика и ты обязательно получишь свой приз.</p >
-                            <p >У тебя есть возможность выиграть сертификат: на
-                                шашлык, на бургер, на бокал пенного, на десерт и на кальян.</p >
-                        </div >
+                    <div class=" mregular" >
+                        <div class="col text-h6 ellipsis q-py-lg" >{{promo.Name}}</div >
+                        <div v-html="converter.makeHtml(promo.Description)" ></div >
                     </div >
                 </q-card-section >
 
@@ -40,16 +32,19 @@
 </template >
 
 <script >
+    var showdown = require('showdown');
     export default {
         name: "promotion-item",
+        props: ['promo'],
         data() {
             return {
                 medium: false,
+                converter: new showdown.Converter()
             }
         },
         methods: {
             take() {
-                console.log('1')
+               
             }
         }
     }
