@@ -30,6 +30,17 @@
         components:{
             promotionItem
         },
+        meta:{
+            title:`Акции Гриль Баров Антрекот Иркутск Ангарск`,
+            meta: {
+                description: { name: 'description', content: 'Акции Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске' },
+                keywords: { name: 'keywords', content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная' },
+                equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' }
+            },
+            noscript: {
+                default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
+            }
+        },
         preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
             return store.dispatch('common/getPromotions')
         },

@@ -1,5 +1,5 @@
 <template >
-    <div class="q-px-lg text-white">
+    <div class="q-px-lg text-white col-12">
         <div class="q-pt-lg row justify-between text-white">
             <div class="q-py-md col-auto">
                 <div class='row justify-start' >
@@ -17,7 +17,7 @@
                         </q-rating>
                     </div>
                     <div class="caption grey--text lighten-1 q-py-none col-auto">
-                        <div class="pt-1" v-if="feedback.bar"> {{feedback.restaurant.Name}}</div>
+                        <div class="pt-1" v-if="feedback.restaurant"> {{feedback.restaurant.Name}}</div>
                     </div>
                 </div>
             </div>

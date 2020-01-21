@@ -13,7 +13,7 @@
                 v-model="medium"
         >
             <q-card style="width: 600px; max-width: 80vw;" class="bg-black text-white" >
-                <q-img src="/statics/akc.jpg" />
+                <q-img :src="`http://185.22.61.189:2000/${promo.Image.url}`"/>
 
                 <q-card-section >
                     <div class=" mregular" >
@@ -51,5 +51,9 @@
 </script >
 
 <style scoped >
-
+    @media (min-width:600px ) {
+        .my-card{
+            margin: 0 0 0 20px ;
+        }
+    }
 </style >

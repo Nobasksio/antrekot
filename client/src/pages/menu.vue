@@ -18,7 +18,6 @@
                         class="text-white bg-black"
                 >
                     <q-tab :name="item.id" :key="index" :label="item.name" v-for="(item, index) in menus" />
-
                 </q-tabs >
             </div >
 
@@ -28,10 +27,6 @@
                 <q-tab-panel :name="item.id" class="q-px-none" :key="`tab${item.id}`"  v-for="(item, index) in menus">
                     <div class="text-h6" >
                         <div style="text-align:center;" v-html="item.code">
-
-
-
-
                         </div>
                     </div >
                 </q-tab-panel >
@@ -47,6 +42,17 @@
         name: "menu",
         preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
             return store.dispatch('common/getMenu')
+        },
+        meta:{
+            title:`Меню Гриль Баров Антрекот Иркутск Ангарск`,
+            meta: {
+                description: { name: 'description', content: 'Меню Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске' },
+                keywords: { name: 'keywords', content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная' },
+                equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' }
+            },
+            noscript: {
+                default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
+            }
         },
         data: function () {
             return {

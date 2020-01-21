@@ -1,5 +1,5 @@
 <template >
-    <q-page class="" >
+    <q-page class="" style="height: 1px">
         <div class="row tl_padding_page" >
 
             <div class="col-auto justify-center items-center content-center " >
@@ -27,7 +27,7 @@
 
         </div >
 
-        <q-tab-panels v-model="tab" animated class="bg-black" >
+        <q-tab-panels v-model="tab" animated class="bg-black full-height" >
             <q-tab-panel :name="item.id" class="q-px-none" :key="`tab${item.id}`" v-for="(item, index) in restaurants" >
                 <interior-courusel :restaurant="item"></interior-courusel>
             </q-tab-panel >
@@ -47,6 +47,17 @@
         name: "interior",
         components: {
             interiorCourusel
+        },
+        meta:{
+            title:`Интерьеры Гриль Баров Антрекот Иркутск Ангарск`,
+            meta: {
+                description: { name: 'description', content: 'Интерьеры Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске' },
+                keywords: { name: 'keywords', content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная' },
+                equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' }
+            },
+            noscript: {
+                default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
+            }
         },
         preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
             return store.dispatch('common/getRestaurant')
@@ -77,7 +88,7 @@
         margin-bottom: -38px;
         z-index: 100;
         position: relative;
-
+        margin-left: 70px;
     }
 
     .tag {

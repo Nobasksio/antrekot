@@ -10,7 +10,8 @@ const routes = [
             {path: 'contact', component: () => import('pages/contact.vue')},
             {path: 'bonus', component: () => import('pages/bonus.vue')},
             {path: 'feedback', component: () => import('pages/feedback.vue')},
-            {path: 'interior', component: () => import('pages/interior.vue')}
+            {path: 'interior', component: () => import('pages/interior.vue')},
+            { path: '*', component: () => import('pages/Error404.vue')}
         ]
 
     },

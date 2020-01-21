@@ -90,7 +90,12 @@
         name: "contact-item",
         props: ['restaurant'],
         created() {
-            window.addEventListener('resize', this.updateWidth);
+            if ( typeof window !== 'undefined') {
+                window.addEventListener('resize', this.updateWidth);
+            }
+        },
+        mounted(){
+            this.width = window.innerWidth
         },
         data(){
             return{

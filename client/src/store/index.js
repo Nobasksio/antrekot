@@ -2,6 +2,7 @@ import createPersistedState from 'vuex-persistedstate';
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as Cookies from "js-cookie";
 
 // import example from './module-example'
 
@@ -19,7 +20,7 @@ Vue.use(Vuex)
 import age from './age'
 import common from './common'
 
-export default function (/* { ssrContext } */) {
+export default async function ({ ssrContext }) {
     const Store = new Vuex.Store({
         modules: {
             age,
@@ -28,8 +29,13 @@ export default function (/* { ssrContext } */) {
 
         plugins:[
             createPersistedState({
-                key: 'age',
-                paths:['age','common']
+                storage:{
+                    getItem: key => Cookies.get(key),
+                    // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
+                    setItem: (key, value) =>
+                        Cookies.set(key, value, { expires: 3, secure: true }),
+                    removeItem: key => Cookies.remove(key)
+                },
             })
         ],
         // enable strict mode (adds overhead!)
@@ -45,5 +51,5 @@ export default function (/* { ssrContext } */) {
     }
 
 
-    return Store
+    return await Store
 }

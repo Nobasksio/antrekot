@@ -74,7 +74,7 @@
     import {yandexMap, ymapMarker} from 'vue-yandex-maps'
     import contactItem from '../components/contact/contact-item'
     import contactItemMobile from '../components/contact/contact-item-mobile'
-    import {mapState} from 'vuex';
+    import {mapState,mapMutations} from 'vuex';
     export default {
         name: "contact",
 
@@ -83,47 +83,50 @@
             return store.dispatch('common/getRestaurant')
         },
         created() {
-            window.addEventListener('resize', this.updateWidth);
+            if ( typeof window !== 'undefined') {
+                window.addEventListener('resize', this.updateWidth);
+            }
         },
         mounted: function(){
-
+            this.width = window.innerWidth
+        },
+        meta:{
+            title:`Контакты Гриль Баров Антрекот Иркутск Ангарск`,
+            meta: {
+                description: { name: 'description', content: 'Контакты Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске' },
+                keywords: { name: 'keywords', content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная' },
+                equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' }
+            },
+            noscript: {
+                default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
+            }
         },
         data: function () {
             return {
                 tab: 1,
-                width:null,
+                width:1000,
                 settings: {
                     apiKey: '22d47171-61c4-429f-bfaf-c0a883e12290',
                     lang: 'ru_RU',
                     coordorder: 'latlong',
                     version: '2.1'
                 },
-                zoom:13,
-                menus: [
-                    {
-                        name: 'ОСНОВНОЕ', id: 1
-                    },
-                    {
-                        name: 'БАРНОЕ', id: 2
-                    },
-                    {
-                        name: 'ДЕТСКОЕ', id: 3
-                    },
-                    {
-                        name: 'КОМБО-ОБЕД', id: 4
-                    }
-                ]
             }
         },
         methods:{
             updateWidth() {
                 this.width = window.innerWidth;
             },
+            ...mapMutations('common', ['setChoosenRest']),
         },
         computed: {
-            ...mapState('common', ['restaurants','choosenRest']),
+            ...mapState('common', ['restaurants','choosenRest','zoom']),
 
+        },
+        destroyed(){
+            this.setChoosenRest({id:null,latitude:'52.283069' , longitude:'104.285819'})
         }
+
     }
 </script >
 
@@ -141,7 +144,7 @@
         margin-bottom: -38px;
         z-index: 100;
         position: relative;
-
+        margin-left: 40px;
     }
 
     .tag {

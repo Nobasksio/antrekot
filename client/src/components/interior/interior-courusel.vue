@@ -1,20 +1,20 @@
 <template >
-    <div class="row q-pa-xl " >
+    <div class="row q-pa-xl-md q-pa-md" >
 
-        <div class="col-8 q-px-lg" >
+        <div class="col-md-8 col-0 q-px-lg" >
             <q-img
                     :src="mainPhoto"
                     spinner-color="white"
 
             />
         </div >
-        <div class="col-4 row content-stretch" >
+        <div class="col-md-4 col-12  row content-stretch " >
             <hooper class="row content-stretch"
                     @slide="updateCarousel"
                     ref="carousel" style="height: 100%" >
                 <slide :key="`slide${index}`" v-for="(slide, index) in slider_set">
                     <div class="row content-stretch " style="height: 100%" >
-                        <div class="col-6 q-px-sm" :key="`photo${photo.id}`" v-for="photo in slide">
+                        <div class="col-6 q-px-sm q-py-sm" :key="`photo${photo.id}`" v-for="photo in slide">
                             <q-img
                                     :src="`http://185.22.61.189:2000${photo.url}`"
                                     spinner-color="white"
@@ -63,6 +63,17 @@
                 </q-btn >
             </div >
         </div >
+        <q-dialog
+                v-model="show_mobile_photo"
+        >
+            <q-card style="width: 600px; max-width: 90vw;" class="bg-black text-white" >
+                <q-img :src="`${mainPhoto}`"/>
+
+                <q-card-actions align="right" class="bg-black text-red" >
+                    <q-btn flat label="закрыть" v-close-popup />
+                </q-card-actions >
+            </q-card >
+        </q-dialog >
     </div >
 </template >
 
@@ -76,18 +87,26 @@
             Hooper,
             Slide,
         },
+        created() {
+            if ( typeof window !== 'undefined') {
+                window.addEventListener('resize', this.updateWidth);
+            }
+        },
+        mounted(){
+            this.width = window.innerWidth
+        },
         data: function(){
             return {
                 mainPhoto:'http://185.22.61.189:2000'+this.restaurant.interior[0].url,
                 photos:this.restaurant.interior,
                 carouselData: 1,
+                width:null,
+                show_mobile_photo:false
             }
         },
         methods:{
             slidePrev() {
                 this.$refs.carousel.slidePrev();
-
-
             },
             slideNext() {
                 this.$refs.carousel.slideNext();
@@ -95,6 +114,13 @@
             },
             show_photo(photo) {
                 this.mainPhoto = 'http://185.22.61.189:2000'+photo.url;
+
+                if (this.width <600){
+                    this.show_mobile_photo = true
+                }
+            },
+            updateWidth() {
+                this.width = window.innerWidth;
             },
             updateCarousel(payload) {
                 this.carouselData = payload.currentSlide;
@@ -141,8 +167,9 @@
         margin-left: 5px;
     }
 
+
     .img_interior:hover {
         border: 1px solid #fff;
-        cursor: pointer
+        cursor: pointer;
     }
 </style >

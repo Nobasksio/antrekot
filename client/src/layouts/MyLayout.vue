@@ -6,9 +6,11 @@
                   side="left"
                   content-class="menu_drawer"
                   :width="263"
+
                   :breakpoint="1300"
         >
-            <div class="column justify-between fit" >
+
+            <div class="column justify-between fit ofsc" >
                 <div class="col-auto" >
                     <div class="row reverse" >
                         <div class="col-auto " >
@@ -17,14 +19,18 @@
                         </div >
                     </div >
                     <div class="row" >
-                        <div class="col-12" >
+                        <div class="col-12 q-mb-md" >
+                            <router-link to="/">
                             <q-img
                                     src="/statics/logo.svg"
                                     spinner-color="white"
-                                    img-class="q-mx-xl q-mt-n2"
-                                    style="max-width: 400px; height: 200px;"
+                                    img-class="q-mx-xl q-mt-n2 "
+                                    :ratio="16/9"
+                                    style="max-width: 400px; height: 100px;"
                                     contain
+
                             />
+                            </router-link>
                         </div >
                     </div >
                     <div >
@@ -83,6 +89,7 @@
                     </div >
                 </div >
             </div >
+
         </q-drawer >
 
         <q-page-container class="bg-black" >
@@ -118,7 +125,7 @@
                 menu: [
                     {name: 'Меню', link: '/menu'},
                     {name: 'Акции', link: '/promotions'},
-                    {name: 'Бонусы', link: '/bonus'},
+                    // {name: 'Бонусы', link: '/bonus'},
                     {name: 'Контакты', link: '/contact'},
                     {name: 'Отзывы', link: '/feedback'},
                     {name: 'Интерьер', link: '/interior'},
@@ -136,6 +143,10 @@
     .menu_drawer {
         background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
 
+        overflow: scroll;
+    }
+    .ofsc{
+        min-height: 620px;
         overflow: scroll;
     }
 
