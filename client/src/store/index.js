@@ -1,8 +1,10 @@
-import createPersistedState from 'vuex-persistedstate';
+
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as Cookies from "js-cookie";
+
+import createPersistedState from 'vuex-persistedstate';
+import { Cookies } from 'quasar'
 
 // import example from './module-example'
 
@@ -20,7 +22,10 @@ Vue.use(Vuex)
 import age from './age'
 import common from './common'
 
-export default async function ({ ssrContext }) {
+export default function ({ ssrContext }) {
+    const cookies = process.env.SERVER
+        ? Cookies.parseSSR(ssrContext)
+        : Cookies
     const Store = new Vuex.Store({
         modules: {
             age,
@@ -29,12 +34,12 @@ export default async function ({ ssrContext }) {
 
         plugins:[
             createPersistedState({
+                key: 'age',
+                paths: ['age','common'],
                 storage:{
-                    getItem: key => Cookies.get(key),
-                    // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
-                    setItem: (key, value) =>
-                        Cookies.set(key, value, { expires: 3, secure: true }),
-                    removeItem: key => Cookies.remove(key)
+                    getItem: key => JSON.stringify(cookies.get(key)),
+                    setItem: (key, value) => cookies.set(key, value),
+                    removeItem: key => cookies.remove(key)
                 },
             })
         ],
@@ -51,5 +56,5 @@ export default async function ({ ssrContext }) {
     }
 
 
-    return await Store
+    return Store
 }

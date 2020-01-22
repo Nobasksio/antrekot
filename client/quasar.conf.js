@@ -8,7 +8,7 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
       'axios',
-
+      'check'
     ],
       preFetch: true,
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -47,7 +47,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: ['Meta']
+      plugins: ['Meta','Cookies']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
