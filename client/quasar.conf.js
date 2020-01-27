@@ -61,6 +61,9 @@ module.exports = function (ctx) {
       gzip: false,
       analyze: false,
       // Options below are automatically set depending on the env, set them if you want to override
+        env:{
+            API_LINK: JSON.stringify('http://185.22.61.189:2000')
+        },
       // preloadChunks: false,
       // extractCSS: false,
 
@@ -90,9 +93,9 @@ module.exports = function (ctx) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'antrekot',
+        name: 'Гриль бар Антрекот Иркутск и Ангарск',
         short_name: 'antrekot',
-        description: 'antrekot_client',
+        description: 'Гриль бар Антрекот Иркутск и Ангарск',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

@@ -17,14 +17,14 @@
                         narrow-indicator
                         class="text-white bg-black"
                 >
-                    <q-tab :name="item.id" :key="index" :label="item.name" v-for="(item, index) in menus" />
+                    <q-tab :name="item.id" :key="index" v-show="mayMenu(isOld,item.old)" :label="item.name" v-for="(item, index) in menus" />
                 </q-tabs >
             </div >
 
         </div >
         <div class="h-100" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
-                <q-tab-panel :name="item.id" class="q-px-none" :key="`tab${item.id}`"  v-for="(item, index) in menus">
+                <q-tab-panel :name="item.id" v-show="mayMenu(isOld,item.old)" class="q-px-none" :key="`tab${item.id}`"  v-for="(item, index) in menus">
                     <div class="text-h6" >
                         <div style="text-align:center;" v-html="item.code">
                         </div>
@@ -38,6 +38,8 @@
 
 <script >
     import { mapState } from 'vuex';
+
+    console.log(process.env.API_LINK)
     export default {
         name: "menu",
         preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
@@ -57,24 +59,18 @@
         data: function () {
             return {
                 tab: 1,
-                // menus: [
-                //     {
-                //         name: 'ОСНОВНОЕ', id: 1
-                //     },
-                //     {
-                //         name: 'БАРНОЕ', id: 2
-                //     },
-                //     {
-                //         name: 'ДЕТСКОЕ', id: 3
-                //     },
-                //     {
-                //         name: 'КОМБО-ОБЕД', id: 4
-                //     }
-                // ]
+            }
+        },
+        methods:{
+            mayMenu: function(isOld,menuOld){
+                if (isOld) return true
+                else if (menuOld === true) return false
+                else return true
             }
         },
         computed:{
-            ...mapState('common',['menus'])
+            ...mapState('common',['menus']),
+            ...mapState('age',['isOld'])
         }
     }
 </script >

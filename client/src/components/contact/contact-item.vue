@@ -28,7 +28,9 @@
                     </div >
                 </div >
                 <div class="q-pb-xl lspacing10" >
+                    <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class">
                     {{restaurant.Phone}}
+                    </a>
                 </div >
                 <div class="mregular text-12" >
                     Режим работы
@@ -68,7 +70,9 @@
                     </div >
                 </div >
                 <div class="q-pb-xl lspacing10" >
+                    <a href="tel:12345678">
                     {{restaurant.Phone}}
+                    </a>
                 </div >
                 <div class="mregular text-12" >
                     Режим работы
@@ -86,6 +90,9 @@
 
 <script >
     import {mapMutations, mapState} from 'vuex';
+
+
+
     export default {
         name: "contact-item",
         props: ['restaurant'],
@@ -107,6 +114,10 @@
             updateWidth() {
                 this.width = window.innerWidth;
             },
+            cleanPhone(dirty_phone){
+                console.log(dirty_phone.replace(/\D/g,''))
+                return dirty_phone.replace(/\D/,'')
+            }
         },
         computed:{
             ...mapState('common',['choosenRest'])
@@ -187,6 +198,10 @@
             display: block;
         }
 
+    }
+    .phone_class{
+        text-decoration: none;
+        color:#fff;
     }
 
 </style >

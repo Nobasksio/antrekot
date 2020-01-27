@@ -1,6 +1,6 @@
 <template >
     <div>
-    <q-page class="flex flex-center main_b" :style='`background: url(http://185.22.61.189:2000/${ mainPageInfo.image.url }) no-repeat center center fixed;`'>
+    <q-page class="flex flex-center main_b" :style='`background: url(${api_link}${ mainPageInfo.image.url }) no-repeat center center fixed;`'>
         <div class="full-width column  justify-center items-center content-center " >
             <q-space />
             <div class="col main_zag text-center" >
@@ -48,7 +48,6 @@
 <script >
     const axios = require('axios').default;
     import { mapState } from 'vuex';
-
     export default {
         name: 'PageIndex',
         async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
@@ -66,25 +65,13 @@
                 default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
             }
         },
-        methods: {
-            check() {
-
-                axios({
-
-                    method: 'post',
-                    url: 'http://195.206.46.94:2211/Ochered/ru_RU/',
-                    mode: 'no-cors',
-                    data: {
-
-                        "ochered": 1,
-                        "telefon": 546456,
-                        "kod": 1,
-                        "sd": 1
-                    }
-                }).then((response) => {
-                    console.log(response)
-                })
+        data(){
+            return {
+                api_link:process.env.API_LINK
             }
+        },
+        methods: {
+
         },
         computed:{
             ...mapState('common',['mainPageInfo','check'])

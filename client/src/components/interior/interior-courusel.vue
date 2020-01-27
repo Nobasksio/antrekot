@@ -3,7 +3,7 @@
 
         <div class="col-md-8 col-0 q-px-lg" >
             <q-img
-                    :src="mainPhoto"
+                    :src="`${api_link}${mainPhoto}`"
                     spinner-color="white"
 
             />
@@ -16,7 +16,7 @@
                     <div class="row content-stretch " style="height: 100%" >
                         <div class="col-6 q-px-sm q-py-sm" :key="`photo${photo.id}`" v-for="photo in slide">
                             <q-img
-                                    :src="`http://185.22.61.189:2000${photo.url}`"
+                                    :src="`${api_link}${photo.url}`"
                                     spinner-color="white"
                                     style="width: 100%"
                                     class="img_interior"
@@ -67,7 +67,7 @@
                 v-model="show_mobile_photo"
         >
             <q-card style="width: 600px; max-width: 90vw;" class="bg-black text-white" >
-                <q-img :src="`${mainPhoto}`"/>
+                <q-img :src="`${api_link}${mainPhoto}`"/>
 
                 <q-card-actions align="right" class="bg-black text-red" >
                     <q-btn flat label="закрыть" v-close-popup />
@@ -79,6 +79,7 @@
 
 <script >
     import {Hooper, Slide} from 'hooper';
+    import { mapState } from 'vuex';
     import 'hooper/dist/hooper.css';
     export default {
         name: "interior-courusel",
@@ -97,10 +98,11 @@
         },
         data: function(){
             return {
-                mainPhoto:'http://185.22.61.189:2000'+this.restaurant.interior[0].url,
+                mainPhoto:''+this.restaurant.interior[0].url,
                 photos:this.restaurant.interior,
                 carouselData: 1,
                 width:null,
+                api_link:process.env.API_LINK,
                 show_mobile_photo:false
             }
         },
@@ -113,7 +115,7 @@
 
             },
             show_photo(photo) {
-                this.mainPhoto = 'http://185.22.61.189:2000'+photo.url;
+                this.mainPhoto = `${photo.url}`;
 
                 if (this.width <600){
                     this.show_mobile_photo = true

@@ -20,6 +20,9 @@
   src: url(./fonts/Lumios_Marker.otf);
 }
 
+body{
+  background: #000;
+}
 .my-black {
   font-family: 'mblack';
 }
@@ -134,6 +137,9 @@
   background-color: transparent;
 }
 .active_card_contact.q-expansion-item--expanded{
+  background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+}
+.active_card_contact2{
   background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
 }
 

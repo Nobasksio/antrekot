@@ -4,7 +4,7 @@
         <q-card class="my-card cursor-pointer" clickable v-ripple
                 @click="medium = !medium" >
             <q-img
-                    :src="`http://185.22.61.189:2000/${promo.Image.url}`"
+                    :src="`${api_link}${promo.Image.url}`"
                     basic
             >
             </q-img >
@@ -13,7 +13,7 @@
                 v-model="medium"
         >
             <q-card style="width: 600px; max-width: 80vw;" class="bg-black text-white" >
-                <q-img :src="`http://185.22.61.189:2000/${promo.Image.url}`"/>
+                <q-img :src="`${api_link}${promo.Image.url}`"/>
 
                 <q-card-section >
                     <div class=" mregular" >
@@ -32,13 +32,17 @@
 </template >
 
 <script >
+
     var showdown = require('showdown');
+    // console.log(process.env.API_LINK)
+    import { mapState } from 'vuex';
     export default {
         name: "promotion-item",
         props: ['promo'],
         data() {
             return {
                 medium: false,
+                api_link: process.env.API_LINK,
                 converter: new showdown.Converter()
             }
         },
@@ -46,6 +50,9 @@
             take() {
                
             }
+        },
+        computed:{
+
         }
     }
 </script >

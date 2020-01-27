@@ -8,11 +8,13 @@
   "author": "nobasksio <a420673@yandex.ru>",
   "private": true,
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "start": "pm2 start index.js -- --port 2020"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
+    "dotenv": "^8.2.0",
     "js-cookie": "^2.2.1",
     "quasar": "^1.0.0",
     "showdown": "^1.9.1",

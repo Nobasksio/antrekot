@@ -220,7 +220,7 @@
             save_feed() {
                 this.feedback.rate = "_" + this.feedback.rate
                 this.loading = true
-                axios.post(`http://185.22.61.189:2000/otzyvies`,
+                axios.post(`${process.env.API_LINK}/otzyvies`,
                     this.feedback
                 )
                     .then((res) => {
