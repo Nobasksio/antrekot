@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "start": "pm2 start index.js -- --port 2020"
+    "start": "pm2 start ./dist/ssr/index.js -- --port 2020"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",

@@ -43,7 +43,7 @@
                                 </q-item-section >
                             </q-item >
                         </q-list >
-                        <q-btn outline color="white" class='text-uppercase q-btn_my' label="Вакансии" />
+                        <q-btn outline color="white" type="a" href='https://docs.google.com/forms/d/e/1FAIpQLSezX3g-AbKCiT-MCl_YIB5ZTYWKWu7m0SNLDjPhdFEAQIZ4gA/viewform' class='text-uppercase q-btn_my' label="Вакансии" />
                     </div >
                 </div >
 
@@ -51,6 +51,7 @@
                     <div class="row justify-center items-stretch" >
                         <div class="col-auto self-center" >
                             <q-btn flat rounded style="color: #FFFFFF" label=""
+                                   type="a" href="https://www.instagram.com/antrekotbar/"
                             >
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg" >
@@ -67,6 +68,7 @@
 
                         <div class="col-auto  self-center" >
                             <q-btn flat rounded style="color: #FFFFFF" label=""
+                                   type="a" href="https://vk.com/antrekotbar"
                             >
                                 <svg width="22" height="13" viewBox="0 0 22 13" fill="none"
                                      xmlns="http://www.w3.org/2000/svg" >
@@ -76,16 +78,17 @@
                             </q-btn >
                         </div >
 
-                        <div class="col-auto self-center" >
-                            <q-btn flat rounded style="color: #FFFFFF" label=""
-                            >
-                                <svg width="9" height="19" viewBox="0 0 9 19" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg" >
-                                    <path d="M1.94511 19H5.94074V9.49475H8.62208C8.62208 9.49475 8.87333 7.961 8.99571 6.28375H5.95629V4.0964C5.95629 3.76972 6.39151 3.33061 6.82275 3.33061H9V0H6.039C1.84672 0 1.94504 3.20177 1.94504 3.67991V6.29503H0V9.49361H1.94504V19H1.94511Z"
-                                          fill="white" />
-                                </svg >
-                            </q-btn >
-                        </div >
+                        <!--<div class="col-auto self-center" >-->
+                            <!--<q-btn flat rounded style="color: #FFFFFF" label=""-->
+                                   <!--type="a" href="https://vk.com/antrekotbar"-->
+                            <!--&gt;-->
+                                <!--<svg width="9" height="19" viewBox="0 0 9 19" fill="none"-->
+                                     <!--xmlns="http://www.w3.org/2000/svg" >-->
+                                    <!--<path d="M1.94511 19H5.94074V9.49475H8.62208C8.62208 9.49475 8.87333 7.961 8.99571 6.28375H5.95629V4.0964C5.95629 3.76972 6.39151 3.33061 6.82275 3.33061H9V0H6.039C1.84672 0 1.94504 3.20177 1.94504 3.67991V6.29503H0V9.49361H1.94504V19H1.94511Z"-->
+                                          <!--fill="white" />-->
+                                <!--</svg >-->
+                            <!--</q-btn >-->
+                        <!--</div >-->
                     </div >
                 </div >
             </div >
@@ -143,11 +146,11 @@
     .menu_drawer {
         background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
 
-        overflow: scroll;
+        overflow: auto;
     }
     .ofsc{
         min-height: 620px;
-        overflow: scroll;
+        overflow: auto;
     }
 
     .item-menu {

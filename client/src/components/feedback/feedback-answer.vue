@@ -1,7 +1,7 @@
 <template >
     <div class="answer q-py-none q-pl-md " v-if="answer.length > 0">
         <div class="my-red bold">
-            Менеджер Sushi-Studio
+            Менеджер Антрекот
         </div>
         <div class="body-2">
             {{answer}}
