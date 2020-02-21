@@ -1,6 +1,7 @@
 <template >
     <div>
-    <q-page class="flex flex-center main_b" :style='`background: url(${api_link}${ mainPageInfo.image.url }) no-repeat center center fixed;`'>
+    <q-page class="flex flex-center main_b" :style='`background: url(${api_link}${ mainPageInfo.image.url });background-size: cover;
+background-position: center;`'>
         <div class="full-width column  justify-center items-center content-center " >
             <q-space />
             <div class="col main_zag text-center" >
@@ -65,6 +66,7 @@
                 default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
             }
         },
+
         data(){
             return {
                 api_link:process.env.API_LINK
@@ -126,7 +128,7 @@
             letter-spacing: 0.5em;
             text-transform: uppercase;
             color: #FFFFFF;
-            font-family: mbold;
+            font-family: mblack;
 
         }
         .lumios_zag {

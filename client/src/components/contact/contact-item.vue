@@ -5,7 +5,7 @@
              :class="{ 'card_contact_active': choosenRest.id == restaurant.id}"
              @click='setChoosenRest(restaurant)'>
             <div class="q-pb-md lspacing25 text-uppercase" >
-                {{restaurant.Name}}
+                <span v-html="brakeName(restaurant.Name)"> </span>
             </div >
             <div class="red-delimeter " >
 
@@ -115,8 +115,12 @@
                 this.width = window.innerWidth;
             },
             cleanPhone(dirty_phone){
-                console.log(dirty_phone.replace(/\D/g,''))
+
                 return dirty_phone.replace(/\D/,'')
+            },
+            brakeName(name){
+                return name.replace(' ', '<br>')
+
             }
         },
         computed:{

@@ -2,14 +2,10 @@
     <q-page class="" >
         <div class="row tl_padding_page q-px-none" >
 
-            <div class="col-auto-md justify-center items-center content-center " >
-                <div class="text-h4 text-white zag text-center" >
-                    МЕНЮ
-                </div >
-                <div class="tag col" >
-                    #ANTRKT
-                </div >
-            </div >
+            <div class="col-auto-md">
+                <header-page name_page="Меню"></header-page>
+            </div>
+
             <div class="col-md col-12" >
                 <q-tabs
                         v-model="tab"
@@ -17,17 +13,22 @@
                         narrow-indicator
                         class="text-white bg-black"
                 >
-                    <q-tab :name="item.id" :key="index" v-show="mayMenu(isOld,item.old)" :label="item.name" v-for="(item, index) in menus" />
+                    <q-tab :name="item.id"
+                           :key="index"
+                           v-show="mayMenu(isOld,item.old)"
+                           class="my-mbold"
+                           :label="item.name" v-for="(item, index) in menus" />
                 </q-tabs >
             </div >
 
         </div >
         <div class="h-100" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
-                <q-tab-panel :name="item.id" v-show="mayMenu(isOld,item.old)" class="q-px-none" :key="`tab${item.id}`"  v-for="(item, index) in menus">
+                <q-tab-panel :name="item.id" v-show="mayMenu(isOld,item.old)" class="q-px-none" :key="`tab${item.id}`"
+                             v-for="(item, index) in menus" >
                     <div class="text-h6" >
-                        <div style="text-align:center;" v-html="item.code">
-                        </div>
+                        <div style="text-align:center;" v-html="item.code" >
+                        </div >
                     </div >
                 </q-tab-panel >
             </q-tab-panels >
@@ -37,20 +38,30 @@
 </template >
 
 <script >
-    import { mapState } from 'vuex';
+    import {mapState} from 'vuex';
 
-    console.log(process.env.API_LINK)
+    import headerPage from '../components/header-page'
+
     export default {
         name: "menu",
-        preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
+        preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
             return store.dispatch('common/getMenu')
         },
-        meta:{
-            title:`Меню Гриль Баров Антрекот Иркутск Ангарск`,
+        components: {
+            headerPage,
+        },
+        meta: {
+            title: `Меню Гриль Баров Антрекот Иркутск Ангарск`,
             meta: {
-                description: { name: 'description', content: 'Меню Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске' },
-                keywords: { name: 'keywords', content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная' },
-                equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' }
+                description: {
+                    name: 'description',
+                    content: 'Меню Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске'
+                },
+                keywords: {
+                    name: 'keywords',
+                    content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная'
+                },
+                equiv: {'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8'}
             },
             noscript: {
                 default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
@@ -61,41 +72,22 @@
                 tab: 1,
             }
         },
-        methods:{
-            mayMenu: function(isOld,menuOld){
+        methods: {
+            mayMenu: function (isOld, menuOld) {
                 if (isOld) return true
                 else if (menuOld === true) return false
                 else return true
             }
         },
-        computed:{
-            ...mapState('common',['menus']),
-            ...mapState('age',['isOld'])
+        computed: {
+            ...mapState('common', ['menus']),
+            ...mapState('age', ['isOld'])
         }
     }
 </script >
 
 <style scoped >
 
-    .text-h4 {
-        font-family: mblack;
-    }
-
-    .zag {
-        margin-bottom: -38px;
-        z-index: 100;
-        position: relative;
-
-    }
-
-    .tag {
-        font-size: 56px;
-        color: #282828;
-        font-family: mblack;
-        z-index: 20;
-        position: relative;
-
-    }
 
     .h-100 {
         height: 400px;

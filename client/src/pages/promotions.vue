@@ -2,14 +2,8 @@
     <q-page class="" >
         <div class="row tl_padding_page" >
 
-            <div class="col-auto justify-center items-center content-center " >
-                <div class="text-h4 text-white zag text-center" >
-                    Акции
-                </div >
-                <div class="tag col" >
-                    #ANTRKT
-                </div >
-            </div >
+            <header-page name_page="Акции"></header-page>
+
             <div class="col" >
 
             </div >
@@ -25,10 +19,12 @@
 <script >
     import promotionItem from '../components/promotion/promotion-item'
     import { mapState } from 'vuex';
+    import headerPage from '../components/header-page'
     export default {
         name: "promotions",
         components:{
-            promotionItem
+            promotionItem,
+            headerPage
         },
         meta:{
             title:`Акции Гриль Баров Антрекот Иркутск Ангарск`,

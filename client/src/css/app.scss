@@ -152,3 +152,7 @@ body{
   left: 0;
   z-index: 10000000000000000;
 }
+
+.q-expansion-item--standard.q-expansion-item--expanded > div > .q-expansion-item__border {
+  opacity: 0;
+}

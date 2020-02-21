@@ -2,14 +2,7 @@
     <q-page class="bg-black" style="height: 1px;" >
         <div class="row tl_padding_page" >
 
-            <div class="col-auto justify-center items-center content-center " >
-                <div class="text-h4 text-white zag text-center">
-                    Контакты
-                </div >
-                <div class="tag col" >
-                    #ANTRKT
-                </div >
-            </div >
+            <header-page name_page="Контакты"></header-page>
             <div class="col" >
 
             </div >
@@ -44,7 +37,7 @@
                 </yandex-map >
             </div >
         </div >
-        <div class="my-map " v-else>
+        <div class="my-map q-pb-md" v-else>
             <yandex-map class="yandex-map"
                         :controls="[]"
                         :zoom="zoom"
@@ -75,10 +68,15 @@
     import contactItem from '../components/contact/contact-item'
     import contactItemMobile from '../components/contact/contact-item-mobile'
     import {mapState,mapMutations} from 'vuex';
+    import headerPage from '../components/header-page'
     export default {
         name: "contact",
 
-        components: {yandexMap, ymapMarker, contactItem,contactItemMobile},
+        components: {yandexMap,
+            ymapMarker,
+            contactItem,
+            contactItemMobile,
+            headerPage},
         preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
             return store.dispatch('common/getRestaurant')
         },

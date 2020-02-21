@@ -1,15 +1,19 @@
 
-FROM node:lts-alpine as build-stage
+FROM node:lts-alpine
 MAINTAINER nobas
 
-WORKDIR /app
+WORKDIR /client
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm i -g @quasar/cli
-RUN quasar build
+RUN npm i -g @quasar/cli && npm install pm2 -g && quasar build -m ssr
 
-FROM nginx:stable-alpine as production-stage
-COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+#EXPOSE 2020
+
+#CMD ["node", "./dist/ssr/index.js"]
+
+
+#FROM nginx:stable-alpine as production-stage
+#COPY --from=build-stage /client/dist /usr/share/nginx/html
+#EXPOSE 80
+#CMD ["nginx", "-g", "daemon off;"]

@@ -8,7 +8,8 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
       'axios',
-      'check'
+      'check',
+        {path: 'metrika', server: false},
     ],
       preFetch: true,
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -102,7 +103,7 @@ module.exports = function (ctx) {
         theme_color: '#027be3',
         icons: [
           {
-            'src': 'statics/icons/icon-128x128.png',
+            'src': 'statics/icons/favicon-128.png',
             'sizes': '128x128',
             'type': 'image/png'
           },

@@ -2,20 +2,14 @@
     <q-page class="" style="height: 1px">
         <div class="row tl_padding_page" >
 
-            <div class="col-auto justify-center items-center content-center " >
-                <div class="text-h4 text-white zag text-center" >
-                    Интерьеры
-                </div >
-                <div class="tag col" >
-                    #ANTRKT
-                </div >
-            </div >
+            <header-page name_page="Интерьеры"></header-page>
+
             <div class="col-md col-12" >
                 <q-tabs
                         v-model="tab"
                         dense
                         narrow-indicator
-                        class="text-white bg-black"
+                        class="text-white my-mbold"
                 >
                     <q-tab :name="item.id" :key="index" :label="item.short_name" v-for="(item, index) in restaurants" />
 
@@ -42,11 +36,12 @@
     import {mapState} from 'vuex';
 
     import interiorCourusel from '../components/interior/interior-courusel'
-
+    import headerPage from '../components/header-page'
     export default {
         name: "interior",
         components: {
-            interiorCourusel
+            interiorCourusel,
+            headerPage
         },
         meta:{
             title:`Интерьеры Гриль Баров Антрекот Иркутск Ангарск`,

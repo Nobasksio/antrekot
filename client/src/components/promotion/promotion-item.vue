@@ -11,18 +11,22 @@
         </q-card >
         <q-dialog
                 v-model="medium"
+                class=""
         >
-            <q-card style="width: 600px; max-width: 80vw;" class="bg-black text-white" >
+            <q-card style="width: 600px; max-width: 80vw;" class=" text-white " >
+                <div class="back no-support">
+
+                </div>
                 <q-img :src="`${api_link}${promo.Image.url}`"/>
 
-                <q-card-section >
-                    <div class=" mregular" >
-                        <div class="col text-h6 ellipsis q-py-lg" >{{promo.Name}}</div >
+                <q-card-section class="blur">
+                    <div class=" mregular q-px-md-md" >
+                        <div class="col text-h6 ellipsis q-py-lg my-mbold " >{{promo.Name}}</div >
                         <div v-html="converter.makeHtml(promo.Description)" ></div >
                     </div >
                 </q-card-section >
 
-                <q-card-actions align="right" class="bg-black text-red" >
+                <q-card-actions align="right" class=" text-red blur" >
                     <q-btn flat label="OK" v-close-popup />
                 </q-card-actions >
             </q-card >
@@ -61,6 +65,25 @@
     @media (min-width:600px ) {
         .my-card{
             margin: 0 0 0 20px ;
+        }
+    }
+    .blur{
+        -webkit-backdrop-filter: contrast(1) blur(20px);
+        backdrop-filter: contrast(2) blur(20px);
+    }
+    .back{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        -moz-opacity:1;
+    }
+
+
+    @supports ((-webkit-backdrop-filter: opacity(1)) or (backdrop-filter: opacity(1))) {
+        .back {
+
+            opacity: 0.7;
         }
     }
 </style >

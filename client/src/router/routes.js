@@ -11,6 +11,7 @@ const routes = [
             {path: 'bonus', component: () => import('pages/bonus.vue')},
             {path: 'feedback', component: () => import('pages/feedback.vue')},
             {path: 'interior', component: () => import('pages/interior.vue')},
+            {path: 'camera', component: () => import('pages/camera.vue')},
             { path: '*', component: () => import('pages/Error404.vue')}
         ]
 

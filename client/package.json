@@ -9,16 +9,18 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "start": "pm2 start ./dist/ssr/index.js -- --port 2020"
+    "start": "pm2 start ./dist/ssr/index.js"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "dotenv": "^8.2.0",
+    "hooper": "^0.3.4",
     "js-cookie": "^2.2.1",
     "quasar": "^1.0.0",
     "showdown": "^1.9.1",
     "vue-yandex-maps": "^0.10.4",
+    "vue-yandex-metrika": "^1.8.3",
     "vuex-persistedstate": "^2.7.0"
   },
   "devDependencies": {

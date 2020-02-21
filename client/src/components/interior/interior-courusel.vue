@@ -1,20 +1,27 @@
 <template >
     <div class="row q-pa-xl-md q-pa-md" >
 
-        <div class="col-md-8 col-0 q-px-lg" >
+        <div class="col-md-8 col-0 q-pl-lg q-pr-sm" >
             <q-img
                     :src="`${api_link}${mainPhoto}`"
                     spinner-color="white"
 
             />
         </div >
-        <div class="col-md-4 col-12  row content-stretch " >
+        <div class="col-md-4 col-12  row content-stretch" >
             <hooper class="row content-stretch"
                     @slide="updateCarousel"
+                    :infiniteScroll="false"
                     ref="carousel" style="height: 100%" >
                 <slide :key="`slide${index}`" v-for="(slide, index) in slider_set">
-                    <div class="row content-stretch " style="height: 100%" >
-                        <div class="col-6 q-px-sm q-py-sm" :key="`photo${photo.id}`" v-for="photo in slide">
+                    <div class="row wrapper_slide" style="height: 100%" >
+                        <div class="col-6 q-px-sm row  content-stretch"
+                             :class=" { 'col-12' : slide.length == 1,
+                             'q-pb-sm' : ([0,1]).includes(index_p) && slide.length != 1,
+                             'q-py-sm' : ([2,3]).includes(index_p),
+                             'q-pt-sm' : ([4,5]).includes(index_p)}"
+
+                             :key="`photo${photo.id}`" v-for="(photo, index_p) in slide">
                             <q-img
                                     :src="`${api_link}${photo.url}`"
                                     spinner-color="white"
@@ -23,6 +30,7 @@
                                     @click="show_photo(photo)"
                             />
                         </div >
+                        <q-spaser></q-spaser>
                     </div >
                 </slide >
             </hooper >
@@ -173,5 +181,7 @@
     .img_interior:hover {
         border: 1px solid #fff;
         cursor: pointer;
+    }
+    .wrapper_slide{
     }
 </style >
