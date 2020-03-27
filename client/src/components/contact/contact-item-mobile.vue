@@ -8,7 +8,6 @@
 
             <q-card-section class="q-pt-none" >
                 <div class="red-delimeter" >
-
                 </div >
                 <div class="row q-pb-sm q-pt-md lspacing10 content-stretch items-center text-typical" >
                     <div class="col-cuto" >
@@ -27,7 +26,9 @@
                     </div >
                 </div >
                 <div class="q-pb-md lspacing10" >
-                    {{restaurant.Phone}}
+                    <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class">
+                        {{restaurant.Phone}}
+                    </a>
                 </div >
                 <div class="mregular text-12 text-typical" >
                     Режим работы
@@ -123,7 +124,11 @@
             open(position) {
                 this.position = position
                 this.dialog = true
-            }
+            },
+            cleanPhone(dirty_phone){
+
+                return dirty_phone.replace(/\D/,'')
+            },
         }
 
     }
@@ -141,5 +146,9 @@
     }
     .yandex-map {
         height: 100%;
+    }
+    .phone_class{
+        text-decoration: none;
+        color:#fff;
     }
 </style >

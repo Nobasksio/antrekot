@@ -70,8 +70,8 @@
                     </div >
                 </div >
                 <div class="q-pb-xl lspacing10" >
-                    <a href="tel:12345678">
-                    {{restaurant.Phone}}
+                    <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class">
+                        {{restaurant.Phone}}
                     </a>
                 </div >
                 <div class="mregular text-12" >
