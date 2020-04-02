@@ -36,18 +36,21 @@
 
                 </div >
                 <div class="col-auto menu_padding" >
-                    <q-list dense padding class="rounded-borders text-white my-black text-uppercase " >
-                        <q-item clickable v-ripple :key='key' :to="item.link" v-for="(item, key) in menu" >
+                    <q-list dense padding
+                            class="rounded-borders text-white my-black text-uppercase " >
+                        <q-item
+                                :class="{'area': item.name == 'Доставка' }"
+                                clickable v-ripple :key='key' :to="item.link" v-for="(item, key) in menu" >
                             <q-item-section class="q-pl-lg item-menu" >
                                 <div >
-                                    <span class="test" >{{item.name}}</span >
+                                    <span class="test">{{item.name}}</span >
                                 </div >
                             </q-item-section >
                         </q-item >
                     </q-list >
-                    <q-btn outline color="white" type="a"
-                           href='https://docs.google.com/forms/d/e/1FAIpQLSezX3g-AbKCiT-MCl_YIB5ZTYWKWu7m0SNLDjPhdFEAQIZ4gA/viewform'
-                           class='text-uppercase q-btn_my' label="Вакансии" />
+                    <!--<q-btn outline color="white" type="a"-->
+                           <!--href='https://docs.google.com/forms/d/e/1FAIpQLSezX3g-AbKCiT-MCl_YIB5ZTYWKWu7m0SNLDjPhdFEAQIZ4gA/viewform'-->
+                           <!--class='text-uppercase q-btn_my' label="Вакансии" />-->
                 </div >
                 <div class="col-auto q-pb-xl" >
                     <div class="row justify-center items-stretch" >
@@ -131,7 +134,9 @@
                 </div >
                 <div class="col-auto menu_padding" >
                     <q-list dense padding class="rounded-borders text-white my-black text-uppercase " >
-                        <q-item clickable v-ripple :key='key' :to="item.link" v-for="(item, key) in menu" >
+                        <q-item clickable v-ripple
+                                :class="{'area': item.name == 'Доставка' }"
+                                :key='key' :to="item.link" v-for="(item, key) in menu" >
                             <q-item-section class="q-pl-lg item-menu" >
                                 <div >
                                     <span class="test" >{{item.name}}</span >
@@ -139,9 +144,9 @@
                             </q-item-section >
                         </q-item >
                     </q-list >
-                    <q-btn outline color="white" type="a"
-                           href='https://docs.google.com/forms/d/e/1FAIpQLSezX3g-AbKCiT-MCl_YIB5ZTYWKWu7m0SNLDjPhdFEAQIZ4gA/viewform'
-                           class='text-uppercase q-btn_my' label="Вакансии" />
+                    <!--<q-btn outline color="white" type="a"-->
+                           <!--href='https://docs.google.com/forms/d/e/1FAIpQLSezX3g-AbKCiT-MCl_YIB5ZTYWKWu7m0SNLDjPhdFEAQIZ4gA/viewform'-->
+                           <!--class='text-uppercase q-btn_my' label="Вакансии" />-->
                 </div >
                 <div class="col-auto q-pb-xl" >
                     <div class="row justify-center items-stretch" >
@@ -278,6 +283,7 @@
                     {name: 'Контакты', link: '/contact'},
                     {name: 'Отзывы', link: '/feedback'},
                     {name: 'Интерьер', link: '/interior'},
+                    {name: 'Доставка', link: '/order'},
                     // {name: 'Вакансия', link: '/vacancy'}
                 ]
             }
@@ -357,5 +363,58 @@
 
     .menu_padding {
         padding-bottom: 70px;
+    }
+
+    .pulsate-css {
+        animation: pulsate 1s ease-out;
+        animation-iteration-count: infinite;
+        opacity: 0.0;
+
+        /* you dont need the stuff below, but its what I used to create the loading circle */
+        border: 3px solid #999;
+        border-radius: 30px;
+        height: 18px;
+        width: 18px;
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .opacityPulse-css {
+        animation: opacityPulse 2s ease-out;
+        animation-iteration-count: infinite;
+        opacity: 1;
+    }
+
+    a.area:not(.q-router-link--exact-active) {
+        color: #fff;
+        font-weight: 500;
+        text-transform: uppercase;
+        animation: blur .75s ease-out infinite;
+        text-shadow: 0px 0px 1px #fff, 0px 0px 2px #fff;
+    }
+
+    @keyframes blur {
+        from {
+            text-shadow:0px 0px 1px #fff,
+            0px 0px 1px #fff,
+            0px 0px 2px #fff,
+            0px 0px 2px #fff,
+            0px 0px 2px #fff,
+            0px 0px 2px #fff,
+            0px 0px 2px #fff,
+            0px 0px 2px #fff,
+            0px 0px 10px #fff,
+            0px 0px 10px #fff,
+            0px 0px 10px #7B96B8,
+            0px 0px 15px #7B96B8,
+            0px 5px 15px #7B96B8,
+            0px 5px 15px #7B96B8,
+            0px 5px 15px #7B96B8,
+            0px 5px 15px #7B96B8,
+            0px -10px 15px #7B96B8,
+            0px -10px 15px #7B96B8;
+        }
     }
 </style >
