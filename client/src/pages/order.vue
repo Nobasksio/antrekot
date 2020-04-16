@@ -111,6 +111,19 @@
                                          @input="setPhone" >
                                 </q-input >
                             </div >
+                            <div >
+                                <div class="text-subtitle2" >Укажите город</div >
+                                <q-radio :value="order.department"
+                                         @input="setDepartment"
+                                         val="1"
+                                         label="Иркутск"
+                                         color="red" />
+                                <q-radio :value="order.department"
+                                         @input="setDepartment"
+                                         val="2"
+                                         label="Ангарск"
+                                         color="red" />
+                            </div >
                             <div class="q-py-sm" >
                                 <q-input
                                         label="адрес"
@@ -119,7 +132,7 @@
                                         @input="setAddress"
                                         outlined dense >
                                 </q-input >
-                                <div class="q-px-md">
+                                <div class="q-px-md" >
                                     <a href="https://yandex.ru/maps/63/irkutsk/?ll=104.298892%2C52.268341&mode=usermaps&source=constructorLink&um=constructor%3A24615acd192d44e1bccd1e6fcd678bd4beb8228ce9403a1a1888ab3e470fc25f&z=11" >
                                         зона доставки
                                     </a >
@@ -153,9 +166,34 @@
                         </div >
                         <div class="row q-py-lg" >
                             <q-space />
-                            <q-btn color="deep-orange" glossy
+                            <q-btn color="deep-orange"
+                                   glossy
                                    @click="sendOrder()"
-                                   label="Отправить заказ" />
+                            >
+                                <div class="row items-center" >
+                                    <div >
+                                        <q-circular-progress
+                                                indeterminate
+                                                v-if="loading"
+                                                size="20px"
+                                                color="white"
+                                                class="q-mr-md"
+                                        />
+                                    </div >
+                                    <div >
+                                        Отправить заказ
+                                    </div >
+                                    <div >
+                                        <q-circular-progress
+                                                indeterminate
+                                                size="20px"
+                                                v-if="loading"
+                                                color="white"
+                                                class="q-ml-md"
+                                        />
+                                    </div >
+                                </div >
+                            </q-btn >
                             <q-space />
                         </div >
                     </q-card-section >
@@ -181,6 +219,7 @@
             return {
                 thanks: false,
                 dialog: false,
+                loading: false,
                 maximizedToggle: true,
                 tab: 1,
 
@@ -325,7 +364,7 @@
                     {
                         name: 'Кебабы',
                         sortIndex: 500,
-                        description: 'свинина/говядина/курица',
+                        description: '',
                         price: 315,
                         category_id: 1
                     },
@@ -1018,11 +1057,11 @@
                 'setAddress',
                 'setTime',
                 'setEarly',
-                'setComment'
+                'setComment',
+                'setDepartment'
             ]),
             getAddbasketButtonType(nameProduct) {
                 let buttonName = 'в корзину'
-
 
                 let productsArr = this.orderProducts.filter(item => item.name === nameProduct)
 
@@ -1043,14 +1082,12 @@
                 return isAdded
             },
             proxyAddProductToBasket(product) {
-
-
                 this.$refs.basket.$el.classList.add('pulse')
                 this.addProductToBasket(product);
+                this.$forceUpdate();
             },
             getCategoryProduts(categoryId) {
                 const products_l = this.products.filter(item => item.category_id === categoryId)
-
 
                 return products_l;
             },
@@ -1058,6 +1095,8 @@
                 return text.split(",").join(", ");
             },
             sendOrder() {
+                this.loading = true;
+                yaCounter27721593.reachGoal('order');
                 axios.post('http://repairs.rest38.ru/api/antrekot',
                     {
                         order: this.order,
@@ -1066,6 +1105,7 @@
                 )
                     .then((res) => {
                         this.thanks = true
+                        this.loading = false;
                         console.log(res)
                     })
                     .catch((error) => {

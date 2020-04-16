@@ -65,7 +65,7 @@
 <style scoped >
 
     .main_b {
-        background: url(/statics/check.jpg) no-repeat center center fixed;
+        background: url(/statics/check2.jpg) no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

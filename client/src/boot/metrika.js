@@ -6,5 +6,4 @@ export default ({ app, router, Vue }) => {
         router: router,
         env: 'production'
     })
-
 }

@@ -47,7 +47,7 @@ export function addProductToBasket(state,product) {
     if (our_product.length > 0){
         state.orderProducts.forEach((item,index) => {
             if (item.name === product.name){
-                state.orderProducts[index].count++
+                state.orderProducts[index].count += 1
             }
         })
     } else {
@@ -62,6 +62,10 @@ export function removeProductToBasket(state, product) {
 
 export function setPhone(state, phone) {
     state.order.phone = phone
+}
+
+export function setDepartment(state, department) {
+    state.order.department = department
 }
 
 export function setAddress(state, address) {

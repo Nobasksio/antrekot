@@ -13,6 +13,7 @@ export default function () {
           address: null,
           time: null,
           early: false,
+          department: '1',
           comment: null,
       },
       orderProducts:[],
