@@ -40,6 +40,7 @@
                             </div >
                         </div >
                     </div >
+
                 </q-tab-panel >
             </q-tab-panels >
             <div class="basket-btn row justify-center" >
@@ -200,6 +201,9 @@
                 </q-card >
             </q-dialog >
         </div >
+        <!--<div class="q-pa-md">-->
+            <!--<q-btn no-caps color="purple" @click="showNotif" label="Show HTML Notification" />-->
+        <!--</div>-->
 
     </q-page >
 </template >
@@ -221,6 +225,7 @@
                 dialog: false,
                 loading: false,
                 maximizedToggle: true,
+                step: 1,
                 tab: 1,
 
                 categories: [
@@ -288,6 +293,11 @@
                         id: 13,
                         name: 'Напитки',
                         sortIndex: 500
+                    },
+                    {
+                        id:14,
+                        name:'Соусы',
+                        sortIndex:500
                     }
                 ],
                 products: [
@@ -332,6 +342,28 @@
                         description: '',
                         price: 75,
                         categorid: 13
+                    },
+                    {
+                        name: 'Red Bull Energy Drink 0.25',
+                        sortIndex: 500,
+                        description: '',
+                        price: 139,
+                        category_id: 13
+                    },
+                    ,
+                    {
+                        name: 'Red Bull Sugar Free 0.25',
+                        sortIndex: 500,
+                        description: '',
+                        price: 139,
+                        category_id: 13
+                    },
+                    {
+                        name: 'Red Bull Tropical Edition 0.25',
+                        sortIndex: 500,
+                        description: '',
+                        price: 139,
+                        category_id: 13
                     },
                     {
                         name: 'Шашлык из свинины',
@@ -760,13 +792,13 @@
                     //     price: 285,
                     //     category_id: 8
                     // },
-                    {
-                        name: 'Копчёная форель',
-                        sortIndex: 500,
-                        description: '',
-                        price: 345,
-                        category_id: 8
-                    },
+                    // {
+                    //     name: 'Копчёная форель',
+                    //     sortIndex: 500,
+                    //     description: '',
+                    //     price: 345,
+                    //     category_id: 8
+                    // },
                     {
                         name: 'Норвежская скумбрия',
                         sortIndex: 500,
@@ -798,63 +830,63 @@
                     {
                         name: 'Маленькое ассорти из шашлыков на 2-3 человека',
                         sortIndex: 500,
-                        description: '',
+                        description: 'два шашлыка из свинины, шашлык куриный, шашлык из индейки+салат Клоу Слоу,помидор,лаваш, зеленый лук, соус Сацебели',
                         price: 950,
                         category_id: 9
                     },
                     {
                         name: 'Большое ассорти из шашлыков на 5-6 человек',
                         sortIndex: 500,
-                        description: '',
+                        description: 'шашлык из свинины в разных маринадах, шашлык куриный, шашлык из индейки, шашлык из овощей +цукини на гриле, лаваш, укроп, петрушка, зеленый лук, соус Айоли, соус Сацебели',
                         price: 2100,
                         category_id: 9
                     },
                     {
                         name: 'Мясное ассорти на 8-9 человек',
                         sortIndex: 500,
-                        description: '',
+                        description: 'стейк из свинины, говяжья вырезка, рёбра Джек Дэниелс, два шашлыка из свинины, два кебаба из трёх видов мяса +салат Клоу Слоу, печёный картофель, цукини, лаваш, петрушка, укроп, зелёный лук, соус Сацебели, брусничный соус, грибной соус',
                         price: 2850,
                         category_id: 9
                     },
                     {
                         name: 'Куринное ассорти на 4-5 человек',
                         sortIndex: 500,
-                        description: '',
+                        description: 'цыплёнок гриль, куриные крылья Барбекю, куриные ножки в кляре, наггетсы из индейки, куриная грудка фаршированная сыром Фета, +кукуруза гриль, болгарский перец, картофель фри, соус Айоле, грибной соус',
                         price: 1650,
                         category_id: 9
                     },
                     {
                         name: 'Двойной бургер',
                         sortIndex: 500,
-                        description: '',
+                        description: 'картофельная булочка, две котлеты из мраморной говядины, бекон, сыр, маринованные огурцы, лук, лист салата, томатный соус, сырный соус',
                         price: 425,
                         category_id: 10
                     },
                     {
                         name: 'Моцарелла бургер',
                         sortIndex: 500,
-                        description: '',
+                        description: 'картофельная булочка, сыр Моцарелла, свежий помидор, болгарский перец, маслины, лист салата, томатный соус, грибной соус',
                         price: 235,
                         category_id: 10
                     },
                     {
                         name: 'Сибирский бургер',
                         sortIndex: 500,
-                        description: '',
+                        description: 'картофельная булочка, котлета из ягненка, сливочный сыр, грибы, зеленый лук, кедровый орех, соус из сосновых шишек и брусники',
                         price: 385,
                         category_id: 10
                     },
                     {
                         name: 'Чизбургер',
                         sortIndex: 500,
-                        description: '',
+                        description: 'картофельная булочка, котлета из мраморной говядины, сыр, свежий помидор, маринованные огурцы, лук, томатный соус, сырный соус',
                         price: 255,
                         category_id: 10
                     },
                     {
                         name: 'Куриный бургер',
                         sortIndex: 500,
-                        description: '',
+                        description: 'картофельная булочка, курица на гриле, сыр, маринованные огурцы, соус Айоли, томатный соус',
                         price: 225,
                         category_id: 10
                     },
@@ -1046,7 +1078,78 @@
                         description: '',
                         price: 485,
                         category_id: 12
+                    },
+                    {
+                        name:'Барбекю',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Сырный',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Айоли',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Томатный',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Цезарь',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Песто',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Брусничный',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Грибной',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Джек Дэниелс',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
+                    },
+                    {
+                        name:'Том-Ям',
+                        sortIndex:500,
+                        description:'',
+                        price:50,
+                        category_id:14
                     }
+
                 ]
             }
         },
@@ -1060,6 +1163,21 @@
                 'setComment',
                 'setDepartment'
             ]),
+            showNotif () {
+                this.$q.notify({
+                    message: `<div class="row items-center">
+                                <div class="col-4">
+                                <img src="statics/rb.jpg" alt="" style="max-height: 100px">
+                                </div>
+                                <div class="col-8">Успеть все, пока все дома?<br>Ура Вы получаете Баночку редбула в подарок!</div>
+                                </div>
+                                `,
+                    html: true,
+                    actions: [
+                        { label: 'Ок', color: 'red', handler: () => { /* ... */ } }
+                    ]
+                })
+            },
             getAddbasketButtonType(nameProduct) {
                 let buttonName = 'в корзину'
 
