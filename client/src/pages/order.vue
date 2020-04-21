@@ -1,7 +1,6 @@
 <template >
     <q-page class="" >
         <div class="row tl_padding_page q-px-none" >
-
             <div class="col-auto-md" >
                 <header-page name_page="Заказ Доставки" ></header-page >
             </div >
@@ -13,6 +12,11 @@
                         narrow-indicator
                         class="text-white bg-black"
                 >
+                    <q-tab name="14"
+                           class="my-mbold"
+                           label="Бизнес-Ланч"
+                           v-if="showLanch"
+                    />
                     <q-tab :name="item.id"
                            :key="index"
                            class="my-mbold"
@@ -21,8 +25,172 @@
             </div >
 
         </div >
+        <q-banner inline-actions class="text-white bg-red" v-if="!isWorkTime">
+            Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.
+        </q-banner>
         <div class="h-100 full-width" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
+                <q-tab-panel name="14" class="q-px-none" v-if="showLanch">
+                    <div class="text-h6 text-white q-pb-xl" >
+                        <div class="q-px-lg text-caption">
+                            Бизнес ланч с 11:00 до 16:00. <br>
+                            Суп, Салат и Горячее блюдо всего за 300 рублей!<br>
+                            Пока бизнес ланч вы можете заказать только в Иркутске.
+
+                        </div>
+                        <div class="q-pa-md">
+                            <q-stepper
+                                    v-model="step"
+                                    ref="stepper"
+                                    active-color="deep-orange"
+                                    done-color="secondary"
+                                    animated
+                                    vertical
+                            >
+                                <q-step
+                                        :name="1"
+                                        title="Выберете салаты"
+                                        icon="img:statics/salad-icon.svg"
+                                        active-icon="img:statics/salad-icon.svg"
+                                        done-icon="img:statics/salad-icon.svg"
+                                        done-color="deep-orange"
+                                        :done="step > 1"
+                                >
+                                    <div class="row radioImgRow">
+                                        <div
+                                                v-for="(item, index) of salads"
+                                                :key="index"
+                                                class="col-sm radioImg"
+                                        >
+                                            <label>
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <input type="radio" v-model="saladStep" :value="item.name" />
+                                                        <img :src="require(`../assets/${item.image}`)" height="139" width="139">
+                                                    </div>
+                                                    <div class="col radioWrapText">
+                                                        <span class="itemName">{{ item.name }}</span>
+                                                        <p class="itemText">{{ item.consist }}</p>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <q-stepper-navigation>
+                                        <q-btn @click="step = 2" color="white" class="q-pl-lg q-pr-lg q-pt-sm q-pb-sm text-bold" size="10px" outline label="Продолжить" />
+                                    </q-stepper-navigation>
+                                </q-step>
+
+                                <q-step
+                                        :name="2"
+                                        title="Выберете суп"
+                                        icon="img:statics/soup-icon.svg"
+                                        active-icon="img:statics/soup-icon.svg"
+                                        done-icon="img:statics/soup-icon.svg"
+                                        done-color="deep-orange"
+                                        :done="step > 2"
+                                >
+                                    <div class="row radioImgRow">
+                                        <div
+                                                v-for="(item, index) of soups"
+                                                :key="index"
+                                                class="col-sm radioImg"
+                                        >
+                                            <label>
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <input type="radio" v-model="soupStep" :value="item.name" />
+                                                        <img :src="require(`../assets/${item.image}`)" height="139" width="139">
+                                                    </div>
+                                                    <div class="col radioWrapText">
+                                                        <span class="itemName">{{ item.name }}</span>
+                                                        <p class="itemText">{{ item.consist }}</p>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <q-stepper-navigation>
+                                        <q-btn @click="step = 3" color="white" class="q-pl-lg q-pr-lg q-pt-sm q-pb-sm text-bold" size="10px" outline label="Продолжить" />
+                                        <q-btn flat @click="step = 1" color="white" label="Назад" class="q-ml-sm" />
+                                    </q-stepper-navigation>
+                                </q-step>
+
+                                <q-step
+                                        :name="3"
+                                        title="Выберете горячее"
+                                        icon="img:statics/hotter-icon.svg"
+                                        active-icon="img:statics/hotter-icon.svg"
+                                        done-icon="img:statics/hotter-icon.svg"
+                                        done-color="deep-orange"
+                                        :done="step > 3"
+                                >
+                                    <div class="row radioImgRow">
+                                        <div
+                                                v-for="(item, index) of hotter"
+                                                :key="index"
+                                                class="col-sm radioImg"
+                                        >
+                                            <label>
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <input type="radio" v-model="hotterStep" :value="item.name" />
+                                                        <img :src="require(`../assets/${item.image}`)" height="139" width="139">
+                                                    </div>
+                                                    <div class="col radioWrapText">
+                                                        <span class="itemName">{{ item.name }}</span>
+                                                        <p class="itemText">{{ item.consist }}</p>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <q-stepper-navigation>
+                                        <q-btn @click="step = 4" color="white" class="q-pl-lg q-pr-lg q-pt-sm q-pb-sm text-bold" size="10px" outline label="Продолжить" />
+                                        <q-btn flat @click="step = 2" color="white" label="Назад" class="q-ml-sm" />
+                                    </q-stepper-navigation>
+                                </q-step>
+
+                                <q-step
+                                        :name="4"
+                                        title="Итог"
+                                        icon="img:statics/basket-icon.svg"
+                                        active-icon="img:statics/basket-icon.svg"
+                                >
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="text-white" style="font-size: 16px">Вы выбрали следующие блюда:</p>
+                                        </div>
+                                    </div>
+                                    <div class="row items-center">
+                                        <div class="col-auto"><img :src="require(`../assets/${salads.filter(item => item.name === saladStep)[0].image}`)" width="80" alt=""></div>
+                                        <div class="col">{{ salads.filter(item => item.name === saladStep)[0].name }}</div>
+                                    </div>
+                                    <div class="row items-center">
+                                        <div class="col-auto"><img :src="require(`../assets/${soups.filter(item => item.name === soupStep)[0].image}`)" width="80" alt=""></div>
+                                        <div class="col">{{ soups.filter(item => item.name === soupStep)[0].name }}</div>
+                                    </div>
+                                    <div class="row items-center">
+                                        <div class="col-auto"><img :src="require(`../assets/${hotter.filter(item => item.name === hotterStep)[0].image}`)" width="80" alt=""></div>
+                                        <div class="col">{{ hotter.filter(item => item.name === hotterStep)[0].name }}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><p class="text-white" style="font-size: 16px">+ <strong>Подарок:</strong> пакетик чая и шоколадный кекс</p></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <q-btn
+                                                    color="deep-orange"
+                                                    @click="proxyAddProductToBasket(getBusinessLunch)"
+                                                    :label="getAddbasketButtonType(getBusinessLunch.name)" />
+                                            <q-btn flat @click="step = 1" color="white" label="Очистить" class="q-ml-sm" />
+                                        </div>
+                                    </div>
+                                </q-step>
+                            </q-stepper>
+                        </div>
+                    </div>
+                </q-tab-panel>
                 <q-tab-panel :name="item.id" class="q-px-none " :key="`tab${item.id}`"
                              v-for="(item, index) in categories" >
                     <div class="text-h6 text-white q-pb-xl" >
@@ -103,6 +271,13 @@
                             </div >
                         </div >
                         <div >
+                            <div class="q-mt-md q-mb-md">
+                                <q-input outlined dense
+                                         :value="order.name"
+                                         label="Имя"
+                                         @input="setName">
+                                </q-input >
+                            </div>
                             <div class="q-py-sm" >
                                 <q-input outlined dense
                                          :value="order.phone"
@@ -227,6 +402,63 @@
                 maximizedToggle: true,
                 step: 1,
                 tab: 1,
+                costume: false,
+
+                saladStep: 'Салат с бужениной и фунчозой (100гр)',
+                soupStep: 'Суп министроне с курицей (200гр)',
+                hotterStep: 'Паста карбонара (230гр)',
+
+                salads: [
+                    {
+                        name: 'Салат с бужениной и фунчозой (100гр)',
+                        image: 'salat-buzhenina.jpg',
+                        consist: 'фунчоза, огурец, болгарский перец, буженина, кунжутный соус'
+                    },
+                    {
+                        name: 'Подкопчёная свёкла с фетой (100гр)',
+                        image: 'salat-svekla.jpg',
+                        consist: 'свёкла подкопчёная, фета, луковый мёд, мята, оливковое масло'
+                    },
+                    {
+                        name: 'Коул Слоу (80гр)',
+                        image: 'salat-koul-slou.jpg',
+                        consist: 'капуста белая, капуста красная, яблоко, морковь, сливочномедовый соус, зелень'
+                    }
+                ],
+                soups: [
+                    {
+                        name: 'Суп министроне с курицей (200гр)',
+                        image: 'soup-ministrone.jpg',
+                        consist: 'куриный бульон, фасоль, картофель, морковь, лук, перец болгарский, курица, зелень'
+                    },
+                    {
+                        name: 'Суп рамен с яйцом (200гр)',
+                        image: 'soup-ramen.jpg',
+                        consist: 'куриный бульон, лапша, яйцо, морковь, лук, куриное филе, соевый соус'
+                    },
+                    {
+                        name: 'Суп сырно-грибной (200гр)',
+                        image: 'soup-syr.jpg',
+                        consist: 'сыр, грибы, морковь, сливки'
+                    }
+                ],
+                hotter: [
+                    {
+                        name: 'Паста карбонара (230гр)',
+                        image: 'pasta-carbonara.jpg',
+                        consist: 'пене, бекон, сливки, пармезан'
+                    },
+                    {
+                        name: 'Курица терияки с булгуром (230гр)',
+                        image: 'chiken-teriyaki.jpg',
+                        consist: 'куриное филе, красный лук, соус терияки, соевый соус, булгур'
+                    },
+                    {
+                        name: 'Говядина в винном соусе с пюре (230гр)',
+                        image: 'govyadina.jpg',
+                        consist: 'говядина, лук, морковь, вино, томатная паста, специи, картофельное пюре'
+                    }
+                ],
 
                 categories: [
                     {
@@ -1161,7 +1393,10 @@
                 'setTime',
                 'setEarly',
                 'setComment',
-                'setDepartment'
+                'setDepartment',
+                'setCostume',
+                'setName',
+                'setBusinessLunch'
             ]),
             showNotif () {
                 this.$q.notify({
@@ -1212,6 +1447,8 @@
             makedescr(text) {
                 return text.split(",").join(", ");
             },
+            clearLanch(){
+            },
             sendOrder() {
                 this.loading = true;
                 yaCounter27721593.reachGoal('order');
@@ -1224,7 +1461,6 @@
                     .then((res) => {
                         this.thanks = true
                         this.loading = false;
-                        console.log(res)
                     })
                     .catch((error) => {
 
@@ -1236,7 +1472,32 @@
         },
         computed: {
             ...mapState('common', ['order', 'orderProducts']),
-            ...mapGetters('common', ['totalSum'])
+            ...mapGetters('common', ['totalSum']),
+            showLanch(){
+                const nowDate = new Date();
+                if (nowDate.getHours() < 11) return false;
+                if (nowDate.getHours() > 16 ) return false;
+
+                return true
+
+            },
+            isWorkTime(){
+                const nowDate = new Date();
+                if (nowDate.getHours() > 22) return false;
+                if (nowDate.getHours() < 12) return false;
+
+                return true
+
+            },
+            getBusinessLunch () {
+                return {
+                    name: `${this.saladStep}, ${this.soupStep}, ${this.hotterStep}`,
+                    sortIndex: 500,
+                    description: '',
+                    price: 300,
+                    category_id: 14
+                }
+            }
         }
     }
 </script >
@@ -1273,6 +1534,39 @@
 
     .active_card_contact2 {
         background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+    }
+
+
+    .radioImg img{
+        border: 1px solid #333333;
+    }
+
+    .radioImg label input:checked + img{
+        border: 1px solid red;
+    }
+
+    .radioImg label input{
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .radioWrapText{
+        padding: 5px 20px;
+    }
+
+    .radioWrapText .itemName {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .radioWrapText .itemText {
+        font-size: 16px;
+        line-height: 20px;
+        color: #828282;
+    }
+
+    .q-stepper{
+        background: transparent;
     }
 
 

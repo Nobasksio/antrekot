@@ -195,3 +195,13 @@ body{
   -webkit-animation-name: pulse;
   animation-name: pulse;
 }
+
+
+@media (max-width: 560px) {
+  .q-stepper--vertical .q-stepper__step-inner {
+    padding: 0 15px 32px 15px;
+  }
+  .q-stepper--vertical .q-stepper__tab {
+    padding: 12px 15px;
+  }
+}
