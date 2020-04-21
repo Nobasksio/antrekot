@@ -154,15 +154,15 @@
                     </div>
                   </div>
                   <div class="row items-center">
-                    <div class="col-auto"><img :src="require(`../assets/${salads.filter(item => item.name === saladStep)[0].image}`)" alt=""></div>
+                    <div class="col-auto"><img :src="require(`../assets/${salads.filter(item => item.name === saladStep)[0].image}`)" width="80" alt=""></div>
                     <div class="col">{{ salads.filter(item => item.name === saladStep)[0].name }}</div>
                   </div>
                   <div class="row items-center">
-                    <div class="col-auto"><img :src="require(`../assets/${soups.filter(item => item.name === soupStep)[0].image}`)" alt=""></div>
+                    <div class="col-auto"><img :src="require(`../assets/${soups.filter(item => item.name === soupStep)[0].image}`)" width="80" alt=""></div>
                     <div class="col">{{ soups.filter(item => item.name === soupStep)[0].name }}</div>
                   </div>
                   <div class="row items-center">
-                    <div class="col-auto"><img :src="require(`../assets/${hotter.filter(item => item.name === hotterStep)[0].image}`)" alt=""></div>
+                    <div class="col-auto"><img :src="require(`../assets/${hotter.filter(item => item.name === hotterStep)[0].image}`)" width="80" alt=""></div>
                     <div class="col">{{ hotter.filter(item => item.name === hotterStep)[0].name }}</div>
                   </div>
                   <div class="row">
@@ -213,7 +213,6 @@
           <div class="text-white q-pt-sm" v-if="totalSum < 600" >минимальная сумма 600р</div >
         </div >
       </div >
-      <Basket :dialog="dialog" close-dialog="hideDialog" />
       <q-dialog
         v-model="dialog"
         transition-show="slide-up"
@@ -403,51 +402,51 @@
         salads: [
           {
             name: 'Салат с бужениной и фунчозой (100гр)',
-            image: 'salat-buzhenina.svg',
+            image: 'salat-buzhenina.jpg',
             consist: 'фунчоза, огурец, болгарский перец, буженина, кунжутный соус'
           },
           {
             name: 'Подкопчёная свёкла с фетой (100гр)',
-            image: 'salat-svekla.svg',
+            image: 'salat-svekla.jpg',
             consist: 'свёкла подкопчёная, фета, луковый мёд, мята, оливковое масло'
           },
           {
             name: 'Коул Слоу (80гр)',
-            image: 'salat-koul-slou.svg',
+            image: 'salat-koul-slou.jpg',
             consist: 'капуста белая, капуста красная, яблоко, морковь, сливочномедовый соус, зелень'
           }
         ],
         soups: [
           {
             name: 'Суп министроне с курицей (200гр)',
-            image: 'soup-ministrone.svg',
+            image: 'soup-ministrone.jpg',
             consist: 'куриный бульон, фасоль, картофель, морковь, лук, перец болгарский, курица, зелень'
           },
           {
             name: 'Суп рамен с яйцом (200гр)',
-            image: 'soup-ramen.svg',
+            image: 'soup-ramen.jpg',
             consist: 'куриный бульон, лапша, яйцо, морковь, лук, куриное филе, соевый соус'
           },
           {
             name: 'Суп сырно-грибной (200гр)',
-            image: 'soup-syr.svg',
+            image: 'soup-syr.jpg',
             consist: 'сыр, грибы, морковь, сливки'
           }
         ],
         hotter: [
           {
             name: 'Паста карбонара (230гр)',
-            image: 'pasta-carbonara.svg',
+            image: 'pasta-carbonara.jpg',
             consist: 'пене, бекон, сливки, пармезан'
           },
           {
             name: 'Курица терияки с булгуром (230гр)',
-            image: 'chiken-teriyaki.svg',
+            image: 'chiken-teriyaki.jpg',
             consist: 'куриное филе, красный лук, соус терияки, соевый соус, булгур'
           },
           {
             name: 'Говядина в винном соусе с пюре (230гр)',
-            image: 'govyadina.svg',
+            image: 'govyadina.jpg',
             consist: 'говядина, лук, морковь, вино, томатная паста, специи, картофельное пюре'
           }
         ],
