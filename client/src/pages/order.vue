@@ -60,7 +60,7 @@
                                         <div
                                                 v-for="(item, index) of salads"
                                                 :key="index"
-                                                class="col-sm radioImg"
+                                                class="col-md radioImg"
                                         >
                                             <label >
                                                 <div class="row" >
@@ -97,7 +97,7 @@
                                         <div
                                                 v-for="(item, index) of soups"
                                                 :key="index"
-                                                class="col-sm radioImg"
+                                                class="col-md radioImg"
                                         >
                                             <label >
                                                 <div class="row" >
@@ -135,7 +135,7 @@
                                         <div
                                                 v-for="(item, index) of hotter"
                                                 :key="index"
-                                                class="col-sm radioImg"
+                                                class="col-md radioImg"
                                         >
                                             <label >
                                                 <div class="row" >
