@@ -60,7 +60,7 @@
                                         <div
                                                 v-for="(item, index) of salads"
                                                 :key="index"
-                                                class="col-sm radioImg"
+                                                class="col-md radioImg"
                                         >
                                             <label >
                                                 <div class="row" >
@@ -97,7 +97,7 @@
                                         <div
                                                 v-for="(item, index) of soups"
                                                 :key="index"
-                                                class="col-sm radioImg"
+                                                class="col-md radioImg"
                                         >
                                             <label >
                                                 <div class="row" >
@@ -135,7 +135,7 @@
                                         <div
                                                 v-for="(item, index) of hotter"
                                                 :key="index"
-                                                class="col-sm radioImg"
+                                                class="col-md radioImg"
                                         >
                                             <label >
                                                 <div class="row" >
@@ -219,7 +219,7 @@
                         <div :key="product.id" v-for="product in getCategoryProduts(item.id)"
                              class="row items-center justify-between" >
                             <div class="col-md-4 col-6 q-px-md" >{{ product.name }}</div >
-                            <div class="col-md-4 mobile-hide text-body2" >{{ makedescr(product.description) }}</div >
+                            <div class="col-md-4 mobile-hide text-body2 q-pl-sm q-pr-sm" >{{ makedescr(product.description) }}</div >
                             <div class="col-md-2 col-2" >{{ product.price }} р</div >
                             <div class="col-md-2 col-4" >
                                 <q-btn :outline="!isAddedToBasket(product.name)"
