@@ -1,5 +1,9 @@
 const routes = [
     {
+        path: '/outside',
+        component: () => import('layouts/Outside.vue'),
+    },
+    {
         path: '/',
         component: () => import('layouts/MyLayout.vue'),
         children: [
@@ -15,6 +19,7 @@ const routes = [
             {path: 'camera', component: () => import('pages/camera.vue')},
             { path: '*', component: () => import('pages/Error404.vue')}
         ]
+
 
     },
     {path: '/check', component: () => import('pages/check-page.vue')},
