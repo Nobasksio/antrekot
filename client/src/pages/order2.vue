@@ -248,7 +248,7 @@
                 </q-tab-panel >
                 <q-tab-panel :name="categoryItem.id" class="q-px-none q-pb-xl" :key="`tab${categoryItem.id}`"
                              v-for="(categoryItem, index) in categoriesMenu" >
-                    <div v-if="categoryItem.id == 18" class="q-pa-md text-white text-h6" >
+                    <div v-if="categoryItem.id == 19" class="q-pa-md text-white text-h6" >
                         Привет, дорогой наш друг!
                         Мы сделали за тебя уже половину работы, тебе же остаётся пройти вторую половину и
                         приготовить
