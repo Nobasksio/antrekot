@@ -6,7 +6,7 @@
                 <header-page name_page="Меню"></header-page>
             </div>
 
-            <div class="col-md col-12" >
+            <div class="col-md-6 col-12" >
                 <q-tabs
                         v-model="tab"
                         dense

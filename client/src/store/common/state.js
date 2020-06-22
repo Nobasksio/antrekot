@@ -14,10 +14,12 @@ export default function () {
           address: null,
           time: null,
           early: false,
-          department: '1',
+          payment: '1',
           comment: null,
           isCostume: false,
       },
       orderProducts:[],
+      orderMenu: [],
+      categoriesMenu: [],
   }
 }

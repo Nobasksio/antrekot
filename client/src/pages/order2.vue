@@ -4,54 +4,63 @@
             <div class="col-auto-md" >
                 <header-page name_page="Заказ Доставки" ></header-page >
             </div >
-            <div class="mobile-hide">
-                <q-btn outline
-                       color="white"
-                       type="a"
-                       target="_blank"
-                       href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink"
-                       class='text-uppercase q-btn_my' label="Зона доставки" />
-            </div>
-            <div class="mobile-only col-12 column justify-center items-center q-pb-md">
+            <div class="mobile-hide" >
+                <div class="row justify-around items-center q-pl-md-xl" >
+                    <img src="statics/icons/balloon.svg" alt="" class="ballon" >
+                    <q-btn outline
+                           color="white"
+                           type="a"
+                           target="_blank"
+                           href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink"
+                           class='text-uppercase q-btn_my' label="Зона доставки" />
 
-                <q-btn outline
-                       color="white"
-                       type="a"
-                       target="_blank"
-                       href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink"
-                       class='text-uppercase q-btn_my' label="Зона доставки" />
-
-            </div>
-
+                </div >
+            </div >
+            <div class="mobile-only col-12 column justify-center items-center q-pb-md" >
+                <div class="row justify-around items-center q-pl-md-xl" >
+                    <img src="statics/icons/balloon.svg" class="ballon" alt="" >
+                    <q-btn outline
+                           color="white"
+                           type="a"
+                           target="_blank"
+                           href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink"
+                           class='text-uppercase q-btn_my' label="Зона доставки" />
+                </div >
+            </div >
 
 
         </div >
         <div class="col-md col-12" >
+
+            <!--<div class="row " >-->
+            <!--<div class="text-white bg-black"-->
+            <!--v-for="(item, index) in categoriesMenu" @click="tab = item.id" >-->
+            <!--{{item.Name}}-->
+            <!--</div >-->
+            <!--</div >-->
             <q-tabs
                     v-model="tab"
                     dense
                     narrow-indicator
                     class="text-white bg-black"
             >
-                <q-tab name="14"
+                <q-tab name="000name"
                        class="my-mbold"
                        label="Бизнес-Ланч"
                 />
                 <q-tab :name="item.id"
-                       :key="index"
+                       :key="item.Name"
                        class="my-mbold"
-                       :label="item.name" v-for="(item, index) in categories" />
+                       :label="item.Name" v-for="(item, index) in categoriesMenu" />
+
             </q-tabs >
         </div >
         <q-banner inline-actions class="text-white bg-red" v-show="!isWorkTime" >
             Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.
         </q-banner >
-        <span>
-            {{nowHour}}
-        </span>
         <div class="h-100 full-width" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
-                <q-tab-panel name="14" class="q-px-none"  >
+                <q-tab-panel name="000name" class="q-px-none" >
                     <div class="text-h6 text-white q-pb-xl" >
                         <div class="q-px-lg text-caption" >
                             Бизнес ланч с 11:00 до 16:00. <br >
@@ -86,7 +95,8 @@
                                             <label >
                                                 <div class="row" >
                                                     <div class="col-auto" >
-                                                        <input type="radio" v-model="saladStep" :value="item.name" />
+                                                        <input type="radio" v-model="saladStep"
+                                                               :value="item.name" />
                                                         <img :src="require(`../assets/${item.image}`)" height="139"
                                                              width="139" >
                                                     </div >
@@ -161,7 +171,8 @@
                                             <label >
                                                 <div class="row" >
                                                     <div class="col-auto" >
-                                                        <input type="radio" v-model="hotterStep" :value="item.name" />
+                                                        <input type="radio" v-model="hotterStep"
+                                                               :value="item.name" />
                                                         <img :src="require(`../assets/${item.image}`)" height="139"
                                                              width="139" >
                                                     </div >
@@ -197,7 +208,8 @@
                                         <div class="col-auto" ><img
                                                 :src="require(`../assets/${salads.filter(item => item.name === saladStep)[0].image}`)"
                                                 width="80" alt="" ></div >
-                                        <div class="col" >{{ salads.filter(item => item.name === saladStep)[0].name }}
+                                        <div class="col" >{{ salads.filter(item => item.name === saladStep)[0].name
+                                            }}
                                         </div >
                                     </div >
                                     <div class="row items-center" >
@@ -234,29 +246,49 @@
                         </div >
                     </div >
                 </q-tab-panel >
-                <q-tab-panel :name="item.id" class="q-px-none q-pb-xl" :key="`tab${item.id}`"
-                             v-for="(item, index) in categories" >
-                    <div v-if="item.id == 18" class="q-pa-md text-white text-h6">
+                <q-tab-panel :name="categoryItem.id" class="q-px-none q-pb-xl" :key="`tab${categoryItem.id}`"
+                             v-for="(categoryItem, index) in categoriesMenu" >
+                    <div v-if="categoryItem.id == 18" class="q-pa-md text-white text-h6" >
                         Привет, дорогой наш друг!
-                        Мы сделали за тебя уже половину работы, тебе же остаётся пройти вторую половину и приготовить для себя, друзей и близких стейки, бургеры и наборы шашлыков, которые приедут к тебе в полуфабрикатах, а тебе останется только приготовить твой шедевр кулинарного мастерства.
-                    </div>
-                    <div class="text-h6 text-white q-pb-xl" >
-                        <div :key="product.id" v-for="product in getCategoryProduts(item.id)"
-                             class="row items-center justify-between" >
-                            <div class="col-md-4 col-sm-4 col-6 q-px-md" >{{ product.name }}</div >
-                            <div class="col-md-4 col-sm-5 mobile-hide text-body2 q-pl-sm q-pr-sm" >{{ makedescr(product.description) }}</div >
-                            <div class="col-md-2 col-sm-1 col-2" >{{ product.price }} р</div >
-                            <div class="col-md-2 col-sm-2 col-4" >
-                                <q-btn :outline="!isAddedToBasket(product.name)"
-                                       :color="{'white' : isAddedToBasket(product.name)}"
-                                       @click="proxyAddProductToBasket(product)"
-                                       :class="{'active_card_contact2' : isAddedToBasket(product.name)}"
-                                       class='text-uppercase q-btn_my' :label="getAddbasketButtonType(product.name)" />
-                            </div >
+                        Мы сделали за тебя уже половину работы, тебе же остаётся пройти вторую половину и
+                        приготовить
+                        для себя, друзей и близких стейки, бургеры и наборы шашлыков, которые приедут к тебе в
+                        полуфабрикатах, а тебе останется только приготовить твой шедевр кулинарного мастерства.
+                    </div >
+                    <div class="category-name-desktop mobile-hide" >
+                        {{categoryItem.Name}}
+                    </div >
+                    <div class="category-name-mobile desktop-hide" >
+                        {{categoryItem.Name}}
+                    </div >
+                    <div class="text-h6 q-pb-xl" >
+                        <div class="row q-col-gutter-xl q-px-lg content-center" >
+                            <catalog-item :key="product.id"
+                                          :productItem="product"
+                                          :action="proxyAddProductToBasket"
+                                          :isAddedToBasket="isAddedToBasket"
+                                          :getAddbasketButtonType="getAddbasketButtonType"
+                                          v-for="product in categoryItem.products" >
+                            </catalog-item >
                         </div >
+
+                        <!--<div :key="product.id" v-for="product in item.products"-->
+                        <!--class="row items-center justify-between" >-->
+                        <!--<div class="col-md-4 col-sm-4 col-6 q-px-md" >{{ product.name }}</div >-->
+                        <!--<div class="col-md-4 col-sm-5 mobile-hide text-body2 q-pl-sm q-pr-sm" >{{ makedescr(product.description) }}</div >-->
+                        <!--<div class="col-md-2 col-sm-1 col-2" >{{ product.price }} р</div >-->
+                        <!--<div class="col-md-2 col-sm-2 col-4" >-->
+                        <!--<q-btn :outline="!isAddedToBasket(product.name)"-->
+                        <!--:color="{'white' : isAddedToBasket(product.name)}"-->
+                        <!--@click="proxyAddProductToBasket(product)"-->
+                        <!--:class="{'active_card_contact2' : isAddedToBasket(product.name)}"-->
+                        <!--class='text-uppercase q-btn_my' :label="getAddbasketButtonType(product.name)" />-->
+                        <!--</div >-->
+                        <!--</div >-->
                     </div >
 
                 </q-tab-panel >
+
             </q-tab-panels >
             <div class="basket-btn row justify-center" >
 
@@ -286,7 +318,7 @@
                     </q-card-section >
                     <q-card-section class="q-pt-none" v-if="thanks" >
                         <div class="text-center text-h3 q-py-xl" >
-                            Спасибо за заказ. Скоро с вами свяжется оператор.
+                            Спасибо за заказ.
                         </div >
                     </q-card-section >
                     <q-card-section class="q-pt-none" v-if="!thanks" >
@@ -355,7 +387,7 @@
                                         @input="setAddress"
                                         outlined dense >
                                 </q-input >
-                                <div class="q-px-md" >
+                                <div class="q-px-md q-pt-md" >
                                     <a href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink" >
                                         зона доставки
                                     </a >
@@ -386,6 +418,12 @@
                                         outlined dense >
                                 </q-input >
                             </div >
+                        </div >
+                        <div class="text-center text-h4 q-py-md" >
+                            МЫ НЕ БУДЕМ ПЕРЕЗВАНИВАТЬ!
+                        </div >
+                        <div class="text-center" >
+                            и привезем все вовремя, если ты заполнил поля корректно.
                         </div >
                         <div class="row q-py-lg" >
                             <q-space />
@@ -431,12 +469,14 @@
     import {mapState, mapMutations, mapGetters} from 'vuex';
 
     import {Catalog} from '../assets/catalog';
+    import CatalogItem from "../components/order/CatalogItem";
 
     const axios = require('axios').default;
 
     export default {
-        name: "order",
+        name: "order2",
         components: {
+            CatalogItem,
             headerPage
         },
         data() {
@@ -506,8 +546,8 @@
                         consist: 'говядина, лук, морковь, вино, томатная паста, специи, картофельное пюре'
                     }
                 ],
-                products: Catalog.products,
-                categories: Catalog.categories,
+                products: [],
+                categories: [],
 
             }
         },
@@ -574,6 +614,7 @@
                 return products_l;
             },
             makedescr(text) {
+                if (text === null) return '';
                 return text.split(",").join(", ");
             },
             clearLanch() {
@@ -600,7 +641,7 @@
             }
         },
         computed: {
-            ...mapState('common', ['order', 'orderProducts']),
+            ...mapState('common', ['order', 'orderProducts', 'orderMenu', 'categoriesMenu']),
             ...mapGetters('common', ['totalSum']),
             showLanch() {
                 const nowDate = new Date();
@@ -631,6 +672,17 @@
                     category_id: 14
                 }
             }
+        },
+        // preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
+        //     store.dispatch('common/getOrderMenu')
+        // },
+        mounted() {
+            this.$store.dispatch('common/getOrderMenu').then(()=> {
+                if (this.categoriesMenu[0] !== undefined) {
+                    this.tab = this.categoriesMenu[0].id;
+                }
+            })
+
         },
         watch: {
             // totalSum(newValue) {
@@ -677,11 +729,23 @@
             letter-spacing: 0.25em;
             font-family: 'mbold';
         }
+
     }
 
     @media (min-width: 601px) {
         .basket {
             min-width: 100%;
+        }
+
+        .q-btn_my {
+            margin-top: 0px;
+            margin-left: 0px;
+            font-size: 10px;
+            padding: 7px 0px;
+            border: 3px solid #FFFFFF;
+            border-radius: 0px;
+            letter-spacing: 0.25em;
+            font-family: 'mbold';
         }
     }
 
@@ -721,5 +785,27 @@
         background: transparent;
     }
 
+    .category-name-desktop {
+        font-family: 'lumios';
+        font-size: 84px;
+
+        color: #FFFFFF;
+
+        padding: 0px 7px 7px 20px;
+    }
+
+    .category-name-mobile {
+        font-family: 'lumios';
+        font-size: 36px;
+
+        color: #FFFFFF;
+
+        padding: 0px 7px 7px 20px;
+    }
+
+    .ballon {
+
+        padding: 10px 20px 10px 10px;
+    }
 
 </style >

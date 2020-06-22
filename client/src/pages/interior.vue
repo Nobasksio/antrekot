@@ -2,9 +2,10 @@
     <q-page class="" style="height: 1px">
         <div class="row tl_padding_page" >
 
+            <div class="col-auto-md">
             <header-page name_page="Интерьеры"></header-page>
-
-            <div class="col-md col-12" >
+            </div>
+            <div class="col-md-auto col-12" >
                 <q-tabs
                         v-model="tab"
                         dense
@@ -55,7 +56,12 @@
             }
         },
         preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
-            return store.dispatch('common/getRestaurant')
+            try {
+                return store.dispatch('common/getRestaurant')
+            } catch (e) {
+               console.log(e);
+            }
+
         },
         data: function () {
             return {

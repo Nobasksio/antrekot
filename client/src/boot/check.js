@@ -11,7 +11,7 @@ export default async ({ app, router, store, Vue, ssrContext }) => {
 
     createPersistedState({
         key: 'age',
-        paths: ['age','common'],
+        paths: ['age'],
         storage: {
             getItem: key => JSON.stringify(cookies.get(key)),
             setItem: (key, value) => cookies.set(key, value),

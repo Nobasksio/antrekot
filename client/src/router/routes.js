@@ -1,9 +1,5 @@
 const routes = [
     {
-        path: '/outside',
-        component: () => import('layouts/Outside.vue'),
-    },
-    {
         path: '/',
         component: () => import('layouts/MyLayout.vue'),
         children: [
@@ -15,14 +11,19 @@ const routes = [
             {path: 'bonus', component: () => import('pages/bonus.vue')},
             {path: 'feedback', component: () => import('pages/feedback.vue')},
             {path: 'interior', component: () => import('pages/interior.vue')},
-            {path: 'order', component: () => import('pages/order.vue')},
+            {path: 'order', component: () => import('pages/order2.vue')},
+            // {path: 'order2', component: () => import('pages/order2.vue')},
             {path: 'camera', component: () => import('pages/camera.vue')},
-            { path: '*', component: () => import('pages/Error404.vue')}
         ]
 
 
     },
+    {
+        path: '/outside',
+        component: () => import('layouts/Outside.vue'),
+    },
     {path: '/check', component: () => import('pages/check-page.vue')},
+    { path: '*', component: () => import('pages/Error404.vue')}
 ]
 
 // Always leave this as last one

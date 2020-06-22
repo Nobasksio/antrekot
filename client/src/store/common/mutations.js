@@ -67,6 +67,9 @@ export function setPhone(state, phone) {
 export function setDepartment(state, department) {
   state.order.department = department
 }
+export function setPayment(state, payment) {
+    state.order.payment = payment
+}
 
 export function setAddress(state, address) {
   state.order.address = address
@@ -88,4 +91,12 @@ export function setCostume (state, isCostume) {
 
 export function setName (state, name) {
   state.order.name = name
+}
+
+export function setOrderMenu (state, orderMenu) {
+    state.orderMenu = [...orderMenu]
+}
+
+export function setCategoriesMenu (state, categoriesMenu) {
+    state.categoriesMenu = [...categoriesMenu]
 }

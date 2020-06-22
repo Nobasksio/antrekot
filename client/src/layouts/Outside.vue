@@ -12,7 +12,7 @@
     }
 </script >
 
-<style scoped >
+<style >
     .menu_drawer {
         background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
 
