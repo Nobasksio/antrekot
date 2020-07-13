@@ -17,6 +17,7 @@ export default function () {
           payment: '1',
           comment: null,
           isCostume: false,
+          forks: 1,
       },
       orderProducts:[],
       orderMenu: [],

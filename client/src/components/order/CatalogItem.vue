@@ -1,7 +1,7 @@
 <template >
     <fragment >
         <div class="col-12 col-md-3 col-lg-3 column justify-between mobile-hide" >
-            <div >
+            <div v-if="productItem.photo[0] !== undefined">
                 <img :src="`${api_link}${productItem.photo[0].url}`" alt="" class="full-width" >
             </div >
             <div class="text-white name-dish" >
@@ -25,7 +25,8 @@
         </div >
         <div class="desktop-hide col-12 row q-col-gutter-md">
             <div class="col-4" >
-                <img :src="`${api_link}${productItem.photo[0].url}`" alt="" class="full-width" >
+                <img v-if="productItem.photo[0] !== undefined"
+                        :src="`${api_link}${productItem.photo[0].url}`" alt="" class="full-width" >
             </div >
             <div class="col-8 column">
                 <div class="text-white name-dish" >

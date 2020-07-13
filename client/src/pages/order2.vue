@@ -318,8 +318,11 @@
                     </q-card-section >
                     <q-card-section class="q-pt-none" v-if="thanks" >
                         <div class="text-center text-h3 q-py-xl" >
-                            Спасибо за заказ.
+                            Спасибо за заказ
                         </div >
+                        <div class="text-center">
+                            В ближайшее время мы перезвоним тебе для подтверждения заказа!
+                        </div>
                     </q-card-section >
                     <q-card-section class="q-pt-none" v-if="!thanks" >
                         <div v-for="orderProductItem in orderProducts"
@@ -355,6 +358,13 @@
                                          :value="order.name"
                                          label="Имя"
                                          @input="setName" >
+                                </q-input >
+                            </div >
+                            <div class="q-mt-md q-mb-md" >
+                                <q-input outlined dense
+                                         :value="order.forks"
+                                         label="Кол-во приборов"
+                                         @input="setForks" >
                                 </q-input >
                             </div >
                             <div class="q-py-sm" >
@@ -419,12 +429,12 @@
                                 </q-input >
                             </div >
                         </div >
-                        <div class="text-center text-h4 q-py-md" >
-                            МЫ НЕ БУДЕМ ПЕРЕЗВАНИВАТЬ!
-                        </div >
-                        <div class="text-center" >
-                            и привезем все вовремя, если ты заполнил поля корректно.
-                        </div >
+<!--                        <div class="text-center text-h4 q-py-md" >-->
+<!--                            МЫ НЕ БУДЕМ ПЕРЕЗВАНИВАТЬ!-->
+<!--                        </div >-->
+<!--                        <div class="text-center" >-->
+<!--                            и привезем все вовремя, если ты заполнил поля корректно.-->
+<!--                        </div >-->
                         <div class="row q-py-lg" >
                             <q-space />
                             <q-btn color="deep-orange"
@@ -562,6 +572,7 @@
                 'setPayment',
                 'setCostume',
                 'setName',
+                'setForks',
                 'setBusinessLunch'
             ]),
             showNotif() {

@@ -33,9 +33,15 @@ export async function getOrderMenu (context) {
 
 export async function getPromotions (context) {
 
-    return await axios.get(`${process.env.API_LINK}/akcziis?isActive=true`).then((res)=>{
-        context.commit('setPromotions',{data:res.data})
-    })
+    try {
+
+        return await axios.get(`${process.env.API_LINK}/akcziis?isActive=true`).then((res) => {
+            context.commit('setPromotions', {data: res.data})
+        })
+
+    } catch (e) {
+        console.log(e);
+    }
 
 }
 

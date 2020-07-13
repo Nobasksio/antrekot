@@ -100,3 +100,7 @@ export function setOrderMenu (state, orderMenu) {
 export function setCategoriesMenu (state, categoriesMenu) {
     state.categoriesMenu = [...categoriesMenu]
 }
+
+export function setForks(state, forks) {
+  state.order.forks = forks
+}

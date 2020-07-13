@@ -286,7 +286,7 @@
                     </q-card-section >
                     <q-card-section class="q-pt-none" v-if="thanks" >
                         <div class="text-center text-h3 q-py-xl" >
-                            Спасибо за заказ. Скоро с вами свяжется оператор.
+                            Спасибо за заказ. В ближайшее время мы перезвоним тебе для подтверждения заказа!
                         </div >
                     </q-card-section >
                     <q-card-section class="q-pt-none" v-if="!thanks" >

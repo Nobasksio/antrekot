@@ -63,7 +63,7 @@ module.exports = function (ctx) {
       analyze: false,
       // Options below are automatically set depending on the env, set them if you want to override
         env:{
-            API_LINK: JSON.stringify('http://185.22.61.189:2000')
+            API_LINK: JSON.stringify('https://api.antrekotbar.ru')
         },
       // preloadChunks: false,
       // extractCSS: false,
