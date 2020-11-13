@@ -1,4 +1,3 @@
-// eslin
 <template>
     <q-layout view="lHh LpR lFf" >
         <q-page class="" >
