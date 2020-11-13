@@ -63,9 +63,8 @@
                 <q-tab-panel name="000name" class="q-px-none" >
                     <div class="text-h6 text-white q-pb-xl" >
                         <div class="q-px-lg text-caption" >
-                            Бизнес ланч с 11:00 до 16:00. <br >
-                            Суп, Салат и Горячее блюдо всего за 300 рублей!<br >
-                            Пока бизнес ланч вы можете заказать только в Иркутске.
+                            Бизнес ланч с 12:00 до 16:00.(пн-пт) <br >
+                            Суп, Салат и Горячее блюдо всего за {{lunchPrice}} рублей!<br >
 
                         </div >
                         <div class="q-pa-md" >
@@ -389,11 +388,24 @@
                                          label="Карта"
                                          color="red" />
                             </div >
+                            <div >
+                                <div class="text-subtitle2" >Город</div >
+                                <q-radio :value="order.department"
+                                         @input="setDepartment"
+                                         val="IRK"
+                                         label="Иркутск"
+                                         color="red" />
+                                <q-radio :value="order.department"
+                                         @input="setDepartment"
+                                         val="ANG"
+                                         label="Ангарск"
+                                         color="red" />
+                            </div >
                             <div class="q-py-sm" >
                                 <q-input
                                         label="адрес"
                                         :value="order.address"
-                                        hint="Пока мы, к сожалению, не доставляем в ленинский район и за пределы города"
+                                        hint="К сожалению, мы не доставляем в Ленинский р-он и за пределы города."
                                         @input="setAddress"
                                         outlined dense >
                                 </q-input >
@@ -413,7 +425,7 @@
                                         label="время"
                                         :value="order.time"
                                         mask="##:##"
-                                        hint="доставка в среднем занимает 1,5 часа"
+                                        :hint="order.department === 'IRK' ? 'Доставка в среднем занимает 1,5 часа. Доставка ежедневно с 11:00 до 23:00' : 'Доставка среднем занимает 1,5 часа. Доставка В Ангарске работает ежедневно с 12:00 до 23:00'"
                                         fill-mask
                                         @input="setTime"
                                         outlined dense >
@@ -425,6 +437,15 @@
                                         :value="order.comment"
                                         hint=""
                                         @input="setComment"
+                                        outlined dense >
+                                </q-input >
+                            </div >
+                            <div class="q-py-sm" >
+                                <q-input
+                                        label="Промокод"
+                                        :value="order.promocode"
+                                        hint=""
+                                        @input="setPromocode"
                                         outlined dense >
                                 </q-input >
                             </div >
@@ -492,6 +513,7 @@
         data() {
             return {
                 thanks: false,
+                lunchPrice: 330,
                 nowDate: new Date(),
                 dialog: false,
                 loading: false,
@@ -565,6 +587,7 @@
             ...mapMutations('common', ['addProductToBasket',
                 'removeProductToBasket',
                 'setPhone',
+                'setDepartment',
                 'setAddress',
                 'setTime',
                 'setEarly',
@@ -573,7 +596,8 @@
                 'setCostume',
                 'setName',
                 'setForks',
-                'setBusinessLunch'
+                'setBusinessLunch',
+                'setPromocode'
             ]),
             showNotif() {
                 this.$q.notify({
@@ -664,7 +688,7 @@
             },
             isWorkTime() {
                 const nowDate = new Date();
-                if (nowDate.getHours() > 22) return false;
+                if (nowDate.getHours() > 23) return false;
                 if (nowDate.getHours() < 11) return false;
 
                 return true
@@ -679,7 +703,7 @@
                     name: `${this.saladStep}, ${this.soupStep}, ${this.hotterStep}`,
                     sortIndex: 500,
                     description: '',
-                    price: 300,
+                    price: this.lunchPrice,
                     category_id: 14
                 }
             }

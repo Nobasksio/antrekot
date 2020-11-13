@@ -18,6 +18,8 @@ export default function () {
           comment: null,
           isCostume: false,
           forks: 1,
+          department: 'IRK',
+          promocode: '',
       },
       orderProducts:[],
       orderMenu: [],

@@ -19,6 +19,11 @@ const routes = [
 
     },
     {
+        path: '/feedback-mobile/:departmentName',
+        name: 'FeedbackMobile',
+        component: () => import('layouts/FeedbackMobile.vue'),
+    },
+    {
         path: '/outside',
         component: () => import('layouts/Outside.vue'),
     },

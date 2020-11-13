@@ -100,7 +100,7 @@ background-position: center;`'>
 
     @media (max-width: 500px) {
         .main_zag {
-            font-size: 3em;
+            font-size: 2.3em;
             line-height: 44px;
             /* identical to box height */
             letter-spacing: 0.5em;

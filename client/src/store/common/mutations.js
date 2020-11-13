@@ -41,15 +41,18 @@ export function setFeedbacks(state, {data}) {
   state.feedbacks = data
 }
 
-export function addProductToBasket(state,product) {
-  let our_product = state.orderProducts.filter(item => item.name === product.name)
+export function addProductToBasket(state, product) {
+  let index = state.orderProducts.findIndex(item => item.name === product.name)
 
-  if (our_product.length > 0){
-    state.orderProducts.forEach((item,index) => {
-      if (item.name === product.name){
-        state.orderProducts[index].count += 1
-      }
-    })
+  if (index !== -1){
+
+    const searchElem = {...state.orderProducts[index]};
+    searchElem.count += 1;
+    const oldStateOrderProduct = [...state.orderProducts];
+    oldStateOrderProduct.splice(index, 1, searchElem);
+
+    state.orderProducts = oldStateOrderProduct;
+
   } else {
     product.count = 1
     state.orderProducts.push(product)
@@ -103,4 +106,8 @@ export function setCategoriesMenu (state, categoriesMenu) {
 
 export function setForks(state, forks) {
   state.order.forks = forks
+}
+
+export function setPromocode(state, promocode ) {
+  state.order.promocode = promocode
 }
