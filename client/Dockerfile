@@ -5,8 +5,9 @@ MAINTAINER nobas
 WORKDIR /client
 COPY package*.json ./
 RUN npm install
-COPY . .
-RUN npm i -g @quasar/cli && npm install pm2 -g && quasar build -m ssr
+
+RUN npm i -g @quasar/cli
+#&& npm install pm2 -g && quasar build -m ssr
 
 #EXPOSE 2020
 

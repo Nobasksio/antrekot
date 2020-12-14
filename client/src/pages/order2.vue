@@ -267,7 +267,7 @@
                                           :action="proxyAddProductToBasket"
                                           :isAddedToBasket="isAddedToBasket"
                                           :getAddbasketButtonType="getAddbasketButtonType"
-                                          v-for="product in categoryItem.products" >
+                                          v-for="product in sortProducts(categoryItem.products)" >
                             </catalog-item >
                         </div >
 
@@ -503,6 +503,7 @@
     import CatalogItem from "../components/order/CatalogItem";
 
     const axios = require('axios').default;
+    var _ = require('lodash');
 
     export default {
         name: "order2",
@@ -673,6 +674,13 @@
                         this.error = true
                     });
 
+            },
+            sortProducts(products){
+                const mySort = (a, b) => {
+                    return a.sort_index - b.sort_index;
+                }
+                const newProducts = _.map(products, _.clone);
+                return newProducts.sort(mySort)
             }
         },
         computed: {
@@ -706,7 +714,7 @@
                     price: this.lunchPrice,
                     category_id: 14
                 }
-            }
+            },
         },
         // preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
         //     store.dispatch('common/getOrderMenu')
