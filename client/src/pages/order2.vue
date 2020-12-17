@@ -11,7 +11,7 @@
                            color="white"
                            type="a"
                            target="_blank"
-                           href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink"
+                           :href="mapLink"
                            class='text-uppercase q-btn_my' label="Зона доставки" />
 
                 </div >
@@ -23,7 +23,7 @@
                            color="white"
                            type="a"
                            target="_blank"
-                           href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink"
+                           :href="mapLink"
                            class='text-uppercase q-btn_my' label="Зона доставки" />
                 </div >
             </div >
@@ -410,7 +410,7 @@
                                         outlined dense >
                                 </q-input >
                                 <div class="q-px-md q-pt-md" >
-                                    <a href="https://yandex.ru/maps/?um=constructor%3Aa40704accd7ea98f62085a97ae501f0ac242014b89785f8bc20d4fcfb1f11300&source=constructorLink" >
+                                    <a :href="mapLink" >
                                         зона доставки
                                     </a >
                                 </div >
@@ -513,6 +513,7 @@
         },
         data() {
             return {
+                mapLink: 'https://yandex.ru/maps/63/irkutsk/?ll=104.327419%2C52.279071&mode=usermaps&source=constructorLink&um=constructor%3A624518ff83c0bc0ee58dfd7e5ebf13f3e2f1c42ba316a1d4a1cb72f1ce2c1421&z=13',
                 thanks: false,
                 lunchPrice: 330,
                 nowDate: new Date(),
