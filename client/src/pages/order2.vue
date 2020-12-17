@@ -298,7 +298,7 @@
                         <div class="q-mx-xs" >Корзина</div >
                         <span v-if="orderProducts.length > 0" > {{ orderProducts.length}}</span >
                     </q-btn >
-                    <div class="text-white q-pt-sm" v-if="totalSum < 600" >минимальная сумма 600р</div >
+                    <div class="text-white q-pt-sm" v-if="totalSum < 600" >минимальная сумма от 600 ₽</div >
                 </div >
             </div >
             <q-dialog
@@ -405,7 +405,7 @@
                                 <q-input
                                         label="адрес"
                                         :value="order.address"
-                                        hint="К сожалению, мы не доставляем в Ленинский р-он и за пределы города."
+                                        :hint="order.department === 'IRK' ? 'К сожалению, мы не доставляем в Ленинский р-он и за пределы города.' : ''"
                                         @input="setAddress"
                                         outlined dense >
                                 </q-input >
@@ -413,6 +413,9 @@
                                     <a :href="mapLink" >
                                         зона доставки
                                     </a >
+                                    <div class="hint-dzone">
+                                        от 17.12.20
+                                    </div>
                                 </div >
                             </div >
                             <div class="q-py-sm" >
@@ -850,6 +853,10 @@
     .ballon {
 
         padding: 10px 20px 10px 10px;
+    }
+    .hint-dzone{
+        font-size: 11px;
+        color: grey;
     }
 
 </style >
