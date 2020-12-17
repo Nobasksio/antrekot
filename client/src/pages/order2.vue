@@ -513,7 +513,7 @@
         },
         data() {
             return {
-                mapLink: 'https://yandex.ru/maps/63/irkutsk/?ll=104.327419%2C52.279071&mode=usermaps&source=constructorLink&um=constructor%3A624518ff83c0bc0ee58dfd7e5ebf13f3e2f1c42ba316a1d4a1cb72f1ce2c1421&z=13',
+                mapLink: 'https://yandex.ru/maps/-/CCUEj4g6tC',
                 thanks: false,
                 lunchPrice: 330,
                 nowDate: new Date(),
