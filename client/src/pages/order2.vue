@@ -516,7 +516,7 @@
         },
         data() {
             return {
-                mapLink: 'https://yandex.ru/maps/-/CCUEj4g6tC',
+                mapLink: 'https://yandex.ru/maps/-/CCUEnLAO0A',
                 thanks: false,
                 lunchPrice: 330,
                 nowDate: new Date(),
