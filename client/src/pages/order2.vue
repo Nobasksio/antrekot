@@ -63,8 +63,8 @@
                 <q-tab-panel name="000name" class="q-px-none" >
                     <div class="text-h6 text-white q-pb-xl" >
                         <div class="q-px-lg text-caption" >
-                            Бизнес ланч с 12:00 до 16:00.(пн-пт) <br >
-                            Суп, Салат и Горячее блюдо всего за {{lunchPrice}} рублей!<br >
+                            Бизнес-ланч с 12:00 до 16:00 (ПН-ПТ) <br >
+                            Салат, Суп и Горячее + Эклер в подарок всего за {{lunchPrice}} рублей!<br >
 
                         </div >
                         <div class="q-pa-md" >
@@ -207,7 +207,7 @@
                                         <div class="col-auto" ><img
                                                 :src="require(`../assets/${salads.filter(item => item.name === saladStep)[0].image}`)"
                                                 width="80" alt="" ></div >
-                                        <div class="col" >{{ salads.filter(item => item.name === saladStep)[0].name
+                                        <div class="col q-ml-md" >{{ salads.filter(item => item.name === saladStep)[0].name
                                             }}
                                         </div >
                                     </div >
@@ -215,20 +215,20 @@
                                         <div class="col-auto" ><img
                                                 :src="require(`../assets/${soups.filter(item => item.name === soupStep)[0].image}`)"
                                                 width="80" alt="" ></div >
-                                        <div class="col" >{{ soups.filter(item => item.name === soupStep)[0].name }}
+                                        <div class="col q-ml-md" >{{ soups.filter(item => item.name === soupStep)[0].name }}
                                         </div >
                                     </div >
                                     <div class="row items-center" >
                                         <div class="col-auto" ><img
                                                 :src="require(`../assets/${hotter.filter(item => item.name === hotterStep)[0].image}`)"
                                                 width="80" alt="" ></div >
-                                        <div class="col" >{{ hotter.filter(item => item.name === hotterStep)[0].name
+                                        <div class="col q-ml-md" >{{ hotter.filter(item => item.name === hotterStep)[0].name
                                             }}
                                         </div >
                                     </div >
                                     <div class="row" >
                                         <div class="col" ><p class="text-white" style="font-size: 16px" >+ <strong >Подарок:</strong >
-                                            пакетик чая и шоколадный кекс</p ></div >
+                                            пакетик чая и эклер</p ></div >
                                     </div >
                                     <div class="row" >
                                         <div class="col" >
@@ -518,7 +518,7 @@
             return {
                 mapLink: 'https://yandex.ru/maps/-/CCUEnLAO0A',
                 thanks: false,
-                lunchPrice: 330,
+                lunchPrice: 355,
                 nowDate: new Date(),
                 dialog: false,
                 loading: false,
@@ -528,59 +528,74 @@
                 tab: 1,
                 costume: false,
 
-                saladStep: 'Салат с бужениной и фунчозой (100гр)',
-                soupStep: 'Суп министроне с курицей (200гр)',
-                hotterStep: 'Паста карбонара (230гр)',
+                saladStep: 'Винегрет с килькой (140гр)',
+                soupStep: 'Щи (220гр)',
+                hotterStep: 'Бифштекс с пюре (240гр)',
 
                 salads: [
                     {
-                        name: 'Салат с бужениной и фунчозой (100гр)',
-                        image: 'salat-buzhenina.jpg',
-                        consist: 'фунчоза, огурец, болгарский перец, буженина, кунжутный соус'
+                        name: 'Винегрет с килькой (140гр)',
+                        image: 'vinegret_s_kilkoi.jpg',
+                        consist: 'пряная килька, свёлка, маринованный огурец, картофель, капуста, морковь, зелёный горошек'
                     },
                     {
-                        name: 'Подкопчёная свёкла с фетой (100гр)',
-                        image: 'salat-svekla.jpg',
-                        consist: 'свёкла подкопчёная, фета, луковый мёд, мята, оливковое масло'
+                        name: 'Салат с печёной бужениной (140гр)',
+                        image: 'salat_s_pechenoy_buzh.jpg',
+                        consist: 'буженина, свёкла, свежий огурец, печёный картофель, лист салата, соус Айоле'
                     },
                     {
-                        name: 'Коул Слоу (80гр)',
-                        image: 'salat-koul-slou.jpg',
-                        consist: 'капуста белая, капуста красная, яблоко, морковь, сливочномедовый соус, зелень'
+                        name: 'Салат с кальмаром гриль (140гр)',
+                        image: 'salat_s_kalmarom.jpg',
+                        consist: 'кальмар, шампиньоны, томаты черри, морковь, пекинская капуста, сельдерей, лист салата, соус Имбирный'
+                    },
+                    {
+                        name: 'Цезарь с цыплёнком (140гр)',
+                        image: 'salat_cesar.jpg',
+                        consist: 'курица, лист салата, гренки, томаты черри, сыр, соус Цезарь'
                     }
                 ],
                 soups: [
                     {
-                        name: 'Суп министроне с курицей (200гр)',
-                        image: 'soup-ministrone.jpg',
-                        consist: 'куриный бульон, фасоль, картофель, морковь, лук, перец болгарский, курица, зелень'
+                        name: 'Щи (220гр)',
+                        image: 'sup_she.jpg',
+                        consist: 'курица, квашеная капуста, морковь, лук, шампиньоны, болгарский перец, укроп, сметана'
                     },
                     {
-                        name: 'Суп рамен с яйцом (200гр)',
-                        image: 'soup-ramen.jpg',
-                        consist: 'куриный бульон, лапша, яйцо, морковь, лук, куриное филе, соевый соус'
+                        name: 'Крем-суп с брокколи (220гр)',
+                        image: 'krem_sup_brokkoli.jpg',
+                        consist: 'брокколи, сливки, картофель, укропное масло, хрустящий Крутон с соусом Песто'
                     },
                     {
-                        name: 'Суп сырно-грибной (200гр)',
-                        image: 'soup-syr.jpg',
-                        consist: 'сыр, грибы, морковь, сливки'
+                        name: 'Суп гуляш (220гр)',
+                        image: 'sup_gulash.jpg',
+                        consist: 'говядина, картофель, болгарский перец, морковь, сельдерей, лук, кинза, сметана'
+                    },
+                    {
+                        name: 'Уха (220гр)',
+                        image: 'sup_uha.jpg',
+                        consist: 'сайра, картофель, морковь, лук, зелёный лук'
                     }
                 ],
                 hotter: [
                     {
-                        name: 'Паста карбонара (230гр)',
-                        image: 'pasta-carbonara.jpg',
-                        consist: 'пене, бекон, сливки, пармезан'
+                        name: 'Бифштекс с пюре (240гр)',
+                        image: 'beefshteks.jpg',
+                        consist: 'бифштекс из говядины, картофельное пюре, салат Коул Слоу, пита, микрозелень'
                     },
                     {
-                        name: 'Курица терияки с булгуром (230гр)',
-                        image: 'chiken-teriyaki.jpg',
-                        consist: 'куриное филе, красный лук, соус терияки, соевый соус, булгур'
+                        name: 'Цыплёнок по-азиатски с гречей (240гр)',
+                        image: 'kurica_s_grezhey.jpg',
+                        consist: 'курица в соусе Кимчи, гречка с шампиньонами, лук, салат Коул Слоу, пита, микрозелень'
                     },
                     {
-                        name: 'Говядина в винном соусе с пюре (230гр)',
-                        image: 'govyadina.jpg',
-                        consist: 'говядина, лук, морковь, вино, томатная паста, специи, картофельное пюре'
+                        name: 'Тилапия в белом вине (240гр)',
+                        image: 'tilapiya_s_ovoshami.jpg',
+                        consist: 'тилапия в белом вине, цукини, томаты черри, сельдерей, микрозелень'
+                    },
+                    {
+                        name: 'Птитим с курицей и грибами (240гр)',
+                        image: 'pasta_pritim.jpg',
+                        consist: 'паста птитим, курица, шампиноьны, сыр, сливочный соус, лук, микрозелень'
                     }
                 ],
                 products: [],
@@ -805,7 +820,7 @@
     }
 
     .radioImg label input:checked + img {
-        border: 1px solid red;
+        border: 1px solid white;
     }
 
     .radioImg label input {
