@@ -1,12 +1,17 @@
 
-FROM node:lts-alpine
-MAINTAINER nobas
+FROM node:14
 
-WORKDIR /client
-COPY package*.json ./
+WORKDIR /app/
+
+COPY . ./
+
+WORKDIR ./client/
+
+EXPOSE 8080
+
 RUN npm install
 
-RUN npm i -g @quasar/cli
+CMD npx quasar dev
 #&& npm install pm2 -g && quasar build -m ssr
 
 #EXPOSE 2020
