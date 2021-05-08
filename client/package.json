@@ -9,7 +9,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "start": "pm2 start ./dist/ssr/index.js"
+    "start": "pm2 start ./dist/ssr/index.js",
+    "dev": "quasar dev -m ssr"
   },
   "dependencies": {
     "@quasar/extras": "^1.8.2",
