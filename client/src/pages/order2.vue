@@ -56,8 +56,7 @@
             </q-tabs >
         </div >
         <q-banner inline-actions class="text-white bg-red" v-show="!isWorkTime" >
-<!--            Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.-->
-            9 мая, к сожалению, мы не сможем доставить ваш заказ. Однако, вы всегда можете забрать их самовывозом.
+            Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.
         </q-banner >
         <div class="h-100 full-width" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
@@ -715,7 +714,6 @@
 
             },
             isWorkTime() {
-                return false;
                 const nowDate = new Date();
                 if (nowDate.getHours() > 23) return false;
                 if (nowDate.getHours() < 11) return false;
