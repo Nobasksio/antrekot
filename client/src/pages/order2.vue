@@ -55,14 +55,14 @@
 
             </q-tabs >
         </div >
-<!--        <q-banner inline-actions class="text-white bg-red" v-show="!isWorkTime" >-->
-<!--            Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.-->
-<!--        </q-banner >-->
-      <q-banner inline-actions class="text-white bg-red" >
-        <div v-show="!isWorkTime">Доставка работает только с 11:00 до 23:00.</div>
-        БЕДА! В Иркутске пропала вода! Доставка в Иркутске не работает с 20.05 с 21:00 до 22.05 10:00. Sorry :(<br>
-        В Ангарске всё в порядке.
-      </q-banner >
+        <q-banner inline-actions class="text-white bg-red" v-show="!isWorkTime" >
+            Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.
+        </q-banner >
+<!--      <q-banner inline-actions class="text-white bg-red" >-->
+<!--        <div v-show="!isWorkTime">Доставка работает только с 11:00 до 23:00.</div>-->
+<!--        БЕДА! В Иркутске пропала вода! Доставка в Иркутске не работает с 20.05 с 21:00 до 22.05 10:00. Sorry :(<br>-->
+<!--        В Ангарске всё в порядке.-->
+<!--      </q-banner >-->
         <div class="h-100 full-width" >
             <q-tab-panels v-model="tab" animated class="bg-black" >
                 <q-tab-panel name="000name" class="q-px-none" >
