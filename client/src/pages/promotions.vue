@@ -2,7 +2,7 @@
     <q-page class="" >
         <div class="row tl_padding_page" >
 
-            <header-page name_page="Акции"></header-page>
+            <header-page name_page="АКЦИИ"></header-page>
 
             <div class="col" >
 
@@ -10,7 +10,7 @@
 
         </div >
         <div class="row q-px-lg-xl " >
-            <promotionItem :promo='promo' :key="promo.id" v-for="promo in promotions"></promotionItem>
+            <promotionItem :promo='promo' v-for="promo in promotions"></promotionItem>
         </div >
 
     </q-page >

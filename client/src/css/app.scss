@@ -54,9 +54,6 @@ body{
   padding-bottom: 0px;
 }
 
-.tl_padding_page {
-  padding-top: 54px;
-}
 
 .q-tab__indicator {
   background: #E84437;
@@ -140,7 +137,8 @@ body{
   background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
 }
 .active_card_contact2{
-  background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+  background: #E84437;
+  color: white;
 }
 
 .text-typical{
@@ -204,4 +202,8 @@ body{
   .q-stepper--vertical .q-stepper__tab {
     padding: 12px 15px;
   }
+}
+
+.container {
+  padding: 40px 110px 39px 89px;
 }

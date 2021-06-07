@@ -11,9 +11,15 @@
         </q-card >
         <q-dialog
                 v-model="medium"
-                class=""
+                class="relative-position"
         >
-            <q-card style="width: 600px; max-width: 80vw;" class=" text-white " >
+
+            <q-card style="width: 600px; max-width: 80vw;" class=" text-white relative-position" >
+
+                <q-btn v-close-popup flat color="primary" class=" text-red blur absolute-top-right">
+                  <img src="../../assets/closePopUp.svg"/>
+                </q-btn>
+
                 <div class="back no-support">
 
                 </div>
@@ -21,14 +27,10 @@
 
                 <q-card-section class="blur">
                     <div class=" mregular q-px-md-md" >
-                        <div class="col text-h6 ellipsis q-py-lg my-mbold " >{{promo.Name}}</div >
-                        <div v-html="converter.makeHtml(promo.Description)" ></div >
+                        <div class="col text-h6 ellipsis q-py-md my-mbold promotionName" >{{promo.Name}}</div >
+                        <div class="promotionDescription mregular" v-html="converter.makeHtml(promo.Description)" ></div >
                     </div >
                 </q-card-section >
-
-                <q-card-actions align="right" class=" text-red blur" >
-                    <q-btn flat label="OK" v-close-popup />
-                </q-card-actions >
             </q-card >
         </q-dialog >
 
@@ -52,7 +54,7 @@
         },
         methods: {
             take() {
-               
+
             }
         },
         computed:{
@@ -69,7 +71,7 @@
     }
     .blur{
         -webkit-backdrop-filter: contrast(1) blur(20px);
-        backdrop-filter: contrast(2) blur(20px);
+      z-index: 2;
     }
     .back{
         position: absolute;
@@ -77,6 +79,14 @@
         height: 100%;
         background: #000;
         -moz-opacity:1;
+    }
+
+    .promotionName {
+      font-size: 16px;
+    }
+
+    .promotionDescription {
+      font-size: 12px;
     }
 
 

@@ -212,14 +212,14 @@
                     </div >
                 </q-btn >
                 <div class="column justify-center">
-                    <q-img
-                            src="/statics/logo.svg"
-                            spinner-color="white"
-                            img-class="q-mx-sm "
-                            :ratio="16/9"
-                            style="width: 100px; height: 40px;"
-                            contain
-                    />
+<!--                    <q-img-->
+<!--                            src="/statics/logo.svg"-->
+<!--                            spinner-color="white"-->
+<!--                            img-class="q-mx-sm "-->
+<!--                            :ratio="16/9"-->
+<!--                            style="width: 100px; height: 40px;"-->
+<!--                            contain-->
+<!--                    />-->
                 </div >
             </div >
             <div class="burger-blk-mobile row justify-center  items-center desktop-hide" v-if='!right'>

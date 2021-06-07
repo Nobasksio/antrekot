@@ -7,12 +7,12 @@ background-position: center;`'>
             <div class="col main_zag text-center" >
                 {{mainPageInfo.fst}}
             </div >
-            <div class="col lumios_zag" >
+            <div class="col lumios_zag q-mb-md" >
                 {{mainPageInfo.sst}}
             </div >
             <div class="col" >
                 <q-btn outline color="white" class='text-uppercase q-btn_my_black'
-                       label="доставка"
+                       label="ПОСМОТРЕТЬ"
                        to="/order" >
                     <svg width="23" height="23" viewBox="0 0 23 23" fill="none" class="q-ml-sm"
                          xmlns="http://www.w3.org/2000/svg" >
@@ -23,8 +23,8 @@ background-position: center;`'>
             </div >
             <q-space />
         </div >
-
     </q-page >
+      <all-pages-mobile></all-pages-mobile>
     </div>
 
     <!--<div class="col main_b items-stretch " >-->
@@ -47,11 +47,13 @@ background-position: center;`'>
 </template >
 
 <script >
+    import AllPagesMobile from "./AllPagesMobile";
     const axios = require('axios').default;
     import { mapState } from 'vuex';
     export default {
         name: 'PageIndex',
-        async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
+      components: {AllPagesMobile},
+      async preFetch ({ store, currentRoute, previousRoute, redirect, ssrContext }) {
 
             return await store.dispatch('common/getAll',ssrContext)
         },
@@ -122,7 +124,7 @@ background-position: center;`'>
     }
     @media (min-width: 500px) {
         .main_zag {
-            font-size: 5em;
+            font-size: 4.5em;
             line-height: 78px;
             /* identical to box height */
             letter-spacing: 0.5em;
@@ -152,13 +154,14 @@ background-position: center;`'>
 
     .q-btn_my_black {
 
-        font-size: 10px;
+        font-size: 16px;
         padding: 7px 0px;
         border: 3px solid #FFFFFF;
         border-radius: 0px;
         letter-spacing: 0.25em;
         font-family: 'mbold';
         background: #000000 !important;
+      padding-left: 12px;
     }
 
 </style >

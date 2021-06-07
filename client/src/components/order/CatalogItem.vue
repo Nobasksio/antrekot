@@ -14,13 +14,13 @@
                 <div >
                     <q-btn :outline="!
                 (productItem.name)"
-                           :color="{'white' : isAddedToBasket(productItem.name)}"
                            @click="action(productItem)"
                            :class="{'active_card_contact2' : isAddedToBasket(productItem.name)}"
                            class='text-uppercase q-btn_my' :label="getAddbasketButtonType(productItem.name)" />
+<!--                  :color="{'white' : isAddedToBasket(productItem.name)}"-->
                 </div >
-                <div class="weight" >{{productItem.weight}} гр.</div >
-                <div class="price" >{{productItem.price}} р.</div >
+                <div class="weight q-pr-md-lg q-my-md-md" >{{productItem.weight}} гр.</div >
+                <div class="price q-my-md-md" >{{productItem.price}} ₽</div >
             </div >
         </div >
         <div class="desktop-hide col-12 row q-col-gutter-md">
@@ -37,14 +37,14 @@
                     {{productItem.description}}
                 </div >
                 <div class="row justify-between items-center">
-                    <div class="price" >{{productItem.price}} р.</div >
+                    <div class="price" >{{productItem.price}} ₽</div >
                     <div >
-                        <q-btn :outline="!
-                (productItem.name)"
-                               :color="{'white' : isAddedToBasket(productItem.name)}"
+                        <q-btn :outline="!(productItem.name)"
+
                                @click="action(productItem)"
                                :class="{'active_card_contact2' : isAddedToBasket(productItem.name)}"
                                class='text-uppercase q-btn_my' :label="getAddbasketButtonType(productItem.name)" />
+                      <!--                               :color="{'white' : isAddedToBasket(productItem.name)}"-->
                     </div >
                 </div>
             </div>
@@ -110,11 +110,12 @@
         margin-top: 0px;
         margin-left: 0px;
         font-size: 10px;
-        padding: 7px 0px;
+        padding: 12px 0px;
         border: 3px solid #FFFFFF;
         border-radius: 0px;
         letter-spacing: 0.25em;
         font-family: 'mbold';
+      color: white;
     }
 
     @media (min-width: 601px) {
@@ -131,6 +132,7 @@
             line-height: 20px;
             color: #828282;
             padding: 7px 0;
+          text-transform: lowercase;
         }
     }
     @media (max-width: 600px) {
