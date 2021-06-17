@@ -1,82 +1,77 @@
 <template>
   <q-page class="">
     <div class="container">
-      <div class="row q-px-none">
-        <div class="col-9 row justify-start">
-        <div class="col-auto-md">
-          <header-page name_page="ДОСТАВКА"></header-page>
-        </div>
-        <div class="mobile-hide delivery-zones-button">
-          <div class="row  items-center ">
-            <img src="statics/icons/balloon.svg" alt="" class="ballon">
-            <q-btn outline
-                   color="white"
-                   type="a"
-                   :ripple="{ color: 'red' }"
-                   @click="showMap"
-                   class='text-uppercase q-btn_my'>
-              <div class="q-px-xl">ЗОНА ДОСТАВКИ</div>
-            </q-btn>
-            <q-dialog v-model="isShowMap">
-              <q-card>
-<!--                <q-spinner-ball-->
-<!--                  color="red"-->
-<!--                  size="10em"-->
-<!--                  :thickness="5"-->
-<!--                />-->
-                <div style="position:relative;overflow:hidden;">
-                  <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
-                  <q-card-actions align="right">
-                    <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup />
-                  </q-card-actions>
+      <div class="row q-px-none q-mt-sm-md q-mt-xs-md">
+        <div class="col-md-9 col-xs-12  col-sm-12 row justify-md-start justify-sm-center justify-xs-center">
+          <div class="col-auto-md block-hide-desc">
+            <header-page name_page="ДОСТАВКА"></header-page>
+          </div>
+          <div class="delivery-zones-button">
+            <div class="row items-center no-wrap ">
+              <img src="statics/icons/balloon.svg" alt="" class="ballon">
+              <q-btn outline
+                     color="white"
+                     type="a"
+                     :ripple="{ color: 'red' }"
+                     @click="showMap"
+                     class='text-uppercase q-btn_my'>
+                <div class="q-px-xl q-px-sm-sm q-px-xs-sm">
+                  <nobr>ЗОНА ДОСТАВКИ</nobr>
+                </div>
+              </q-btn>
+
+              <q-dialog v-model="isShowMap">
+                <q-card>
+                  <!--                <q-spinner-ball-->
+                  <!--                  color="red"-->
+                  <!--                  size="10em"-->
+                  <!--                  :thickness="5"-->
+                  <!--                />-->
+                  <div style="position:relative;overflow:hidden;">
+                    <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1"
+                            allowfullscreen="true" style="position:relative;"></iframe>
+                    <q-card-actions align="right">
+                      <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup/>
+                    </q-card-actions>
                   </div>
 
-              </q-card>
-            </q-dialog>
+                </q-card>
+              </q-dialog>
+            </div>
           </div>
+
         </div>
+        <div class="col-12 block-hide-mob text-grey mregular  justify-sm-center text-12">
+          Пока мы, к сожалению, не доставляем в ленинский район и за пределы города.
         </div>
-        <div class="basket-btn col-3 row justify-end"
-        :class="{'fixed q-mt-sm q-mr-xl q-pr-xl': mobileMenuScrollOffset === true}">
+        <div class="basket-btn col-3 row justify-end block-hide-desc"
+             :class="{'fixed q-mt-sm q-mr-xl q-pr-xl': mobileMenuScrollOffset === true}">
           <div class=" row justify-center">
 
             <div class="column items-center">
               <q-btn
-                     :class="{'order-button': orderProducts.length > 0}"
-                     ref="basket"
-                     no-caps
-                     unelevated
-                     @click="dialog = true">
+                :class="{'order-button': orderProducts.length > 0}"
+                ref="basket"
+                no-caps
+                unelevated
+                @click="dialog = true">
                 <div class="q-mr-xs my-mbold basket-item">КОРЗИНА</div>
                 <img src="~assets/basketImage.svg" class="q-px-sm">
-                <span class="q-ml-xs" v-if="orderProducts.length > 0"> x {{ orderProducts.length }}</span>
+                <span class="q-ml-xs" v-if="orderProducts.length > 0"> x {{ getNumberOfPosition }}</span>
               </q-btn>
             </div>
           </div>
         </div>
-        <div class="col-12 categories-field q-mb-md">
+        <div class="col-12 categories-field q-mb-md block-hide-desc">
           КАТЕГОРИИ
 
-        </div>
-        <div class="mobile-only col-12 column justify-center items-center q-pb-md">
-          <div class="row justify-around items-center q-pl-md-xl">
-            <img src="statics/icons/balloon.svg" class="ballon" alt="">
-            <q-btn outline
-                   color="white"
-                   type="a"
-                   :ripple="{ color: 'red' }"
-                   @click="showMap"
-                   class='text-uppercase q-btn_my'>
-              <div class="q-px-xl">ЗОНА ДОСТАВКИ</div>
-            </q-btn>
-          </div>
         </div>
 
 
       </div>
-      <div v-if="mobileMenuScrollOffset === true" class="sticky-header ">
+      <div v-if="mobileMenuScrollOffset === true" class="sticky-header block-hide-desc">
         <div class="row justify-start items-center ">
-          <div class="row justify-around items-center q-my-sm">
+          <div class="row justify-around items-center q-my-sm ">
             <img src="statics/icons/balloon.svg" class="ballon" alt="">
             <q-btn outline
                    color="white"
@@ -95,19 +90,49 @@
           </div>
         </div>
       </div>
+      <div class="block-hide-mob">
+        <div class="fixed-top inline-block mobile-order-header ">
+          <div class="row items-end ">
+            <div class="col-1 basket-btn "
+            >
+              <q-btn
+                ref="basket"
+                no-caps
+                unelevated
+                class="q-px-none"
+                @click="dialog = true">
+                <div class="relative-position">
+                  <img src="~assets/basketMobile.svg" v-if="orderProducts.length === 0">
+                  <img src="~assets/basketMobileFull.svg" v-if="orderProducts.length > 0">
+                  <span class="number-in-basket" v-if="orderProducts.length > 0"> {{ getNumberOfPosition }}</span>
+                </div>
+              </q-btn>
+
+            </div>
+            <div class="col"></div>
+            <div class="col-7 column justify-center text-white bg-black items-center menu-button"
+                 @click="hideCategory">
+              {{ activeCategory.Name }}
+              <img src="~assets/arrowdown.png" v-if="isHideCategory === true" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
+              <img src="~assets/arrowUp.png" v-if="isHideCategory === false" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+      </div>
       <!--<div class="row " >-->
       <!--<div class="text-white bg-black"-->
       <!--v-for="(item, index) in categoriesMenu" @click="tab = item.id" >-->
       <!--{{item.Name}}-->
       <!--</div >-->
       <!--</div >-->
-      <div class="col-md-8 col-12 row text-white bg-black items-center mobile-menu-scroll"
-           v-if="isHideCategory === false"
-           id="mobile-menu-scroll"
-           :style="{left: `${scrollMobileOffset}px`}">
+
+      <div class="block-hide-desc col-md-8 col-12 row text-white bg-black items-center mobile-menu-scroll"
+           v-if="isHideCategory === false">
+        <!--             id="mobile-menu-scroll">-->
         <div class="q-pr-xl menu-button q-mt-md q-mb-sm"
              :id="item.id"
-             v-for="item in categoriesMenu"
+             v-for="item in pasteBusinnesLunch"
              @scroll="scroll"
              @click="chooseCategory(item)">
           {{ item.Name }}
@@ -117,6 +142,32 @@
               '': activeCategory !== item,
             }"></div>
         </div>
+      </div>
+
+
+      <div class="row col-12 items-start mobile-menu-scroll" v-if="isHideCategory === false">
+        <img @click="undo"
+             class="cursor-pointer arrow q-mr-xs col-auto block-hide-mob" src="../assets/undo.svg">
+
+        <div class="overflow-auto col block-hide-mob row  flex-md-block no-wrap menu-button"
+             v-if="isHideCategory === false"
+             id="mobile-menu-scroll"
+             :style="{left: `${scrollMobileOffset}px`}">
+          <div class="q-pr-xl menu-button q-mt-md q-mb-sm"
+               :id="item.id"
+               v-for="item in pasteBusinnesLunch"
+               @scroll="scroll"
+               @click="chooseCategory(item)">
+            <nobr>{{ item.Name }}</nobr>
+            <div class="col-12"
+                 :class="{
+              'active-line active-category': activeCategory === item,
+              '': activeCategory !== item,
+            }"></div>
+          </div>
+        </div>
+        <img @click="next"
+             class=" cursor-pointer q-ml-xs next-arrow block-hide-mob arrow col-auto" src="../assets/next.svg">
       </div>
       <!--            <q-tabs-->
       <!--                    v-model="tab"-->
@@ -144,284 +195,50 @@
       <!--        В Ангарске всё в порядке.-->
       <!--      </q-banner >-->
 
-<!--      бизнесс ланч-->
-      <div class="h-100 full-width">
-        <q-tab-panels v-model="tab" animated class="bg-black">
-          <q-tab-panel name="000name" class="q-px-none">
-            <div class="text-h6 text-white q-pb-xl">
-              <div class="q-px-lg text-caption">
-                Бизнес-ланч с 12:00 до 16:00 (ПН-ПТ) <br>
-                Салат, Суп и Горячее + Эклер в подарок всего за {{ lunchPrice }} рублей!<br>
 
-              </div>
-              <div class="q-pa-md">
-                <q-stepper
-                  v-model="step"
-                  ref="stepper"
-                  active-color="deep-orange"
-                  done-color="secondary"
-                  animated
-                  vertical
-                >
-                  <q-step
-                    :name="1"
-                    title="Выберете салаты"
-                    icon="img:statics/salad-icon.svg"
-                    active-icon="img:statics/salad-icon.svg"
-                    done-icon="img:statics/salad-icon.svg"
-                    done-color="deep-orange"
-                    :done="step > 1"
-                  >
-                    <div class="row radioImgRow">
-                      <div
-                        v-for="(item, index) of salads"
-                        :key="index"
-                        class="col-md radioImg"
-                      >
-                        <label>
-                          <div class="row">
-                            <div class="col-auto">
-                              <input type="radio" v-model="saladStep"
-                                     :value="item.name"/>
-                              <img :src="require(`../assets/${item.image}`)" height="139"
-                                   width="139">
-                            </div>
-                            <div class="col radioWrapText">
-                              <span class="itemName">{{ item.name }}</span>
-                              <p class="itemText">{{ item.consist }}</p>
-                            </div>
-                          </div>
-                        </label>
-                      </div>
-                    </div>
-                    <q-stepper-navigation>
-                      <q-btn @click="step = 2" color="white"
-                             class="q-pl-lg q-pr-lg q-pt-sm q-pb-sm text-bold" size="10px" outline
-                             label="Продолжить"/>
-                    </q-stepper-navigation>
-                  </q-step>
-
-                  <q-step
-                    :name="2"
-                    title="Выберете суп"
-                    icon="img:statics/soup-icon.svg"
-                    active-icon="img:statics/soup-icon.svg"
-                    done-icon="img:statics/soup-icon.svg"
-                    done-color="deep-orange"
-                    :done="step > 2"
-                  >
-                    <div class="row radioImgRow">
-                      <div
-                        v-for="(item, index) of soups"
-                        :key="index"
-                        class="col-md radioImg"
-                      >
-                        <label>
-                          <div class="row">
-                            <div class="col-auto">
-                              <input type="radio" v-model="soupStep" :value="item.name"/>
-                              <img :src="require(`../assets/${item.image}`)" height="139"
-                                   width="139">
-                            </div>
-                            <div class="col radioWrapText">
-                              <span class="itemName">{{ item.name }}</span>
-                              <p class="itemText">{{ item.consist }}</p>
-                            </div>
-                          </div>
-                        </label>
-                      </div>
-                    </div>
-                    <q-stepper-navigation>
-                      <q-btn @click="step = 3" color="white"
-                             class="q-pl-lg q-pr-lg q-pt-sm q-pb-sm text-bold" size="10px" outline
-                             label="Продолжить"/>
-                      <q-btn flat @click="step = 1" color="white" label="Назад" class="q-ml-sm"/>
-                    </q-stepper-navigation>
-                  </q-step>
-
-                  <q-step
-                    :name="3"
-                    title="Выберете горячее"
-                    icon="img:statics/hotter-icon.svg"
-                    active-icon="img:statics/hotter-icon.svg"
-                    done-icon="img:statics/hotter-icon.svg"
-                    done-color="deep-orange"
-                    :done="step > 3"
-                  >
-                    <div class="row radioImgRow">
-                      <div
-                        v-for="(item, index) of hotter"
-                        :key="index"
-                        class="col-md radioImg"
-                      >
-                        <label>
-                          <div class="row">
-                            <div class="col-auto">
-                              <input type="radio" v-model="hotterStep"
-                                     :value="item.name"/>
-                              <img :src="require(`../assets/${item.image}`)" height="139"
-                                   width="139">
-                            </div>
-                            <div class="col radioWrapText">
-                              <span class="itemName">{{ item.name }}</span>
-                              <p class="itemText">{{ item.consist }}</p>
-                            </div>
-                          </div>
-                        </label>
-                      </div>
-                    </div>
-                    <q-stepper-navigation>
-                      <q-btn @click="step = 4" color="white"
-                             class="q-pl-lg q-pr-lg q-pt-sm q-pb-sm text-bold" size="10px" outline
-                             label="Продолжить"/>
-                      <q-btn flat @click="step = 2" color="white" label="Назад" class="q-ml-sm"/>
-                    </q-stepper-navigation>
-                  </q-step>
-
-                  <q-step
-                    :name="4"
-                    title="Итог"
-                    icon="img:statics/basket-icon.svg"
-                    active-icon="img:statics/basket-icon.svg"
-                  >
-                    <div class="row">
-                      <div class="col">
-                        <p class="text-white" style="font-size: 16px">Вы выбрали следующие
-                          блюда:</p>
-                      </div>
-                    </div>
-                    <div class="row items-center">
-                      <div class="col-auto"><img
-                        :src="require(`../assets/${salads.filter(item => item.name === saladStep)[0].image}`)"
-                        width="80" alt=""></div>
-                      <div class="col q-ml-md">{{
-                          salads.filter(item => item.name === saladStep)[0].name
-                        }}
-                      </div>
-                    </div>
-                    <div class="row items-center">
-                      <div class="col-auto"><img
-                        :src="require(`../assets/${soups.filter(item => item.name === soupStep)[0].image}`)"
-                        width="80" alt=""></div>
-                      <div class="col q-ml-md">{{ soups.filter(item => item.name === soupStep)[0].name }}
-                      </div>
-                    </div>
-                    <div class="row items-center">
-                      <div class="col-auto"><img
-                        :src="require(`../assets/${hotter.filter(item => item.name === hotterStep)[0].image}`)"
-                        width="80" alt=""></div>
-                      <div class="col q-ml-md">{{
-                          hotter.filter(item => item.name === hotterStep)[0].name
-                        }}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col"><p class="text-white" style="font-size: 16px">+ <strong>Подарок:</strong>
-                        пакетик чая и эклер</p></div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <q-btn
-                          color="deep-orange"
-                          @click="proxyAddProductToBasket(getBusinessLunch)"
-                          :label="getAddbasketButtonType(getBusinessLunch.name)"/>
-                        <q-btn flat @click="step = 1" color="white" label="Собрать ещё один"
-                               class="q-ml-sm"/>
-                      </div>
-                    </div>
-                  </q-step>
-                </q-stepper>
-              </div>
-            </div>
-          </q-tab-panel>
-          <!--                <q-tab-panel :name="categoryItem.id" class="q-px-none q-pb-xl" :key="`tab${categoryItem.id}`"-->
-          <!--                             v-for="(categoryItem, index) in categoriesMenu" >-->
-          <!--                    <div v-if="categoryItem.id == 19" class="q-pa-md text-white text-h6" >-->
-          <!--                        Привет, дорогой наш друг!-->
-          <!--                        Мы сделали за тебя уже половину работы, тебе же остаётся пройти вторую половину и-->
-          <!--                        приготовить-->
-          <!--                        для себя, друзей и близких стейки, бургеры и наборы шашлыков, которые приедут к тебе в-->
-          <!--                        полуфабрикатах, а тебе останется только приготовить твой шедевр кулинарного мастерства.-->
-          <!--                    </div >-->
-          <!--                    <div class="category-name-desktop mobile-hide" >-->
-          <!--                        {{categoryItem.Name}}-->
-          <!--                    </div >-->
-          <!--                    <div class="category-name-mobile desktop-hide" >-->
-          <!--                        {{categoryItem.Name}}-->
-          <!--                    </div >-->
-          <!--                    <div class="text-h6 q-pb-xl" >-->
-          <!--                        <div class="row q-col-gutter-xl q-px-lg content-center" >-->
-          <!--                            <catalog-item :key="product.id"-->
-          <!--                                          :productItem="product"-->
-          <!--                                          :action="proxyAddProductToBasket"-->
-          <!--                                          :isAddedToBasket="isAddedToBasket"-->
-          <!--                                          :getAddbasketButtonType="getAddbasketButtonType"-->
-          <!--                                          v-for="product in sortProducts(categoryItem.products)" >-->
-          <!--                            </catalog-item >-->
-          <!--                        </div >-->
-
-          <!--                        &lt;!&ndash;<div :key="product.id" v-for="product in item.products"&ndash;&gt;-->
-          <!--                        &lt;!&ndash;class="row items-center justify-between" >&ndash;&gt;-->
-          <!--                        &lt;!&ndash;<div class="col-md-4 col-sm-4 col-6 q-px-md" >{{ product.name }}</div >&ndash;&gt;-->
-          <!--                        &lt;!&ndash;<div class="col-md-4 col-sm-5 mobile-hide text-body2 q-pl-sm q-pr-sm" >{{ makedescr(product.description) }}</div >&ndash;&gt;-->
-          <!--                        &lt;!&ndash;<div class="col-md-2 col-sm-1 col-2" >{{ product.price }} р</div >&ndash;&gt;-->
-          <!--                        &lt;!&ndash;<div class="col-md-2 col-sm-2 col-4" >&ndash;&gt;-->
-          <!--                        &lt;!&ndash;<q-btn :outline="!isAddedToBasket(product.name)"&ndash;&gt;-->
-          <!--                        &lt;!&ndash;:color="{'white' : isAddedToBasket(product.name)}"&ndash;&gt;-->
-          <!--                        &lt;!&ndash;@click="proxyAddProductToBasket(product)"&ndash;&gt;-->
-          <!--                        &lt;!&ndash;:class="{'active_card_contact2' : isAddedToBasket(product.name)}"&ndash;&gt;-->
-          <!--                        &lt;!&ndash;class='text-uppercase q-btn_my' :label="getAddbasketButtonType(product.name)" />&ndash;&gt;-->
-          <!--                        &lt;!&ndash;</div >&ndash;&gt;-->
-          <!--                        &lt;!&ndash;</div >&ndash;&gt;-->
-          <!--                    </div >-->
-
-          <!--                </q-tab-panel >-->
-
-        </q-tab-panels>
-        <div class="q-px-none q-pb-xl" :key="categoryItem.id"
-             v-for="categoryItem in categoriesMenu">
-          <div v-if="categoryItem.id == 19" class="q-pa-md text-white text-h6">
-            Привет, дорогой наш друг!
-            Мы сделали за тебя уже половину работы, тебе же остаётся пройти вторую половину и
-            приготовить
-            для себя, друзей и близких стейки, бургеры и наборы шашлыков, которые приедут к тебе в
-            полуфабрикатах, а тебе останется только приготовить твой шедевр кулинарного мастерства.
-          </div>
-          <div class="category-name-desktop mobile-hide category-name"
-               :id="categoryItem.Name">
-            {{ categoryItem.Name }}
-          </div>
-          <div class="category-name-mobile desktop-hide"
-               :id="categoryItem.Name">
-            {{ categoryItem.Name }}
-          </div>
-          <div class="text-h6 q-pb-xl">
-            <div class="row q-col-gutter-xl content-center">
-              <catalog-item :key="product.id"
-                            :productItem="product"
-                            :action="proxyAddProductToBasket"
-                            :isAddedToBasket="isAddedToBasket"
-                            :getAddbasketButtonType="getAddbasketButtonType"
-                            v-for="product in sortProducts(categoryItem.products)">
-              </catalog-item>
+      <div class="q-px-none q-pb-md" :key="categoryItem.id"
+           v-for="categoryItem in pasteBusinnesLunch">
+        <div v-if="categoryItem.id == 19" class="q-pa-md text-white text-h6">
+          Привет, дорогой наш друг!
+          Мы сделали за тебя уже половину работы, тебе же остаётся пройти вторую половину и
+          приготовить
+          для себя, друзей и близких стейки, бургеры и наборы шашлыков, которые приедут к тебе в
+          полуфабрикатах, а тебе останется только приготовить твой шедевр кулинарного мастерства.
+        </div>
+        <div class="category-name-desktop category-name"
+             :id="categoryItem.Name">
+          {{ categoryItem.Name }}
+        </div>
+        <div class="text-h6 q-pb-xl">
+          <div class="row content-center">
+            <catalog-item :key="product.id"
+                          :productItem="product"
+                          :action="proxyAddProductToBasket"
+                          :isAddedToBasket="isAddedToBasket"
+                          :getAddbasketButtonType="getAddbasketButtonType"
+                          v-for="product in sortProducts(categoryItem.products)">
+            </catalog-item>
+            <q-separator dark inset class="q-mt-sm"/>
+            <div v-if="categoryItem.id === 10">
+              <business-lunch></business-lunch>
             </div>
           </div>
         </div>
-        <q-dialog
-          v-model="dialog"
-          persistent
-          :maximized="maximizedToggle"
-          transition-show="slide-up"
-          transition-hide="slide-down"
-          class="basket"
-        >
-
-            <BasketItem
-              :action="proxyAddProductToBasket"
-            :loading="loading"
-            :thanks="thanks"></BasketItem>
-        </q-dialog>
       </div>
+      <q-dialog
+        v-model="dialog"
+        persistent
+        :maximized="maximizedToggle"
+        transition-show="slide-up"
+        transition-hide="slide-down"
+        class="basket"
+      >
+
+        <BasketItem
+          :action="proxyAddProductToBasket"
+          :loading="loading"
+          :thanks="thanks"></BasketItem>
+      </q-dialog>
     </div>
   </q-page>
 </template>
@@ -437,6 +254,7 @@ const {getScrollTarget, setScrollPosition} = scroll;
 import {Catalog} from '../assets/catalog';
 import CatalogItem from "../components/order/CatalogItem";
 import BasketItem from "../components/order/BasketItem";
+import BusinessLunch from "../components/order/BusinessLunch";
 
 const axios = require('axios').default;
 var _ = require('lodash');
@@ -444,6 +262,7 @@ var _ = require('lodash');
 export default {
   name: "order2",
   components: {
+    BusinessLunch,
     BasketItem,
     CatalogItem,
     headerPage
@@ -467,78 +286,8 @@ export default {
       isHideCategory: false,
       basketButtonColor: '#000',
       isShowMap: false,
+      windowWidth: null,
 
-
-      saladStep: 'Винегрет с килькой (140гр)',
-      soupStep: 'Щи (220гр)',
-      hotterStep: 'Бифштекс с пюре (240гр)',
-
-      salads: [
-        {
-          name: 'Винегрет с килькой (140гр)',
-          image: 'vinegret_s_kilkoi.jpg',
-          consist: 'пряная килька, свёлка, маринованный огурец, картофель, капуста, морковь, зелёный горошек'
-        },
-        {
-          name: 'Салат с печёной бужениной (140гр)',
-          image: 'salat_s_pechenoy_buzh.jpg',
-          consist: 'буженина, свёкла, свежий огурец, печёный картофель, лист салата, соус Айоле'
-        },
-        {
-          name: 'Салат с кальмаром гриль (140гр)',
-          image: 'salat_s_kalmarom.jpg',
-          consist: 'кальмар, шампиньоны, томаты черри, морковь, пекинская капуста, сельдерей, лист салата, соус Имбирный'
-        },
-        {
-          name: 'Цезарь с цыплёнком (140гр)',
-          image: 'salat_cesar.jpg',
-          consist: 'курица, лист салата, гренки, томаты черри, сыр, соус Цезарь'
-        }
-      ],
-      soups: [
-        {
-          name: 'Щи (220гр)',
-          image: 'sup_she.jpg',
-          consist: 'курица, квашеная капуста, морковь, лук, шампиньоны, болгарский перец, укроп, сметана'
-        },
-        {
-          name: 'Крем-суп с брокколи (220гр)',
-          image: 'krem_sup_brokkoli.jpg',
-          consist: 'брокколи, сливки, картофель, укропное масло, хрустящий Крутон с соусом Песто'
-        },
-        {
-          name: 'Суп гуляш (220гр)',
-          image: 'sup_gulash.jpg',
-          consist: 'говядина, картофель, болгарский перец, морковь, сельдерей, лук, кинза, сметана'
-        },
-        {
-          name: 'Уха (220гр)',
-          image: 'sup_uha.jpg',
-          consist: 'сайра, картофель, морковь, лук, зелёный лук'
-        }
-      ],
-      hotter: [
-        {
-          name: 'Бифштекс с пюре (240гр)',
-          image: 'beefshteks.jpg',
-          consist: 'бифштекс из говядины, картофельное пюре, салат Коул Слоу, пита, микрозелень'
-        },
-        {
-          name: 'Цыплёнок по-азиатски с гречей (240гр)',
-          image: 'kurica_s_grezhey.jpg',
-          consist: 'курица в соусе Кимчи, гречка с шампиньонами, лук, салат Коул Слоу, пита, микрозелень'
-        },
-        {
-          name: 'Тилапия в белом вине (240гр)',
-          image: 'tilapiya_s_ovoshami.jpg',
-          consist: 'тилапия в белом вине, цукини, томаты черри, сельдерей, микрозелень'
-        },
-        {
-          name: 'Птитим с курицей и грибами (240гр)',
-          image: 'pasta_pritim.jpg',
-          consist: 'паста птитим, курица, шампиноьны, сыр, сливочный соус, лук, микрозелень'
-        }
-      ],
       products: [],
       categories: [],
 
@@ -585,9 +334,9 @@ export default {
         'category-name',
       );
       for (let i = 0; i < categories.length; i += 1) {
-        const id = this.categoriesMenu[i];
+        const id = this.pasteBusinnesLunch[i];
         const categoryArea = document.getElementById(
-          this.categoriesMenu[i].Name,
+          this.pasteBusinnesLunch[i].Name,
         );
         if (
           categories[i].offsetTop <= scrollTop + 300
@@ -599,11 +348,11 @@ export default {
           const activeCategoryClass = document.getElementsByClassName(
             'active-category',
           );
-          // this.scrollMobileOffset = activeCategoryClass[0].offsetLeft;
-          // const el = document.getElementById(
-          //   'mobile-menu-scroll',
-          // );
-          // el.scrollLeft = this.scrollMobileOffset - 25;
+          this.scrollMobileOffset = activeCategoryClass[1].offsetLeft;
+          const el = document.getElementById(
+            'mobile-menu-scroll',
+          );
+          el.scrollLeft = this.scrollMobileOffset - 15;
         }
       }
       if (scrollTop > 100) {
@@ -612,6 +361,18 @@ export default {
         this.mobileMenuScrollOffset = false;
         this.isHideCategory = false;
       }
+    },
+    next() {
+      const el = document.getElementById(
+        'mobile-menu-scroll',
+      );
+      el.scrollLeft += this.scrollMobileOffset + 250;
+    },
+    undo() {
+      const el = document.getElementById(
+        'mobile-menu-scroll',
+      );
+      el.scrollLeft -= this.scrollMobileOffset - 250;
     },
     showNotif() {
       this.$q.notify({
@@ -668,26 +429,6 @@ export default {
     },
     clearLanch() {
     },
-    sendOrder() {
-      this.loading = true;
-      yaCounter27721593.reachGoal('order');
-      axios.post('https://repairs.rest38.ru/api/antrekot',
-        {
-          order: this.order,
-          products: this.orderProducts
-        }
-      )
-        .then((res) => {
-          this.thanks = true
-          this.loading = false;
-        })
-        .catch((error) => {
-
-          this.loading = false
-          this.error = true
-        });
-
-    },
     sortProducts(products) {
       const mySort = (a, b) => {
         return a.sort_index - b.sort_index;
@@ -699,6 +440,13 @@ export default {
   computed: {
     ...mapState('common', ['order', 'orderProducts', 'orderMenu', 'categoriesMenu']),
     ...mapGetters('common', ['totalSum']),
+    getNumberOfPosition() {
+      let productCount = 0;
+      for (let i = 0; i < this.orderProducts.length; i += 1) {
+        productCount += this.orderProducts[i].count;
+      }
+      return productCount;
+    },
     showLanch() {
       const nowDate = new Date();
       if (nowDate.getHours() < 11) return false;
@@ -721,23 +469,17 @@ export default {
     },
     pasteBusinnesLunch() {
       let newCategoriesMenu = [];
-      newCategoriesMenu = [this.categoriesMenu];
+      newCategoriesMenu = [...this.categoriesMenu];
+      newCategoriesMenu.splice(5, 0, {Name: 'Бизнес ланч', id: 10})
+      return newCategoriesMenu;
 
-    },
-    getBusinessLunch() {
-      return {
-        name: `${this.saladStep}, ${this.soupStep}, ${this.hotterStep}`,
-        sortIndex: 500,
-        description: '',
-        price: this.lunchPrice,
-        category_id: 14
-      }
     },
   },
   // preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
   //     store.dispatch('common/getOrderMenu')
   // },
   mounted() {
+    this.windowWidth = window.innerWidth;
     this.$store.dispatch('common/getOrderMenu').then(() => {
       if (this.categoriesMenu[0] !== undefined) {
         this.tab = this.categoriesMenu[0].id;
@@ -766,9 +508,7 @@ export default {
     // }
   },
   created() {
-    if (process.browser) {
-      window.addEventListener('scroll', this.scroll);
-    }
+    window.addEventListener('scroll', this.scroll);
   },
   destroyed() {
     window.removeEventListener('scroll', this.scroll);
@@ -803,12 +543,51 @@ export default {
 
 }
 
+.basket {
+  min-width: 100%;
+}
+
+.q-btn_my {
+  margin-top: 0px;
+  margin-left: 0px;
+  font-size: 10px;
+  padding: 7px 0px;
+  border: 1px solid #FFFFFF;
+  border-radius: 0px;
+  letter-spacing: 0.25em;
+  font-family: 'mbold';
+}
+
+.active_card_contact2 {
+  background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
+}
+
+
+.category-name-desktop {
+  font-family: 'lumios';
+  font-size: 84px;
+
+  color: #FFFFFF;
+
+  padding: 0px 7px 7px 0;
+}
+
+.ballon {
+
+  padding: 10px 20px 10px 0px;
+}
+
+.hint-dzone {
+  font-size: 11px;
+  color: grey;
+}
+
 .mobile-menu-scroll {
-  /*overflow-x: scroll;*/
   position: sticky;
   top: 55px;
-  background: #02bbbd;
+  color: white;
   z-index: 5;
+  background-color: black;
 }
 
 .active-line {
@@ -838,103 +617,83 @@ export default {
   color: #FFFFFF;
 }
 
-@media (max-width: 600px) {
+.block-hide-desc {
+  display: flex;
+}
+
+.block-hide-mob {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-menu-scroll {
+    top: 55px;
+  }
+
+  .mobile-order-header {
+    background-color: black;
+    padding: 16px 20px 10px 4px;
+    z-index: 8;
+  }
+
+  .category-name-desktop {
+    font-family: 'lumios';
+    font-size: 36px;
+
+    color: #FFFFFF;
+
+    padding: 0px 7px 7px 0;
+  }
+
   .basket {
     width: 100%;
   }
 
-  .q-btn_my {
-    margin-top: 0px;
-    margin-left: 0px;
+  .basket-btn {
+    z-index: 7;
+    left: 0;
+    top: 0;
+
+  }
+
+  .block-hide-desc {
+    display: none;
+  }
+
+  .block-hide-mob {
+    display: flex;
+  }
+
+  .mobile-menu-scroll {
+
+    overflow-x: scroll;
+  }
+
+  .number-in-basket {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    z-index: 8;
     font-size: 10px;
-    padding: 7px 0px;
-    border: 1px solid #FFFFFF;
-    border-radius: 0px;
+    line-height: 14px;
+    color: white;
+  }
+
+  .menu-button {
+    font-size: 14px;
     letter-spacing: 0.25em;
-    font-family: 'mbold';
   }
 
-}
-
-@media (min-width: 601px) {
-  .basket {
-    min-width: 100%;
+  ::-webkit-scrollbar {
+    background: transparent;
   }
 
-  .q-btn_my {
-    margin-top: 0px;
-    margin-left: 0px;
-    font-size: 10px;
-    padding: 7px 0px;
-    border: 1px solid #FFFFFF;
-    border-radius: 0px;
-    letter-spacing: 0.25em;
-    font-family: 'mbold';
+  .arrow {
   }
-}
 
-.active_card_contact2 {
-  background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
-}
-
-.radioImg img {
-  border: 1px solid #333333;
-}
-
-.radioImg label input:checked + img {
-  border: 1px solid white;
-}
-
-.radioImg label input {
-  visibility: hidden;
-  position: absolute;
-}
-
-.radioWrapText {
-  padding: 5px 20px;
-}
-
-.radioWrapText .itemName {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-.radioWrapText .itemText {
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-}
-
-.q-stepper {
-  background: transparent;
-}
-
-.category-name-desktop {
-  font-family: 'lumios';
-  font-size: 84px;
-
-  color: #FFFFFF;
-
-  padding: 0px 7px 7px 0;
-}
-
-.category-name-mobile {
-  font-family: 'lumios';
-  font-size: 36px;
-
-  color: #FFFFFF;
-
-  padding: 0px 7px 7px 0px;
-}
-
-.ballon {
-
-  padding: 10px 20px 10px 0px;
-}
-
-.hint-dzone {
-  font-size: 11px;
-  color: grey;
+  .next-arrow {
+    transform: scale(-1, 1);
+  }
 }
 
 </style>

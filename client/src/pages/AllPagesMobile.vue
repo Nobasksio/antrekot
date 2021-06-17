@@ -1,56 +1,44 @@
-<template >
-<div>
-  <div v-if="windowWidth < 1024">
-  <menu></menu>
-  <promotions></promotions>
-  <interior></interior>
-  <feedback></feedback>
-  <contact></contact>
-  </div>
-</div>
-</template >
+<template>
+  <q-page-container>
+    <div class="mobile-only">
+      <menu-page></menu-page>
+      <promotions></promotions>
+      <interior></interior>
+      <feedback></feedback>
+      <contact></contact>
+    </div>
+  </q-page-container>
+</template>
 
-<script >
+<script>
 
-import headerPage from '../components/header-page'
 import Promotions from "./promotions";
 import Interior from "./interior";
 import Feedback from "./feedback";
 import Contact from "./contact";
+import MenuPage from "./MenuPage";
 
 export default {
-  name: "AllPagesMobile",
+  name: 'AllPagesMobile',
 
   components: {
+    MenuPage,
     Contact,
     Feedback,
     Interior,
     Promotions,
-    headerPage,
   },
   data() {
     return {
-      windowWidth: null,
     }
   },
   methods: {
-    setWindowWidth() {
-      this.windowWidth = window.innerWidth;
-    }
   },
-  created() {
-    if (process.browser) {
-      window.addEventListener('resize', this.setWindowWidth);
-      this.slideHeight();
-    }
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.setWindowWidth);
-  },
+
 };
 
-</script >
+</script>
 
 <style scoped lang="scss">
 
-</style >
+</style>

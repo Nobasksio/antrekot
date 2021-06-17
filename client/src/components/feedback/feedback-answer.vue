@@ -1,9 +1,9 @@
 <template >
-    <div class="answer q-py-none q-pl-md " v-if="answer.length > 0">
-        <div class="my-red bold">
+    <div class="answer q-py-none q-pl-md" v-if="answer.length > 0">
+        <div class="my-red bold name-feedback">
             Менеджер Антрекот
         </div>
-        <div class="body-2">
+        <div class="body-2 text-feedback">
             {{answer}}
 
         </div>
@@ -24,7 +24,21 @@
     .my-red{
         color:#E84437
     }
-    .body-2{
-        line-height: 18px;
+
+    .name-feedback {
+      font-family: 'mbold';
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.1em;
     }
+
+    .text-feedback {
+      font-family: 'mregular';
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 0.125em;
+    }
+
 </style >

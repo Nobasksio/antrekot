@@ -2,7 +2,7 @@
   <q-card class="basket">
     <div class="basket-page col-12 row">
       <div class="row col-12 justify-between">
-        <div class="row col-6 items-start cursor-pointer "  v-close-popup>
+        <div class="row col-6 col-sm-12 col-xs-12 items-start cursor-pointer " v-close-popup>
           <q-img
             src="/statics/logo.svg"
             spinner-color="white"
@@ -10,13 +10,26 @@
             :ratio="16/9"
             style="width: 100px; height: 40px;"
             contain
+            class="block-hide-desc"
           />
-          <img src="../../assets/toExit.svg">
-          <div class="col q-pl-lg ">
+          <img src="../../assets/toExit.svg" class="block-hide-desc">
+          <div class="text-white basket-header-fixed row block-hide-mob col-12  q-px-md q-pt-md">
+            <div class="row items-center col-3">
+              <img class=" q-mr-sm" src="../../assets/toExitMob.svg">
+              <div class="return-to-order-button">назад</div>
+            </div>
+            <div class="col"></div>
+            <div class="col-4 basket-name my-mbold text-h6">КОРЗИНА</div>
+            <div class="col"></div>
+            <q-separator class="q-mt-md" dark />
+
+          </div>
+
+          <div class="col q-pl-lg block-hide-desc">
             <header-page name_page="КОРЗИНА"></header-page>
           </div>
         </div>
-        <div class=" row сol-6 items-start">
+        <div class=" row сol-6 items-start block-hide-desc ">
           <img src="statics/icons/balloon.svg" alt="" class="q-mt-xs">
           <q-btn outline
                  color="white"
@@ -28,12 +41,6 @@
           <q-dialog v-model="isShowMap">
             <q-card class="relative-position">
               <div>
-                              <q-spinner-ball
-                                class="absolute-center z-spinner"
-                                color="red"
-                                size="10em"
-                                :thickness="5"
-                              />
               </div>
               <div
                 v-if="loadMap === true"
@@ -41,7 +48,7 @@
                 <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1"
                         allowfullscreen="true" style="position:relative;"></iframe>
                 <q-card-actions align="right">
-                  <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup />
+                  <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup/>
                 </q-card-actions>
               </div>
 
@@ -50,15 +57,10 @@
 
         </div>
       </div>
-      <!--    <q-card-section class="active_card_contact2 row">-->
-      <!--      <div class="text-h6">Корзина</div>-->
-      <!--      <q-space/>-->
-      <q-btn dense flat icon="close" v-close-popup>
-        <q-tooltip content-class="bg-white text-primary">Close</q-tooltip>
-      </q-btn>
-      <div class="row col-12">
-        <div class=" col-3">
-          <div class="row col-12 justify-center">
+
+      <div class="row col-12 basket-box">
+        <div class=" col-md-3 col-sm-12 ">
+          <div class="row col-12 justify-center justify-xs-start">
             <div class="text-white bg-black items-center menu-button">ОФОРМЛЕНИЕ ЗАКАЗА</div>
           </div>
           <div class="q-my-md">
@@ -86,7 +88,7 @@
             <div class="row">
               <div class="col-5 q-mb-sm ">Адрес</div>
               <div class="col-7 cursor-pointer">
-                <div class="row">
+                <div class="row" @click="showMap">
                   <img src="../../assets/basketBaloon.svg">
                   <div class="q-ml-xs">Зона доставки</div>
                 </div>
@@ -157,6 +159,7 @@
                 <q-checkbox :value="order.early"
                             @input="setEarly"
                             color="red"
+                            dark
                             label="Как можно раньше"/>
               </div>
             </div>
@@ -201,19 +204,19 @@
 
           </div>
         </div>
-        <div class="col-1"></div>
-        <div class=" col-8">
-          <div class="row col-12 justify-between items-center">
+        <div class="col-md-1 col-sm-0"></div>
+        <div class=" col-md-8 col-sm-12">
+          <div class="row col-12 justify-between items-center block-hide-desc">
             <div class="row col-6 no-wrap">
               <div class="q-mb-md text-white bg-black items-center menu-button q-mr-sm">У ВАС В ЗАКАЗЕ</div>
               <div class="text-red bg-black items-center menu-button"> {{ getNumberOfPosition }}</div>
             </div>
-            <div class="text-center basket-hint col-6">Минимальная сумма заказа 500 рублей</div>
+            <div class="q-pb-md text-center basket-hint col-6">Минимальная сумма заказа 500 рублей</div>
           </div>
           <q-scroll-area
-            class=""
-            :thumb-style="thumbStyle"
-            style="height: 83%; max-width: 98%;">
+            v-if="orderProducts[0]"
+            class="product-item-box q-mt-sm-xl q-mt-xs-xl"
+            :thumb-style="thumbStyle">
             <q-card-section class="q-pt-none" v-if="thanks">
               <div class="text-end text-h3 q-py-xl">
                 Спасибо за заказ
@@ -224,35 +227,47 @@
             </q-card-section>
             <div class="q-pt-none" v-if="!thanks">
               <div v-for="orderProductItem in orderProducts"
-                   class="row justify-between items-center q-py-xs">
-                <div v-if="orderProductItem.photo[0] !== undefined" class="col-2 photo-box">
+                   class="row justify-between q-py-xs ">
+                <div v-if="orderProductItem.photo" class="col-2 photo-box">
                   <img class="photo" :src="`${api_link}${orderProductItem.photo[0].url}`">
                 </div>
-                <div class="col-6 text-white name-dish row">
-                  <div>{{ orderProductItem.name }}</div>
-                  <div class="mregular weight-item q-ml-sm">({{ orderProductItem.weight }}гр.)</div>
+                <div class="col-2 photo-box" v-else>
+                  <img class="photo" :src="`${api_link}/uploads/48b79047b5504bcb80eb927ca1bfe5c6.png`">
                 </div>
+                <div class="col-10 row text-center items-center mobile-column-direct q-pl-sm-sm q-pl-xs-sm">
+                  <div class="col-6 col-sm-12 col-xs-12 text-white name-dish row q-mb-sm-sm q-mb-xs-sm">
+                    <div>{{ orderProductItem.name }}&nbsp;</div>
+                    <div class="mregular weight-item">({{ orderProductItem.weight }}гр.)</div>
+                  </div>
 
-                <div class="col-2 row text-center items-center">
-                  <img src="../../assets/removeProduct.svg" class="cursor-pointer" @click="removeOneProduct(orderProductItem)">
-                  <div class="name-field2 q-mx-sm">{{ orderProductItem.count }}</div>
-                  <img src="../../assets/addProduct.svg" class="cursor-pointer" @click="action(orderProductItem)">
-                </div>
-                <div class="col-1 price">
-                  {{ orderProductItem.price }}₽
-                </div>
-                <div class="col-1 text-right">
-                  <q-btn flat style="color: #FF0080" label=""
-                         @click="action(orderProductItem)">
-                    <img src="~assets/close.svg" alt="">
-                  </q-btn>
+                  <div class="col-6 col-sm-12 col-xs-12  row text-center items-center  ">
+                    <div class="col-6 row text-center items-center">
+                      <img src="../../assets/removeProduct.svg" class="cursor-pointer"
+                           @click="removeOneProduct(orderProductItem)">
+                      <div class="name-field2 q-mx-sm">{{ orderProductItem.count }}</div>
+                      <img src="../../assets/addProduct.svg" class="cursor-pointer" @click="action(orderProductItem)">
+                    </div>
+                    <div class="col-3 price">
+                      {{ orderProductItem.price }}₽
+                    </div>
+                    <div class="col-3 text-right">
+                      <q-btn flat style="color: #FF0080" label=""
+                             @click="removeProductToBasket(orderProductItem)">
+                        <img src="~assets/close.svg" alt="">
+                      </q-btn>
 
+                    </div>
+                  </div>
                 </div>
+                <q-separator  dark />
               </div>
 
             </div>
           </q-scroll-area>
-          <div class="text-white basket-sum-item my-bold q-mt-xl">
+          <div v-else class="q-mt-xl">
+            <div class="name-field text-16 q-mt-xl q-mb-xl">Ваша корзина пуста</div>
+          </div>
+          <div class="text-white basket-sum-item my-bold q-mt-xl q-mb-sm-xl q-mb-xs-xl q-mb-md-none">
             Сумма заказа:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ totalSum }} ₽
           </div>
         </div>
@@ -271,8 +286,8 @@ export default {
   components: {HeaderPage},
   props: {
     action: {
-                type: Function,
-            },
+      type: Function,
+    },
   },
   data() {
     return {
@@ -333,6 +348,26 @@ export default {
       this.isShowMap = !this.isShowMap;
       setTimeout(this.loadMap = true, 2000);
     },
+    sendOrder() {
+      this.loading = true;
+      yaCounter27721593.reachGoal('order');
+      axios.post('https://repairs.rest38.ru/api/antrekot',
+        {
+          order: this.order,
+          products: this.orderProducts
+        }
+      )
+        .then((res) => {
+          this.thanks = true
+          this.loading = false;
+        })
+        .catch((error) => {
+
+          this.loading = false
+          this.error = true
+        });
+
+    },
 
   },
   mounted() {
@@ -347,7 +382,12 @@ export default {
 }
 
 .basket {
-    background-color: black;
+  background-color: black;
+}
+
+.basket-box {
+  display: flex;
+  flex-direction: row;
 }
 
 .basket-page {
@@ -381,6 +421,7 @@ export default {
   color: #8D8D8D;
   line-height: 15px;
   font-weight: 400;
+  letter-spacing: 0.08em;
 }
 
 .order-button {
@@ -399,12 +440,19 @@ export default {
   font-size: 22px;
   line-height: 27px;
   font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 .q-btn_my {
   margin-top: 0;
   border: 1px solid #FFFFFF;
   font-weight: bold;
+}
+
+.product-item-box {
+  height: 83%;
+  max-width: 98%;
+
 }
 
 .name-dish {
@@ -417,6 +465,12 @@ export default {
 .photo-box {
   object-fit: cover;
 
+}
+
+.return-to-order-button {
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.1em;
 }
 
 .photo {
@@ -434,6 +488,87 @@ export default {
   color: #fff;
   font-size: 20px;
   line-height: 24px;
+}
+
+.block-hide-desc {
+  display: flex;
+}
+
+.block-hide-mob {
+  display: none;
+}
+
+.mobile-column-direct {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 1024px) {
+  .basket-name {
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .basket-header-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 49px;
+    background: black;
+    z-index: 2;
+  }
+  .mobile-column-direct {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .product-item-box {
+    height: 200px;
+  }
+
+  .block-hide-desc {
+    display: none;
+  }
+
+  .block-hide-mob {
+    display: flex;
+  }
+
+  .basket-page {
+    margin: 0 18px 20px 18px;
+  }
+
+  .basket-box {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .name-dish {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .price {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .basket-sum-item {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .menu-button {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.25em;
+  }
+
+  .name-field {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.1em;
+  }
+
 }
 
 </style>
