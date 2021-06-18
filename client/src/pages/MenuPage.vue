@@ -1,19 +1,19 @@
 <template>
   <q-page class="container">
-    <div class="row  items-start q-mb-lg">
+    <div class="row  items-start ">
 
       <div class="items-center col-12 ">
         <header-page name_page="МЕНЮ"></header-page>
       </div>
-      <div class="row col-12 items-start">
+      <div class="row col-12 items-center q-mb-lg">
         <img @click="undo"
-          class="cursor-pointer arrow q-mr-xs col-auto block-hide-mob" src="../assets/undo.svg">
-        <div class="col q-mb-lg ">
+          class="cursor-pointer arrow q-mr-sm q-pb-sm block-hide-mob" src="../assets/undoArrow.png">
+        <div class="col ">
           <div
             id="horizontal-scroll"
             :style="{left: `${scrollMobileOffset}px`}"
-            class="overflow-auto col-md-8 col-12 row text-white bg-black items-center q-pl-md-none no-wrap-xs no-wrap-sm wrap-md">
-            <div class=" q-pr-lg menu-button q-mt-sm q-mr-sm o"
+            class="overflow-auto col-md-8 col-12 row text-white bg-black items-start q-pl-md-none no-wrap-xs no-wrap-sm wrap-md">
+            <div class=" q-pr-md menu-button q-mt-sm q-mr-sm o"
                  v-for="(item, index) in menus" v-show="mayMenu(isOld,item.old)"
                  @click="chooseMenu(item)"
                  :class="{
@@ -31,7 +31,7 @@
 
         </div>
         <img @click="next"
-             class=" cursor-pointer q-ml-xs next-arrow block-hide-mob arrow col-auto" src="../assets/next.svg">
+             class=" cursor-pointer q-ml-sm q-pb-sm next-arrow block-hide-mob arrow " src="../assets/undoArrow.png">
       </div>
     </div>
     <div class="h-100">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapMutations, mapState} from 'vuex';
 const {getScrollTarget, setScrollPosition} = scroll;
 
 import headerPage from '../components/header-page'
@@ -105,7 +105,13 @@ export default {
   },
   computed: {
     ...mapState('common', ['menus']),
-    ...mapState('age', ['isOld'])
+    ...mapState('age', ['isOld']),
+    ...mapMutations('common', ['setMenu']),
+    setActiveMenu() {
+      let computedActiveMenu;
+      computedActiveMenu = this.menus[0];
+      return computedActiveMenu;
+    },
   },
   mounted() {
     if (this.menus[0] !== undefined) {
@@ -146,6 +152,7 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .container {}
   .block-hide-desc {
     display: none;
   }
@@ -158,8 +165,13 @@ export default {
   ::-webkit-scrollbar {
     background: transparent;
   }
+  .menu-button {
+    font-size: 14px;
+    line-height: 17px;
+  }
   .arrow {
     //height: 15px;
+    box-sizing: content-box;
   }
   .next-arrow {
     transform: scale(-1, 1);

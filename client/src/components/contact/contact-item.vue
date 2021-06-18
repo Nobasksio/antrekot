@@ -4,7 +4,7 @@
        v-if="width > 1200"
        :class="{ 'card_contact_active': choosenRest.id == restaurant.id}"
        @click='setChoosenRest(restaurant)'>
-    <div class="q-pb-md lspacing25 text-uppercase name-box name-field">
+    <div class="lspacing25 text-uppercase name-box name-field ">
       <span v-html="brakeName(restaurant.Name)"> </span>
     </div>
     <div class="red-delimeter ">
@@ -25,16 +25,16 @@
             </svg>
           </div>
         </div>
-        <div class="col-10 text-14">
+        <div class="col-10 text-14 lspacing10">
           {{ restaurant.Address }}
         </div>
       </div>
-      <div class="q-pb-xl lspacing10">
-        <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class lspacing10 name-field">
+      <div class="q-pb-xl lspacing10 q-mt-sm">
+        <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="q- phone_class lspacing10 name-field ">
           {{ restaurant.Phone }}
         </a>
       </div>
-      <div class="mregular text-12 q-mb-md">
+      <div class="mregular text-12 q-mb-md work-time">
         Режим работы
       </div>
       <div class=" text-14">
@@ -84,7 +84,7 @@
       <div class="mregular text-12 q-mb-md">
         Режим работы
       </div>
-      <div class=" text-14 lspacing10">
+      <div class=" text-14 lspacing10 work-time-item">
         <span v-html="restaurant.Work_time"></span>
       </div>
     </div>
@@ -134,6 +134,13 @@ export default {
 </script>
 
 <style scoped>
+.work-time-item {
+  text-transform: lowercase;
+}
+.work-time {
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
 .active-line {
   background-image: url("../../assets/activeMenuLine.png");
   background-position: bottom;
@@ -240,6 +247,9 @@ export default {
   text-decoration: none;
   color: #fff;
   line-height: 17px;
+  background-image: url("../../assets/dottedLine.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 
 </style>

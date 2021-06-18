@@ -16,12 +16,12 @@
 
                         </q-rating>
                     </div>
-                    <div class="caption restaraunt-feedback grey-text lighten-1 q-py-none col">
-                        <div class="pt-1" v-if="feedback.restaurant">Бар {{feedback.restaurant.Name}}</div>
-                    </div>
+
                 </div>
             </div>
-            <q-space></q-space>
+          <div class="caption restaraunt-feedback grey-text lighten-1 q-py-none col-auto">
+            <div class="pt-1" v-if="feedback.restaurant">Бар {{feedback.restaurant.Name}}</div>
+          </div>
             <div class="col-auto grey--text name-feedback lighten-1 self-center q-py-none q-px-md">
                 <div>{{ feedback.date.substr(0,10) }}</div>
             </div>

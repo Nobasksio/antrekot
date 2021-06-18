@@ -151,7 +151,6 @@
         computed:{
             slider_set() {
                 let slider_set = [], num = 0;
-                if (this.width > 1024) {
                   this.photos.forEach((photos_item, i, arr) => {
                     if (num % 6 == 0) {
                       slider_set.push([photos_item])
@@ -160,16 +159,6 @@
                     }
                     num++
                   })
-                } else {
-                  this.photos.forEach((photos_item, i, arr) => {
-                    if (num % this.slideCount == 0) {
-                      slider_set.push([photos_item])
-                    } else {
-                      slider_set[slider_set.length - 1].push(photos_item)
-                    }
-                    num++
-                  })
-                }
                 return slider_set
             }
         }

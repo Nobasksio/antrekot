@@ -87,6 +87,13 @@ export default {
   methods: {},
   computed: {
     ...mapState('common', ['mainPageInfo', 'check'])
+  },
+  mounted() {
+    this.$store.dispatch('common/getMenu');
+    this.$store.dispatch('common/getPromotions');
+    this.$store.dispatch('common/getRestaurant');
+    this.$store.dispatch('common/getRestaurant');
+
   }
 }
 </script>

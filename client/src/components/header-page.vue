@@ -8,8 +8,8 @@
         #ANTRKT
       </div>
     </div>
-    <div class="col-12 justify-start items-center content-center block-hide-mob row q-mt-xl ">
-      <div class="col-auto text-h4 text-white  q-py-lg ">
+    <div class="col-12 justify-start items-center content-center block-hide-mob row q-mb-xl">
+      <div class="col-auto text-h4 text-white   ">
         {{ name_page }}
       </div>
       <div class=" q-ml-sm red_line col-grow">

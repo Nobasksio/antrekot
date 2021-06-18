@@ -3,10 +3,10 @@
     <div class="container">
       <div class="row q-px-none q-mt-sm-md q-mt-xs-md">
         <div class="col-md-9 col-xs-12  col-sm-12 row justify-md-start justify-sm-center justify-xs-center">
-          <div class="col-auto-md block-hide-desc">
+          <div class="col-auto-md block-hide-desc q-mt-md">
             <header-page name_page="ДОСТАВКА"></header-page>
           </div>
-          <div class="delivery-zones-button">
+          <div class="q-ml-md-md  block-hide-desc-delivery">
             <div class="row items-center no-wrap ">
               <img src="statics/icons/balloon.svg" alt="" class="ballon">
               <q-btn outline
@@ -15,7 +15,7 @@
                      :ripple="{ color: 'red' }"
                      @click="showMap"
                      class='text-uppercase q-btn_my'>
-                <div class="q-px-xl q-px-sm-sm q-px-xs-sm">
+                <div class="q-px-xl ">
                   <nobr>ЗОНА ДОСТАВКИ</nobr>
                 </div>
               </q-btn>
@@ -41,9 +41,8 @@
           </div>
 
         </div>
-        <div class="col-12 block-hide-mob text-grey mregular  justify-sm-center text-12">
-          Пока мы, к сожалению, не доставляем в ленинский район и за пределы города.
-        </div>
+        <q-separator dark class="block-hide-mob"/>
+
         <div class="basket-btn col-3 row justify-end block-hide-desc"
              :class="{'fixed q-mt-sm q-mr-xl q-pr-xl': mobileMenuScrollOffset === true}">
           <div class=" row justify-center">
@@ -83,7 +82,8 @@
             </q-btn>
           </div>
           <div class=" row text-white bg-black items-center menu-button q-ml-xl q-my-sm"
-               @click="hideCategory">
+               @click="hideCategory"
+               v-if="activeCategory">
             {{ activeCategory.Name }}
             <img src="~assets/arrowdown.png" v-if="isHideCategory === true" class="q-ml-sm">
             <img src="~assets/arrowUp.png" v-if="isHideCategory === false" class="q-ml-sm">
@@ -111,7 +111,8 @@
             </div>
             <div class="col"></div>
             <div class="col-7 column justify-center text-white bg-black items-center menu-button"
-                 @click="hideCategory">
+                 @click="hideCategory"
+                 v-if="activeCategory">
               {{ activeCategory.Name }}
               <img src="~assets/arrowdown.png" v-if="isHideCategory === true" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
               <img src="~assets/arrowUp.png" v-if="isHideCategory === false" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
@@ -127,10 +128,10 @@
       <!--</div >-->
       <!--</div >-->
 
-      <div class="block-hide-desc col-md-8 col-12 row text-white bg-black items-center mobile-menu-scroll"
+      <div class="block-hide-desc col-md-8 col-12 row text-white bg-black items-start  mobile-menu-scroll"
            v-if="isHideCategory === false">
         <!--             id="mobile-menu-scroll">-->
-        <div class="q-pr-xl menu-button q-mt-md q-mb-sm"
+        <div class="q-pr-lg menu-button  q-mt-md q-mb-sm"
              :id="item.id"
              v-for="item in pasteBusinnesLunch"
              @scroll="scroll"
@@ -145,15 +146,15 @@
       </div>
 
 
-      <div class="row col-12 items-start mobile-menu-scroll" v-if="isHideCategory === false">
+      <div class="row col-12 items-center mobile-menu-scroll " v-if="isHideCategory === false">
         <img @click="undo"
-             class="cursor-pointer arrow q-mr-xs col-auto block-hide-mob" src="../assets/undo.svg">
+             class="cursor-pointer arrow q-mr-sm q-mb-xs block-hide-mob" src="../assets/undoArrow.png">
 
         <div class="overflow-auto col block-hide-mob row  flex-md-block no-wrap menu-button"
              v-if="isHideCategory === false"
              id="mobile-menu-scroll"
              :style="{left: `${scrollMobileOffset}px`}">
-          <div class="q-pr-xl menu-button q-mt-md q-mb-sm"
+          <div class="q-pr-lg menu-button q-mt-md "
                :id="item.id"
                v-for="item in pasteBusinnesLunch"
                @scroll="scroll"
@@ -167,7 +168,44 @@
           </div>
         </div>
         <img @click="next"
-             class=" cursor-pointer q-ml-xs next-arrow block-hide-mob arrow col-auto" src="../assets/next.svg">
+             class=" cursor-pointer q-ml-sm  q-mb-xs next-arrow block-hide-mob arrow " src="../assets/undoArrow.png">
+      </div>
+      <div class="q-ml-md-md delivery-zones-button block-hide-mob col-12 justify-center">
+        <div class="row items-center no-wrap ">
+          <img src="statics/icons/balloon.svg" alt="" class="ballon">
+          <q-btn outline
+                 color="white"
+                 type="a"
+                 :ripple="{ color: 'red' }"
+                 @click="showMap"
+                 class='text-uppercase q-btn_my'>
+            <div class="q-px-xl ">
+              <nobr>ЗОНА ДОСТАВКИ</nobr>
+            </div>
+          </q-btn>
+
+          <q-dialog v-model="isShowMap">
+            <q-card>
+              <!--                <q-spinner-ball-->
+              <!--                  color="red"-->
+              <!--                  size="10em"-->
+              <!--                  :thickness="5"-->
+              <!--                />-->
+              <div style="position:relative;overflow:hidden;">
+                <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1"
+                        allowfullscreen="true" style="position:relative;"></iframe>
+                <q-card-actions align="right">
+                  <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup/>
+                </q-card-actions>
+              </div>
+
+            </q-card>
+          </q-dialog>
+        </div>
+      </div>
+
+      <div class="col-12 block-hide-mob text-grey mregular  justify-sm-center text-12">
+        Пока мы, к сожалению, не доставляем в ленинский район и за пределы города.
       </div>
       <!--            <q-tabs-->
       <!--                    v-model="tab"-->
@@ -209,7 +247,7 @@
              :id="categoryItem.Name">
           {{ categoryItem.Name }}
         </div>
-        <div class="text-h6 q-pb-xl">
+        <div class="text-h6 q-pb-lg">
           <div class="row content-center">
             <catalog-item :key="product.id"
                           :productItem="product"
@@ -218,7 +256,6 @@
                           :getAddbasketButtonType="getAddbasketButtonType"
                           v-for="product in sortProducts(categoryItem.products)">
             </catalog-item>
-            <q-separator dark inset class="q-mt-sm"/>
             <div v-if="categoryItem.id === 10">
               <business-lunch></business-lunch>
             </div>
@@ -234,10 +271,10 @@
         class="basket"
       >
 
-        <BasketItem
+        <Basket
           :action="proxyAddProductToBasket"
           :loading="loading"
-          :thanks="thanks"></BasketItem>
+          :thanks="thanks"></Basket>
       </q-dialog>
     </div>
   </q-page>
@@ -253,7 +290,7 @@ const {getScrollTarget, setScrollPosition} = scroll;
 
 import {Catalog} from '../assets/catalog';
 import CatalogItem from "../components/order/CatalogItem";
-import BasketItem from "../components/order/BasketItem";
+import Basket from "../components/order/Basket";
 import BusinessLunch from "../components/order/BusinessLunch";
 
 const axios = require('axios').default;
@@ -263,7 +300,7 @@ export default {
   name: "order2",
   components: {
     BusinessLunch,
-    BasketItem,
+    Basket,
     CatalogItem,
     headerPage
   },
@@ -482,7 +519,6 @@ export default {
     this.windowWidth = window.innerWidth;
     this.$store.dispatch('common/getOrderMenu').then(() => {
       if (this.categoriesMenu[0] !== undefined) {
-        this.tab = this.categoriesMenu[0].id;
         [this.activeCategory] = this.categoriesMenu;
       }
     })
@@ -508,7 +544,9 @@ export default {
     // }
   },
   created() {
-    window.addEventListener('scroll', this.scroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this.scroll);
+    }
   },
   destroyed() {
     window.removeEventListener('scroll', this.scroll);
@@ -530,7 +568,7 @@ export default {
   font-size: 16px;
   font-family: mbold;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.1em;
 }
 
 .categories-field {
@@ -621,11 +659,19 @@ export default {
   display: flex;
 }
 
+.block-hide-desc-delivery {
+  display: block;
+}
+
 .block-hide-mob {
   display: none;
 }
 
 @media (max-width: 1024px) {
+  .block-hide-desc-delivery {
+    display: none;
+  }
+
   .mobile-menu-scroll {
     top: 55px;
   }
@@ -681,7 +727,6 @@ export default {
 
   .menu-button {
     font-size: 14px;
-    letter-spacing: 0.25em;
   }
 
   ::-webkit-scrollbar {

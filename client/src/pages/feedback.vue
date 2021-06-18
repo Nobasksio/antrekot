@@ -12,17 +12,36 @@
 
           </div>
           <div class=" q-pt-lg-lg q-pr-xl">
-            <div class="q-mb-lg">
-              <div class="text-white feed_zag">
-                Оставить отзыв
+            <div class="row justify-between items-center col-12 q-mb-lg mobile-row-box">
+            <div>
+              <div class="">
+                <div class="text-white feed_zag">
+                  Оставить отзыв
+                </div>
                 <div class="active-line">
 
                 </div>
               </div>
-
             </div>
-            <div v-if="isShowFeedbackForm">
+            <div class="block-hide-mob" v-if="isOpenOtherFeedback === false">
+              <q-btn outline color="white" class='text-uppercase q-btn_my_black' label="ЧИТАТЬ ОТЗЫВЫ"
+                     @click="toShowFeed">
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" class="q-ml-sm"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M0.269457 11.1147C0.269457 11.474 0.560656 11.7652 0.919469 11.7648L19.7277 11.7647L16.211 15.2814C15.9555 15.5369 15.9555 15.9517 16.211 16.2072C16.4666 16.4628 16.8814 16.4628 17.1369 16.2072L21.7665 11.5777C21.8892 11.455 21.96 11.2888 21.96 11.1147C21.96 10.9406 21.8892 10.7744 21.7665 10.6518L17.1369 6.02217C16.8813 5.7666 16.4665 5.76664 16.211 6.02217C15.9555 6.27769 15.9555 6.69254 16.211 6.94806L19.7277 10.4647L0.919469 10.4647C0.560194 10.4647 0.268996 10.7559 0.269457 11.1147Z"
+                    fill="white"/>
+                </svg>
+              </q-btn>
+            </div>
+            </div>
+            <div v-if="isShowFeedbackForm" class="lspacing10">
               <div v-if="isOpenOtherFeedback === false">
+                <div class="q-mb-lg">
+                  <div class="text-white q-mb-sm">
+                    Выберите бар
+                  </div>
+                </div>
                 <q-select dark
                           class="q-mb-lg"
                           color="grey-3"
@@ -68,11 +87,6 @@
                   </q-input>
                 </div>
 
-                <div class="q-mb-lg">
-                  <div class="text-white q-mb-sm">
-                    Выберите бар
-                  </div>
-                </div>
                 <div class="q-mb-lg">
                   <div class="text-white q-mb-sm">
                     Ваш отзыв
@@ -542,9 +556,7 @@ export default {
   }
 
   .feedback-box {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
+    display: none;
   }
 
   .feedback-items {
@@ -559,5 +571,12 @@ export default {
     line-height: 15px;
   }
 
+}
+@media (max-width: 600px) {
+.q-btn_my_black{
+   margin-top: 15px;
+  border: 1px;
+  font-size: 14px;
+}
 }
 </style>

@@ -21,7 +21,7 @@
         </contact-item>
       </div>
       <div class="col-sm-9 col-8 ">
-        <yandex-map class="yandex-map"
+        <yandex-map class="yandex-map "
                     :controls="[]"
                     :zoom="zoom"
                     :coords="[choosenRest.latitude, choosenRest.longitude]">

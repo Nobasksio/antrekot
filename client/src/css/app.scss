@@ -144,6 +144,7 @@ body{
   background: #000000 !important;
 }
 
+
 .q-card{
   background-color: transparent;
 }
@@ -224,7 +225,7 @@ body{
 
 @media (max-width: 1024px) {
   .container {
-    padding: 51px 19px 72px;
+    padding: 51px 19px 72px 19px;
   }
 }
 

@@ -23,7 +23,7 @@
         <div class="price q-my-md-md">{{ productItem.price }} ₽</div>
       </div>
     </div>
-    <div class="block-hide-mob col-12 row q-mb-md">
+    <div class="block-hide-mob col-12 row q-mb-md-md q-mb-xs-none">
       <div class="col-4">
         <img v-if="productItem.photo[0] !== undefined"
              :src="`${api_link}${productItem.photo[0].url}`" alt="" class="full-width">
@@ -51,6 +51,7 @@
         </div>
       </div>
     </div>
+    <q-separator dark class="q-my-md block-hide-mob"/>
 
   </fragment>
 </template>

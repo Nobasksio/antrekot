@@ -1,9 +1,10 @@
 <template>
-  <q-card class="basket">
-    <div class="basket-page col-12 row">
+  <q-card class="basket ">
+    <div class="basket-page col-12 row q-pl-xs">
       <div class="row col-12 justify-between">
-        <div class="row col-6 col-sm-12 col-xs-12 items-start cursor-pointer " v-close-popup>
+        <div class="row col-6 col-sm-12 col-xs-12 items-start cursor-pointer ">
           <q-img
+            v-close-popup
             src="/statics/logo.svg"
             spinner-color="white"
             img-class="q-mr-lg "
@@ -12,8 +13,8 @@
             contain
             class="block-hide-desc"
           />
-          <img src="../../assets/toExit.svg" class="block-hide-desc">
-          <div class="text-white basket-header-fixed row block-hide-mob col-12  q-px-md q-pt-md">
+          <img v-close-popup src="../../assets/toExit.svg" class="block-hide-desc">
+          <div v-close-popup class="text-white basket-header-fixed row block-hide-mob col-12  q-px-md q-pt-md">
             <div class="row items-center col-3">
               <img class=" q-mr-sm" src="../../assets/toExitMob.svg">
               <div class="return-to-order-button">назад</div>
@@ -21,51 +22,53 @@
             <div class="col"></div>
             <div class="col-4 basket-name my-mbold text-h6">КОРЗИНА</div>
             <div class="col"></div>
-            <q-separator class="q-mt-md" dark />
+            <q-separator class="q-mt-md" dark/>
 
           </div>
 
-          <div class="col q-pl-lg block-hide-desc">
-            <header-page name_page="КОРЗИНА"></header-page>
+          <div class="col q-mt-sm q-pl-lg block-hide-desc">
+            <header-page v-close-popup name_page="КОРЗИНА"></header-page>
+          </div>
+          <div class=" row сol-6 items-start block-hide-desc ">
+            <img src="statics/icons/balloon.svg" alt="" class="q-mt-xs">
+            <q-btn outline
+                   color="white"
+                   :ripple="{ color: 'red' }"
+                   @click="showMap"
+                   class='text-uppercase q-btn_my '>
+              <div class="q-px-xl">ЗОНА ДОСТАВКИ</div>
+            </q-btn>
+            <q-dialog v-model="isShowMap">
+              <q-card class="relative-position">
+                <div>
+                </div>
+                <div
+                  v-if="loadMap === true"
+                  style="position:relative;overflow:hidden;">
+                  <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1"
+                          allowfullscreen="true" style="position:relative;"></iframe>
+                  <q-card-actions align="right">
+                    <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup/>
+                  </q-card-actions>
+                </div>
+
+              </q-card>
+            </q-dialog>
+
           </div>
         </div>
-        <div class=" row сol-6 items-start block-hide-desc ">
-          <img src="statics/icons/balloon.svg" alt="" class="q-mt-xs">
-          <q-btn outline
-                 color="white"
-                 :ripple="{ color: 'red' }"
-                 @click="showMap"
-                 class='text-uppercase q-btn_my '>
-            <div class="q-px-xl">ЗОНА ДОСТАВКИ</div>
-          </q-btn>
-          <q-dialog v-model="isShowMap">
-            <q-card class="relative-position">
-              <div>
-              </div>
-              <div
-                v-if="loadMap === true"
-                style="position:relative;overflow:hidden;">
-                <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1"
-                        allowfullscreen="true" style="position:relative;"></iframe>
-                <q-card-actions align="right">
-                  <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup/>
-                </q-card-actions>
-              </div>
 
-            </q-card>
-          </q-dialog>
-
-        </div>
       </div>
 
       <div class="row col-12 basket-box">
         <div class=" col-md-3 col-sm-12 ">
-          <div class="row col-12 justify-center justify-xs-start">
-            <div class="text-white bg-black items-center menu-button">ОФОРМЛЕНИЕ ЗАКАЗА</div>
+          <div class="row col-12 justify-center justify-xs-start ">
+            <div class="text-white bg-black items-center menu-button  q-mb-lg">ОФОРМЛЕНИЕ ЗАКАЗА</div>
           </div>
-          <div class="q-my-md">
+          <div class="q-mb-md q-mt-md">
             <div class="q-mb-sm name-field mregular">Имя</div>
             <q-input dense
+                     square
                      dark outlined
                      color="grey-3"
                      placeholder="Введите имя"
@@ -76,6 +79,7 @@
           <div class="q-my-md">
             <div class="q-mb-sm name-field mregular">Телефон</div>
             <q-input dense
+                     square
                      dark outlined
                      color="grey-3"
                      :value="order.phone"
@@ -85,17 +89,18 @@
             </q-input>
           </div>
           <div class="q-my-md name-field mregular">
-            <div class="row">
+            <div class="row justify-between">
               <div class="col-5 q-mb-sm ">Адрес</div>
               <div class="col-7 cursor-pointer">
-                <div class="row" @click="showMap">
+                <div class="row justify-end" @click="showMap">
                   <img src="../../assets/basketBaloon.svg">
-                  <div class="q-ml-xs">Зона доставки</div>
+                  <div class="q-ml-xs delivery-zone">Зона доставки</div>
                 </div>
               </div>
             </div>
             <q-input
               dark
+              square
               color="grey-3"
               placeholder="Пример: ул. Пушкина, д.34"
               :value="order.address"
@@ -107,6 +112,7 @@
             <div class="q-my-md">
               <div class="q-mb-sm name-field2 mregular">Квартира</div>
               <q-input dense
+                       square
                        placeholder="215"
                        dark outlined
                        color="grey-3"
@@ -147,6 +153,7 @@
             <div class="q-mb-sm name-field2 mregular">Время доставки</div>
             <div class="row">
               <q-input dense
+                       square
                        color="grey-3"
                        class="col-3"
                        dark outlined
@@ -169,6 +176,8 @@
           <div class="q-my-md">
             <div class="q-mb-sm name-field2 mregular">Комментарий</div>
             <q-input dense
+                     square
+                     autogrow
                      dark outlined
                      color="grey-3"
                      placeholder="Укажите, есть ли домофон и т.д."
@@ -181,6 +190,7 @@
           <div class="q-my-md">
             <div class=" q-mb-sm name-field2 mregular">Промокод</div>
             <q-input dense
+                     square
                      dark outlined
                      :value="order.promocode"
                      color="grey-3"
@@ -206,16 +216,22 @@
         </div>
         <div class="col-md-1 col-sm-0"></div>
         <div class=" col-md-8 col-sm-12">
-          <div class="row col-12 justify-between items-center block-hide-desc">
+          <div class="row col-12 justify-between items-center block-hide-desc wrap">
             <div class="row col-6 no-wrap">
-              <div class="q-mb-md text-white bg-black items-center menu-button q-mr-sm">У ВАС В ЗАКАЗЕ</div>
-              <div class="text-red bg-black items-center menu-button"> {{ getNumberOfPosition }}</div>
+              <div class="q-mb-md text-white bg-black items-center menu-button q-mr-sm">
+                <nobr>У ВАС В ЗАКАЗЕ</nobr>
+              </div>
+              <div class="text-red bg-black items-center menu-button">
+                <nobr>{{ getNumberOfPosition }}</nobr>
+              </div>
             </div>
-            <div class="q-pb-md text-center basket-hint col-6">Минимальная сумма заказа 500 рублей</div>
+            <div class="q-pb-md text-center delivery-text col-6 ">
+              <nobr>Минимальная сумма заказа 500 рублей</nobr>
+            </div>
           </div>
           <q-scroll-area
             v-if="orderProducts[0]"
-            class="product-item-box q-mt-sm-xl q-mt-xs-xl"
+            class="product-item-box q-mt-sm-xl q-mt-xs-xl "
             :thumb-style="thumbStyle">
             <q-card-section class="q-pt-none" v-if="thanks">
               <div class="text-end text-h3 q-py-xl">
@@ -259,7 +275,7 @@
                     </div>
                   </div>
                 </div>
-                <q-separator  dark />
+                <q-separator dark/>
               </div>
 
             </div>
@@ -282,7 +298,7 @@ import {mapGetters, mapMutations, mapState} from "vuex";
 import HeaderPage from "../header-page";
 
 export default {
-  name: "BasketItem",
+  name: "Basket",
   components: {HeaderPage},
   props: {
     action: {
@@ -377,6 +393,12 @@ export default {
 </script>
 
 <style>
+.delivery-zone {
+  background-image: url("../../assets/dottedLine.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
 .z-spinner {
   z-index: 999999;
 }
@@ -405,8 +427,11 @@ export default {
 
 .name-field {
   color: white;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 15px;
   letter-spacing: 0.1em;
+  font-weight: 400;
+  font-family: mregular;
 }
 
 .name-field2 {
@@ -414,12 +439,21 @@ export default {
   font-size: 12px;
   line-height: 15px;
   letter-spacing: 0.1em;
+  font-weight: 400;
 }
 
 .basket-hint {
   font-size: 12px;
   color: #8D8D8D;
   line-height: 15px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.delivery-text {
+  font-size: 16px;
+  color: #8D8D8D;
+  line-height: 20px;
   font-weight: 400;
   letter-spacing: 0.08em;
 }
@@ -508,6 +542,7 @@ export default {
     font-size: 14px;
     line-height: 17px;
   }
+
   .basket-header-fixed {
     position: fixed;
     top: 0;
@@ -516,13 +551,14 @@ export default {
     background: black;
     z-index: 2;
   }
+
   .mobile-column-direct {
     flex-direction: column;
     align-items: start;
   }
 
   .product-item-box {
-    height: 200px;
+    height: 300px;
   }
 
   .block-hide-desc {

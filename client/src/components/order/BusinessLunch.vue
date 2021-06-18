@@ -18,7 +18,7 @@
           done-color="secondary"
           animated
           vertical
-          class="full-width"
+          class="full-width q-mt-md"
           dark
         >
           <q-step

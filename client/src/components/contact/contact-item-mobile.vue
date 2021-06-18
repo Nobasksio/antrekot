@@ -2,11 +2,11 @@
   <q-expansion-item
     expand-separator
     :label="restaurant.Name"
-    class="text-white text-12 active_card_contact q-pl-md q-pt-md text-uppercase"
+    class="text-white text-12 active_card_contact q-pl-md q-pt-lg text-uppercase"
   >
     <q-card class="">
 
-      <q-card-section class="q-pt-none">
+      <q-card-section class="q-pt-none ">
         <div class="red-delimeter">
         </div>
         <div class="row q-pb-sm q-pt-md lspacing10 content-stretch items-center text-typical">
@@ -28,14 +28,14 @@
           </div>
         </div>
         <div class="q-pb-md lspacing10">
-          <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class">
+          <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class text-16">
             {{ restaurant.Phone }}
           </a>
         </div>
-        <div class="mregular text-12 text-typical">
+        <div class="mregular text-12 text-typical work-time q-my-sm">
           Режим работы
         </div>
-        <div class="text-typical text-12">
+        <div class="text-typical text-12 work-time-item">
           <span v-html="restaurant.Work_time"></span>
         </div>
         <div class="text-center q-py-lg">
@@ -89,18 +89,20 @@
                 {{ restaurant.Address }}
               </div>
             </div>
-            <div class="q-pb-md lspacing10 text-16">
-              {{ restaurant.Phone }}
+            <div class="q-pb-md lspacing10">
+              <a :href="`tel:${cleanPhone(restaurant.Phone)}`" class="phone_class text-16">
+                {{ restaurant.Phone }}
+              </a>
             </div>
-            <div class="mregular text-12 text-typical q-mb-sm">
+            <div class="mregular text-12 text-typical work-time q-my-sm">
               Режим работы
             </div>
-            <div class="text-typical">
+            <div class="text-typical text-12 work-time-item">
               <span v-html="restaurant.Work_time"></span>
             </div>
-            <div class="text-center q-py-lg">
+            <div class="text-center q-py-md">
               <q-btn outline color="white"
-                     class='text-uppercase q-btn_my_black q-py-md q-px-lg'
+                     class='text-uppercase q-btn_my_black '
                      @click="dialog = false">
                 <img src="../../assets/returnArrow.svg" class="q-pr-md">
                 <div>Назад к списку</div>
@@ -143,9 +145,16 @@ export default {
 <style scoped>
 .my-baloon-icon {
   padding-top: 3px;
-  margin-right: 15px;
+  margin-right: 12px;
 }
-
+.work-time {
+  color: black;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+.work-time-item {
+  text-transform: lowercase;
+}
 .map_mobile {
 
   background: #fff;
@@ -158,5 +167,12 @@ export default {
 .phone_class {
   text-decoration: none;
   color: #fff;
+  background-image: url("../../assets/dottedLine.svg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.q-btn_my_black {
+  padding: 12px 30px 13px 28px;
 }
 </style>

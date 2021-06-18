@@ -9,18 +9,19 @@
         <div class="row block-hide-mob q-mb-md">
           <div class="col-auto">
             <div class="col-7 row justify-start  text-white bg-black items-start menu-button"
-                 @click="showInterior">
+                 @click="showInterior"
+            v-if="activeInterior">
               {{ activeInterior.short_name }}
               <div class="active-line block-hide-mob"></div>
             </div>
           </div>
-          <div class="col-3 ">
+          <div class="col-3 cursor-pointer" @click="showInterior">
             <img src="../assets/arrowdown.png" v-if="isShowInterior === true" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
             <img src="../assets/arrowUp.png" v-if="isShowInterior === false" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
 
           </div>
         </div>
-        <div class="col-md-8 col-12 " v-if="isShowInterior === true">
+        <div class="col-md-8 col-12 select-box q-mb-md" v-if="isShowInterior === true">
           <div class="row-md column-xs text-white bg-black items-center-md q-mb-lg">
 
             <div class="menu-button q-mt-sm q-mr-lg row "
@@ -47,7 +48,8 @@
          v-if="isShowInterior === false">ФОТО
     </div>
 
-    <interior-courusel :slideCount="slideCount" :key="activeInterior.id"
+    <interior-courusel v-if="activeInterior"
+       :key="activeInterior.id"
                        :restaurant="activeInterior"></interior-courusel>
   </q-page>
 </template>
@@ -61,6 +63,14 @@ import headerPage from '../components/header-page'
 
 export default {
   name: "interior",
+  preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
+    try {
+      return store.dispatch('common/getRestaurant')
+    } catch (e) {
+      console.log(e);
+    }
+
+  },
   components: {
     interiorCourusel,
     headerPage
@@ -81,14 +91,6 @@ export default {
     noscript: {
       default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
     }
-  },
-  preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
-    try {
-      return store.dispatch('common/getRestaurant')
-    } catch (e) {
-      console.log(e);
-    }
-
   },
   data: function () {
     return {
@@ -180,6 +182,13 @@ export default {
 }
 
 @media (max-width: 1024px) {
+
+  .select-box {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    background: black;
+  }
   .block-hide-desc {
     display: none;
   }
