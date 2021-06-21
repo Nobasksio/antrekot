@@ -1,6 +1,6 @@
 <template>
   <q-page-container >
-    <div class="mobile-only q-px-md">
+    <div class="mobile-only overflow-hidden">
       <menu-page id="menu-page"></menu-page>
       <promotions id="promotions"></promotions>
       <interior id="interior"></interior>

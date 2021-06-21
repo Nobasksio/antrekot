@@ -143,9 +143,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 100%;
-}
 .interior-class.red-point {
   display: none;
 }

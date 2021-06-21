@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-black" >
+  <q-page class="bg-black " >
     <div class=" container row tl_padding_page">
 
       <header-page name_page="КОНТАКТЫ"></header-page>
