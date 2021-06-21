@@ -1,11 +1,11 @@
 <template>
-  <q-page-container>
-    <div class="mobile-only">
-      <menu-page></menu-page>
-      <promotions></promotions>
-      <interior></interior>
-      <feedback></feedback>
-      <contact></contact>
+  <q-page-container >
+    <div class="mobile-only q-px-md">
+      <menu-page id="menu-page"></menu-page>
+      <promotions id="promotions"></promotions>
+      <interior id="interior"></interior>
+      <feedback id="feedback"></feedback>
+      <contact id="contact"></contact>
     </div>
   </q-page-container>
 </template>

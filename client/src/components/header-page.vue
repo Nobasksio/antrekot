@@ -1,5 +1,5 @@
 <template>
-  <div class="row col-12">
+  <div class="row col-12 q-mb-md-xl q-mb-xs-lg">
     <div class="col-auto-md justify-center items-center content-center block-hide-desc antrekot-box">
       <div class="text-h4 text-white zag ">
         {{ name_page }}
@@ -8,7 +8,7 @@
         #ANTRKT
       </div>
     </div>
-    <div class="col-12 justify-start items-center content-center block-hide-mob row q-mb-xl">
+    <div class="col-12 justify-start items-center content-center block-hide-mob row ">
       <div class="col-auto text-h4 text-white   ">
         {{ name_page }}
       </div>

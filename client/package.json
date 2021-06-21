@@ -21,6 +21,7 @@
     "quasar": "^1.12.11",
     "showdown": "^1.9.1",
     "vue-fragment": "^1.5.1",
+    "vue-scrollto": "^2.20.0",
     "vue-yandex-maps": "^0.10.8",
     "vue-yandex-metrika": "^1.8.3",
     "vuex-persistedstate": "^2.7.1"

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="container">
+  <div class="container">
     <div class="row  items-start ">
 
       <div class="items-center col-12 ">
@@ -39,7 +39,7 @@
            class="for-iframe" v-html="activeMenu.code"></div>
     </div>
 
-  </q-page>
+  </div>
 </template>
 
 <script>
@@ -152,7 +152,9 @@ export default {
 }
 
 @media (max-width: 1024px) {
-  .container {}
+  .container {
+    height: 900px;
+  }
   .block-hide-desc {
     display: none;
   }

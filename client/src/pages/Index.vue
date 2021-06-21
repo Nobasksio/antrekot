@@ -59,7 +59,17 @@ export default {
   components: {AllPagesMobile},
   async preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
 
-    return await store.dispatch('common/getAll', ssrContext)
+    return await store.dispatch('common/getAll', ssrContext).then(() => {
+      return store.dispatch('common/getMenu', ssrContext)
+    }).then(() => {
+      return store.dispatch('common/getPromotions', ssrContext)
+    }).then(() => {
+      return store.dispatch('common/getRestaurant', ssrContext)
+    }).then(() => {
+      return store.dispatch('common/getFeedbacks', ssrContext)
+    }).then(() => {
+      return store.dispatch('common/getRestaurant', ssrContext)
+    })
   },
   meta: {
     title: `Гриль Бар Антрекот Иркутск Ангарск`,
@@ -89,11 +99,6 @@ export default {
     ...mapState('common', ['mainPageInfo', 'check'])
   },
   mounted() {
-    this.$store.dispatch('common/getMenu');
-    this.$store.dispatch('common/getPromotions');
-    this.$store.dispatch('common/getRestaurant');
-    this.$store.dispatch('common/getRestaurant');
-
   }
 }
 </script>
@@ -104,6 +109,7 @@ export default {
   -o-background-size: cover;
   background-size: cover;
   z-index: 101;
+  overflow-x: hidden;
 }
 
 .bg_mask {
@@ -115,7 +121,7 @@ export default {
   z-index: 99;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1024px) {
   .main_zag {
     font-size: 2.3em;
     line-height: 44px;
@@ -139,7 +145,7 @@ export default {
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 1024px) {
   .main_zag {
     font-size: 4.5em;
     line-height: 78px;

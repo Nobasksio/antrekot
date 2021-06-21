@@ -256,7 +256,9 @@
 <script >
 import {mapState} from 'vuex';
 import checkPage from 'pages/check-page.vue';
-import headerPage from '../components/header-page'
+import headerPage from '../components/header-page';
+
+import VueScrollTo from 'vue-scrollto';
 export default {
   components: {
     checkPage,
@@ -273,6 +275,7 @@ export default {
   data() {
     return {
       width:null,
+      activePoint: 'null',
       left: false,
       right:false,
       menu: [
@@ -400,4 +403,8 @@ a.area:not(.q-router-link--exact-active) {
     0px -10px 15px #7B96B8;
   }
 }
+::-webkit-scrollbar {
+  background: transparent;
+}
+
 </style >

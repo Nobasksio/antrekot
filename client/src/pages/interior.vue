@@ -1,5 +1,5 @@
 <template>
-  <q-page class="container" style="height: 1px">
+  <q-page class="container" >
     <div class="row tl_padding_page">
 
 
@@ -143,6 +143,9 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  height: 100%;
+}
 .interior-class.red-point {
   display: none;
 }

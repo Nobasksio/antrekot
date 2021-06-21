@@ -97,10 +97,10 @@
             <div class="mregular text-12 text-typical work-time q-my-sm">
               Режим работы
             </div>
-            <div class="text-typical text-12 work-time-item">
+            <div class="text-typical text-12 work-time-item q-mb-md">
               <span v-html="restaurant.Work_time"></span>
             </div>
-            <div class="text-center q-py-md">
+            <div class="text-center q-mb-md">
               <q-btn outline color="white"
                      class='text-uppercase q-btn_my_black '
                      @click="dialog = false">
@@ -147,21 +147,23 @@ export default {
   padding-top: 3px;
   margin-right: 12px;
 }
+
 .work-time {
   color: black;
   letter-spacing: 0.1em;
   font-weight: 700;
 }
+
 .work-time-item {
   text-transform: lowercase;
 }
+
 .map_mobile {
 
   background: #fff;
 }
 
 .yandex-map {
-  height: 100%;
 }
 
 .phone_class {
@@ -173,6 +175,6 @@ export default {
 }
 
 .q-btn_my_black {
-  padding: 12px 30px 13px 28px;
+  padding: 8px 30px 8px 28px;
 }
 </style>

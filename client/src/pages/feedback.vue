@@ -1,5 +1,5 @@
 <template>
-  <q-page class="container" style="height: 1px">
+  <q-page class="container">
 
     <div class=" mregular full-height">
 
@@ -46,6 +46,7 @@
                           class="q-mb-lg"
                           color="grey-3"
                           outlined
+                          square
                           dense
                           label="Гриль Бар"
                           option-label="Name"
@@ -72,6 +73,7 @@
                     Имя
                   </div>
                   <q-input dark outlined
+                           square
                            color="grey-3"
                            dense v-model="feedback.Name">
                   </q-input>
@@ -82,6 +84,7 @@
                     Телефон / email
                   </div>
                   <q-input dark outlined dense
+                           square
                            color="grey-3"
                            v-model="feedback.Phone">
                   </q-input>
@@ -94,6 +97,7 @@
                   <q-input
                     v-model="feedback.text"
                     dark
+                    square
                     placeholder="Напишите, что Вам понравилось"
                     color="grey-3"
                     outlined
