@@ -197,7 +197,7 @@
     </q-drawer>
 
     <q-page-container class="" >
-      <div class="blk_burger flex-column mobile-hide" v-if='!left && width >599'>
+      <div class="z-top blk_burger flex-column mobile-hide" v-if='!left && width >599'>
         <q-btn flat style="color: #FFFFFF"  @click='left = !left' label="" class="burger-button"
         >
           <div class="q-px-sm q-py-md" >
@@ -222,7 +222,7 @@
 <!--          />-->
         </div >
       </div >
-      <div class="burger-blk-mobile row justify-center  items-center desktop-hide" v-if='!right'>
+      <div class="burger-blk-mobile z-top row justify-center  items-center desktop-hide" v-if='!right'>
 
 <!--        <q-img-->
 <!--          src="/statics/logo.svg"-->
@@ -296,6 +296,9 @@ export default {
 }
 </script >
 <style scope >
+::-webkit-scrollbar {
+  width: 1px;
+}
 .menu_drawer {
   background: linear-gradient(180deg, #970E00 0%, #E84437 100%);
   overflow: auto;
@@ -402,9 +405,6 @@ a.area:not(.q-router-link--exact-active) {
     0px -10px 15px #7B96B8,
     0px -10px 15px #7B96B8;
   }
-}
-::-webkit-scrollbar {
-  background: transparent;
 }
 
 </style >

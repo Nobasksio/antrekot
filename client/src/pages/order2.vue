@@ -92,9 +92,8 @@
       </div>
       <div class="block-hide-mob">
         <div class="fixed-top inline-block mobile-order-header ">
-          <div class="row items-end ">
-            <div class="col-1 basket-btn "
-            >
+          <div class="row items-center ">
+            <div class="col-1 basket-btn ">
               <q-btn
                 ref="basket"
                 no-caps
@@ -110,14 +109,15 @@
 
             </div>
             <div class="col"></div>
-            <div class="col-7 column justify-center text-white bg-black items-center menu-button"
+            <div class="col-7 row justify-center text-white bg-black items-center menu-button"
                  @click="hideCategory"
                  v-if="activeCategory">
               {{ activeCategory.Name }}
-              <img src="~assets/arrowdown.png" v-if="isHideCategory === true" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
-              <img src="~assets/arrowUp.png" v-if="isHideCategory === false" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
+              <img src="~assets/arrowdown.png" v-if="isHideCategory === true" class="q-ml-sm ">
+              <img src="~assets/arrowUp.png" v-if="isHideCategory === false" class="q-ml-sm ">
             </div>
             <div class="col"></div>
+            <div class="col-1"></div>
           </div>
         </div>
       </div>
@@ -146,15 +146,15 @@
       </div>
 
 
-      <div class="row col-12 items-center mobile-menu-scroll " v-if="isHideCategory === false">
+      <div class="row col-12 q-my-md items-start mobile-menu-scroll " v-if="isHideCategory === false">
         <img @click="undo"
-             class="cursor-pointer arrow q-mr-sm q-mb-xs block-hide-mob" src="../assets/undoArrow.png">
+             class="cursor-pointer arrow q-mt-xs q-mr-sm  block-hide-mob" src="../assets/undoArrow.png">
 
-        <div class="overflow-auto col block-hide-mob row  flex-md-block no-wrap menu-button"
+        <div class="overflow-auto col block-hide-mob row items-baseline flex-md-block no-wrap menu-button"
              v-if="isHideCategory === false"
              id="mobile-menu-scroll"
              :style="{left: `${scrollMobileOffset}px`}">
-          <div class="q-pr-lg menu-button q-mt-md "
+          <div class="q-pr-lg menu-button "
                :id="item.id"
                v-for="item in pasteBusinnesLunch"
                @scroll="scroll"
@@ -168,9 +168,9 @@
           </div>
         </div>
         <img @click="next"
-             class=" cursor-pointer q-ml-sm  q-mb-xs next-arrow block-hide-mob arrow " src="../assets/undoArrow.png">
+             class=" cursor-pointer q-ml-sm q-mt-xs next-arrow block-hide-mob arrow " src="../assets/undoArrow.png">
       </div>
-      <div class="q-ml-md-md delivery-zones-button block-hide-mob col-12 justify-center">
+      <div class=" q-mt-xs-lg a-mt-md-none q-ml-md-md delivery-zones-button block-hide-mob col-12 justify-center">
         <div class="row items-center no-wrap ">
           <img src="statics/icons/balloon.svg" alt="" class="ballon">
           <q-btn outline
@@ -204,7 +204,7 @@
         </div>
       </div>
 
-      <div class="col-12 block-hide-mob text-grey mregular  justify-sm-center text-12">
+      <div class="col-12 block-hide-mob text-grey mregular q-my-sm justify-sm-center text-12">
         Пока мы, к сожалению, не доставляем в ленинский район и за пределы города.
       </div>
       <!--            <q-tabs-->
@@ -274,7 +274,7 @@
         <Basket
           :action="proxyAddProductToBasket"
           :loading="loading"
-          :thanks="thanks"></Basket>
+          ></Basket>
       </q-dialog>
     </div>
   </q-page>
@@ -307,7 +307,6 @@ export default {
   data() {
     return {
       mapLink: 'https://yandex.ru/maps/-/CCUEnLAO0A',
-      thanks: false,
       lunchPrice: 355,
       nowDate: new Date(),
       dialog: false,
@@ -385,11 +384,13 @@ export default {
           const activeCategoryClass = document.getElementsByClassName(
             'active-category',
           );
-          this.scrollMobileOffset = activeCategoryClass[1].offsetLeft;
-          const el = document.getElementById(
-            'mobile-menu-scroll',
-          );
-          el.scrollLeft = this.scrollMobileOffset - 15;
+          if (activeCategoryClass[1]) {
+            this.scrollMobileOffset = activeCategoryClass[1].offsetLeft;
+            const el = document.getElementById(
+              'mobile-menu-scroll',
+            );
+            el.scrollLeft = this.scrollMobileOffset - 15;
+          }
         }
       }
       if (scrollTop > 100) {
@@ -673,12 +674,12 @@ export default {
   }
 
   .mobile-menu-scroll {
-    top: 55px;
+    top: 60px;
   }
 
   .mobile-order-header {
     background-color: black;
-    padding: 16px 20px 10px 4px;
+    padding: 16px 4px 10px 4px;
     z-index: 8;
   }
 
@@ -711,8 +712,9 @@ export default {
   }
 
   .mobile-menu-scroll {
-
+    margin: 0 -9px;
     overflow-x: scroll;
+    z-index: 2002;
   }
 
   .number-in-basket {
@@ -728,9 +730,8 @@ export default {
   .menu-button {
     font-size: 14px;
   }
-
   ::-webkit-scrollbar {
-    background: transparent;
+    height: 2px;
   }
 
   .arrow {

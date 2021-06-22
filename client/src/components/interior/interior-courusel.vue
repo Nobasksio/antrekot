@@ -30,7 +30,7 @@
                                     @click="show_photo(photo)"
                             />
                         </div >
-                        <q-spaser></q-spaser>
+
                     </div >
                 </slide >
             </hooper >

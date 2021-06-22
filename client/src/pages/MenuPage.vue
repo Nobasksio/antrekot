@@ -5,16 +5,16 @@
       <div class="items-center col-12 ">
         <header-page name_page="МЕНЮ"></header-page>
       </div>
-      <div class="row col-12 items-center q-mb-lg">
+      <div class="row col-12 items-start q-mb-lg">
         <img @click="undo"
-          class="cursor-pointer arrow q-mr-sm q-pb-sm block-hide-mob" src="../assets/undoArrow.png">
+          class="cursor-pointer arrow q-mr-sm q-pt-xs block-hide-mob" src="../assets/undoArrow.png">
         <div class="col ">
           <div
             id="horizontal-scroll"
             :style="{left: `${scrollMobileOffset}px`}"
             class="overflow-auto col-md-8 col-12 row text-white bg-black items-start q-pl-md-none no-wrap-xs no-wrap-sm wrap-md">
-            <div class=" q-pr-md menu-button q-mt-sm q-mr-sm o"
-                 v-for="(item, index) in menus" v-show="mayMenu(isOld,item.old)"
+            <div class=" q-pr-md menu-button  q-mr-sm "
+                 v-for="(item, index) in menus" :key="item.id" v-show="mayMenu(isOld,item.old)"
                  @click="chooseMenu(item)"
                  :class="{
               'active': activeMenu === item,
@@ -31,7 +31,7 @@
 
         </div>
         <img @click="next"
-             class=" cursor-pointer q-ml-sm q-pb-sm next-arrow block-hide-mob arrow " src="../assets/undoArrow.png">
+             class=" cursor-pointer q-ml-sm q-pt-xs next-arrow block-hide-mob arrow " src="../assets/undoArrow.png">
       </div>
     </div>
     <div class="h-100">
@@ -114,9 +114,11 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch('common/getMenu').then(() => {
     if (this.menus[0] !== undefined) {
       [this.activeMenu] = this.menus;
     }
+    });
   }
 }
 </script>

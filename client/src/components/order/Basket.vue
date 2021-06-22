@@ -1,5 +1,40 @@
 <template>
   <q-card class="basket ">
+    <q-card-section class="absolute fit q-pt-none thanks-form" v-if="thanks">
+      <div class="column thanks-box">
+        <div class="text-center q-mb-lg">
+          <q-img
+            src="/statics/logo.svg"
+            spinner-color="white"
+            img-class="q-mx-sm "
+            :ratio="16/9"
+            style="width: 185px; height: 91px;"
+            contain
+          />
+        </div >
+        <div class="q-ml-lg text-white name-feedback q-mb-lg">
+          <div class="row items-end text-center justify-center wrap ">
+            <div>ВАШ ЗАКАЗ&nbsp;<br>
+              УСПЕШНО&nbsp;<br>
+              ОФОРМЛЕН
+            </div>
+            <div class="q-ml-xs my-red">:)</div>
+          </div>
+        </div>
+        <div class="text-white text-center field-name q-mb-xl justify-center row">
+          <div>В течение 5 минут с Вами&nbsp;<br>
+            свяжется наш оператор
+          </div>
+        </div>
+        <div class="text-center">
+          <q-btn color="red" label="Вернуться к каталогу" class='text-uppercase q-btn_my_red col-sm-12 col-xs-12'
+                 v-close-popup
+                 @click="returnToOrder">
+
+          </q-btn>
+        </div>
+      </div>
+    </q-card-section>
     <div class="basket-page col-12 row q-pl-xs">
       <div class="row col-12 justify-between">
         <div class="row col-6 col-sm-12 col-xs-12 items-start cursor-pointer ">
@@ -233,14 +268,6 @@
             v-if="orderProducts[0]"
             class="product-item-box q-mt-sm-xl q-mt-xs-xl "
             :thumb-style="thumbStyle">
-            <q-card-section class="q-pt-none" v-if="thanks">
-              <div class="text-end text-h3 q-py-xl">
-                Спасибо за заказ
-              </div>
-              <div class="text-center">
-                В ближайшее время мы перезвоним тебе для подтверждения заказа!
-              </div>
-            </q-card-section>
             <div class="q-pt-none" v-if="!thanks">
               <div v-for="orderProductItem in orderProducts"
                    class="row justify-between q-py-xs ">
@@ -297,6 +324,9 @@
 import {mapGetters, mapMutations, mapState} from "vuex";
 import HeaderPage from "../header-page";
 
+const axios = require('axios').default;
+var _ = require('lodash');
+
 export default {
   name: "Basket",
   components: {HeaderPage},
@@ -310,6 +340,7 @@ export default {
       isShowMap: false,
       api_link: process.env.API_LINK,
       loadMap: false,
+      thanks: false,
       thumbStyle: {
         right: '2px',
         borderRadius: '5px',
@@ -363,6 +394,10 @@ export default {
     showMap() {
       this.isShowMap = !this.isShowMap;
       setTimeout(this.loadMap = true, 2000);
+    },
+    returnToOrder() {
+      this.thanks != this.thanks;
+
     },
     sendOrder() {
       this.loading = true;
@@ -536,8 +571,45 @@ export default {
   display: flex;
   flex-direction: row;
 }
+.name-feedback {
+  font-family: 'mbold';
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.my-red {
+  color: #E84437
+}
+.field-name {
+  font-family: 'mregular';
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400;
+}
+.q-btn_my_red {
+
+  font-size: 12px;
+  padding: 10px 10px;
+
+  border-radius: 0px;
+  letter-spacing: 0.25em;
+  font-family: 'mbold';
+  background: #E84437 !important;
+}
+.thanks-form {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+}
+.thanks-box {
+  margin: 15% 0;
+}
 
 @media (max-width: 1024px) {
+  .thanks-box {
+    margin: 60% 0;
+  }
+
   .basket-name {
     font-size: 14px;
     line-height: 17px;

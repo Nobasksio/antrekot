@@ -16,13 +16,13 @@
             </div>
           </div>
           <div class="col-3 cursor-pointer" @click="showInterior">
-            <img src="../assets/arrowdown.png" v-if="isShowInterior === true" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
-            <img src="../assets/arrowUp.png" v-if="isShowInterior === false" class="q-ml-sm q-mt-sm-sm q-mt-xs-sm">
+            <img src="../assets/arrowdown.png" v-if="isShowInterior === true" class="q-ml-sm q-my-sm-sm q-my-xs-sm">
+            <img src="../assets/arrowUp.png" v-if="isShowInterior === false" class="q-ml-sm q-my-sm-sm q-my-xs-sm">
 
           </div>
         </div>
-        <div class="col-md-8 col-12 select-box q-mb-md" v-if="isShowInterior === true">
-          <div class="row-md column-xs text-white bg-black items-center-md q-mb-lg">
+        <div class="col-md-8 col-12 q-mb-md" v-if="isShowInterior === true">
+          <div class="row-md column-xs  select-box  text-white items-center-md q-mb-lg">
 
             <div class="menu-button q-mt-sm q-mr-lg row "
                  v-for="(item, index) in restaurants"
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="col-7 row justify-start  text-white bg-black items-start photo-field block-hide-mob"
-         v-if="isShowInterior === false">ФОТО
+        >ФОТО
     </div>
 
     <interior-courusel v-if="activeInterior"
@@ -187,7 +187,7 @@ export default {
     position: absolute;
     z-index: 2;
     width: 100%;
-    background: black;
+    background-color: rgba(0, 0, 0, 0.5);
   }
   .block-hide-desc {
     display: none;

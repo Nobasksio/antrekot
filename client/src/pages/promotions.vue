@@ -6,7 +6,7 @@
 
         </div >
         <div class="row " >
-            <promotionItem :promo='promo' v-for="promo in promotions"></promotionItem>
+            <promotionItem :promo='promo' :key="promo.id"  v-for="promo in promotions"></promotionItem>
         </div >
     </q-page >
 </template >
