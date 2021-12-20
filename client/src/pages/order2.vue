@@ -402,11 +402,11 @@
                          val="IRK"
                          label="Иркутск"
                          color="red"/>
-                <q-radio :value="order.department"
-                         @input="setDepartment"
-                         val="ANG"
-                         label="Ангарск"
-                         color="red"/>
+<!--                <q-radio :value="order.department"-->
+<!--                         @input="setDepartment"-->
+<!--                         val="ANG"-->
+<!--                         label="Ангарск"-->
+<!--                         color="red"/>-->
               </div>
               <div class="q-py-sm">
                 <q-input
