@@ -58,11 +58,11 @@
     <q-banner inline-actions class="text-white bg-red" v-show="!isWorkTime">
       Сейчас мы не работаем. Доставка работает с 11:00 до 23:00.
     </q-banner>
-    <!--      <q-banner inline-actions class="text-white bg-red" >-->
-    <!--        <div v-show="!isWorkTime">Доставка работает только с 11:00 до 23:00.</div>-->
-    <!--        БЕДА! В Иркутске пропала вода! Доставка в Иркутске не работает с 20.05 с 21:00 до 22.05 10:00. Sorry :(<br>-->
-    <!--        В Ангарске всё в порядке.-->
-    <!--      </q-banner >-->
+          <q-banner inline-actions class="text-white bg-red" >
+            <div v-show="!isWorkTime">Доставка работает только с 11:00 до 23:00.</div>
+            31.12 заказы более не принимаем (sorry, мы забиты под завязку)<br>
+            01.01 работаем с 16:00 (только самовывоз)<br>
+          </q-banner >
     <div class="h-100 full-width">
       <q-tab-panels v-model="tab" animated class="bg-black">
         <q-tab-panel name="000name" class="q-px-none">
@@ -298,15 +298,15 @@
       </q-tab-panels>
       <div class="basket-btn row justify-center">
 
-        <div class="column items-center">
-          <q-btn color="deep-orange" glossy
-                 ref="basket"
-                 @click="dialog = true">
-            <div class="q-mx-xs">Корзина</div>
-            <span v-if="orderProducts.length > 0"> {{ orderProducts.length }}</span>
-          </q-btn>
-          <div class="text-white q-pt-sm" v-if="totalSum < 600">минимальная сумма от 600 ₽</div>
-        </div>
+<!--        <div class="column items-center">-->
+<!--          <q-btn color="deep-orange" glossy-->
+<!--                 ref="basket"-->
+<!--                 @click="dialog = true">-->
+<!--            <div class="q-mx-xs">Корзина</div>-->
+<!--            <span v-if="orderProducts.length > 0"> {{ orderProducts.length }}</span>-->
+<!--          </q-btn>-->
+<!--          <div class="text-white q-pt-sm" v-if="totalSum < 600">минимальная сумма от 600 ₽</div>-->
+<!--        </div>-->
       </div>
       <q-dialog
         v-model="dialog"
