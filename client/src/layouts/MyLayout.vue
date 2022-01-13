@@ -22,7 +22,7 @@
             <div class="col-12 q-mb-md" >
               <router-link to="/" >
                 <q-img
-                  src="/statics/logo.svg"
+                  src="/statics/logo.png"
                   spinner-color="white"
                   img-class="q-mx-xl q-mt-n2 "
                   :ratio="16/9"

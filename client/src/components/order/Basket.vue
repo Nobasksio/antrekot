@@ -4,7 +4,7 @@
       <div class="column thanks-box">
         <div class="text-center q-mb-lg">
           <q-img
-            src="/statics/logo.svg"
+            src="/statics/logo.png"
             spinner-color="white"
             img-class="q-mx-sm "
             :ratio="16/9"
@@ -40,11 +40,11 @@
         <div class="row col-6 col-sm-12 col-xs-12 items-start cursor-pointer ">
           <q-img
             v-close-popup
-            src="/statics/logo.svg"
+            src="/statics/logo.png"
             spinner-color="white"
-            img-class="q-mr-lg "
+            img-class="q-mr-lg q-mb-lg"
             :ratio="16/9"
-            style="width: 100px; height: 40px;"
+            style="width: 120px"
             contain
             class="block-hide-desc"
           />
