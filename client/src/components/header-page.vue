@@ -1,54 +1,91 @@
-<template >
-    <div class="row col-12">
-        <div class="col-auto-md justify-center items-center content-center desktop-only" >
-            <div class="text-h4 text-white zag text-center" >
-                {{ name_page }}
-            </div >
-            <div class="tag col" >
-                #ANTRKT
-            </div >
-        </div >
-        <div class="col-12 justify-start items-center content-center mobile-only row" >
-            <div class="text-h4 text-white q-px-md q-py-lg " >
-                {{name_page}}
-            </div >
-            <div class="red_line col">
-
-            </div>
-        </div >
+<template>
+  <div class="row col-12 q-mb-md-xl q-mb-xs-lg">
+    <div class="col-auto-md justify-center items-center content-center block-hide-desc antrekot-box">
+      <div class="text-h4 text-white zag ">
+        {{ name_page }}
+      </div>
+      <div class="tag col">
+        #ANTRKT
+      </div>
     </div>
-</template >
+    <div class="col-12 justify-start items-center content-center block-hide-mob row ">
+      <div class="col-auto text-h4 text-white   ">
+        {{ name_page }}
+      </div>
+      <div class=" q-ml-sm red_line col-grow">
 
-<script >
-    export default {
-        name: "header-page",
-        props: ['name_page']
-    }
-</script >
+      </div>
+    </div>
+  </div>
+</template>
 
-<style scoped >
-    .text-h4 {
-        font-family: mblack;
-    }
+<script>
+export default {
+  name: "header-page",
+  props: ['name_page']
+}
+</script>
 
-    .zag {
-        margin-bottom: -38px;
-        z-index: 100;
-        position: relative;
+<style scoped>
+.antrekot-box {
+  margin-left: -30px;
+}
 
-    }
-    .zag_mob{
-    }
-    .tag {
-        font-size: 56px;
-        color: #282828;
-        font-family: mblack;
-        z-index: 20;
-        position: relative;
+.text-h4 {
+  font-family: mblack;
+  font-size: 36px;
+  line-height: 20px;
+}
 
-    }
-    .red_line{
-        border-bottom: 1px solid red;
-    }
+.zag {
+  margin-left: 30px;
+  margin-bottom: -38px;
+  z-index: 100;
+  position: relative;
 
-</style >
+}
+
+.tag {
+  font-size: 56px;
+  color: #282828;
+  font-family: mblack;
+  z-index: 20;
+  position: relative;
+
+}
+.block-hide-desc {
+  display: block;
+}
+
+.block-hide-mob {
+  display: none;
+}
+
+.red_line {
+  border-bottom: 1px solid red;
+}
+@media (max-width: 1024px) {
+  .antrekot-box {
+    margin-left: 0;
+  }
+  .tag {
+    display: none;
+
+  }
+  .block-hide-desc {
+    display: none;
+  }
+
+  .block-hide-mob {
+    display: flex;
+  }
+  .zag {
+    margin-left:0px;
+    margin-bottom: 0px;
+
+  }
+  .text-h4 {
+    font-size: 24px;
+  }
+}
+</style>

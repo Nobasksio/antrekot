@@ -1,7 +1,7 @@
 <template >
-    <div class="row q-pa-xl-md q-pa-md" >
+    <div class="row" >
 
-        <div class="col-md-8 col-0 q-pl-lg q-pr-sm" >
+        <div class="col-md-8 col-0 q-pr-sm" >
             <q-img
                     :src="`${api_link}${mainPhoto}`"
                     spinner-color="white"
@@ -15,7 +15,7 @@
                     ref="carousel" style="height: 100%" >
                 <slide :key="`slide${index}`" v-for="(slide, index) in slider_set">
                     <div class="row wrapper_slide" style="height: 100%" >
-                        <div class="col-6 q-px-sm row  content-stretch"
+                        <div class="col-6 q-pr-sm row  content-stretch"
                              :class=" { 'col-12' : slide.length == 1,
                              'q-pb-sm' : ([0,1]).includes(index_p) && slide.length != 1,
                              'q-py-sm' : ([2,3]).includes(index_p),
@@ -30,7 +30,7 @@
                                     @click="show_photo(photo)"
                             />
                         </div >
-                        <q-spaser></q-spaser>
+
                     </div >
                 </slide >
             </hooper >
@@ -91,7 +91,14 @@
     import 'hooper/dist/hooper.css';
     export default {
         name: "interior-courusel",
-        props:['restaurant'],
+        props: {
+          restaurant: {
+            type: Object,
+          },
+          slideCount: {
+            type: Number,
+          },
+        },
         components:{
             Hooper,
             Slide,
@@ -144,14 +151,14 @@
         computed:{
             slider_set() {
                 let slider_set = [], num = 0;
-                this.photos.forEach((photos_item, i, arr) => {
+                  this.photos.forEach((photos_item, i, arr) => {
                     if (num % 6 == 0) {
-                        slider_set.push([photos_item])
+                      slider_set.push([photos_item])
                     } else {
-                        slider_set[slider_set.length - 1].push(photos_item)
+                      slider_set[slider_set.length - 1].push(photos_item)
                     }
                     num++
-                })
+                  })
                 return slider_set
             }
         }

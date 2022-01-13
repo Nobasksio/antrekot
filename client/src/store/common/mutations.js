@@ -63,6 +63,18 @@ export function removeProductToBasket(state, product) {
   state.orderProducts = state.orderProducts.filter(item => item.name !== product.name)
 }
 
+export function removeOneProduct(state, product) {
+  const index = state.orderProducts.findIndex((item) => item.id === product.id);
+  if (state.orderProducts[index].count > 1) {
+    const newProductState = [...state.orderProducts];
+    newProductState[index].count -= 1;
+    state.orderProducts = [...newProductState];
+  } else {
+    // eslint-disable-next-line max-len
+    state.orderProducts = state.orderProducts.filter((item) => item.id !== product.id);
+  }
+}
+
 export function setPhone(state, phone) {
   state.order.phone = phone
 }

@@ -1,18 +1,13 @@
 <template >
-    <q-page class="" >
-        <div class="row tl_padding_page" >
+    <q-page class="container" >
+        <div class="row tl_padding_page " >
 
-            <header-page name_page="Акции"></header-page>
-
-            <div class="col" >
-
-            </div >
+            <header-page name_page="АКЦИИ"></header-page>
 
         </div >
-        <div class="row q-px-lg-xl " >
-            <promotionItem :promo='promo' :key="promo.id" v-for="promo in promotions"></promotionItem>
+        <div class="row " >
+            <promotionItem :promo='promo' :key="promo.id"  v-for="promo in promotions"></promotionItem>
         </div >
-
     </q-page >
 </template >
 
@@ -20,9 +15,11 @@
     import promotionItem from '../components/promotion/promotion-item'
     import { mapState } from 'vuex';
     import headerPage from '../components/header-page'
+    import Menu from "./menu";
     export default {
         name: "promotions",
         components:{
+          Menu,
             promotionItem,
             headerPage
         },
@@ -42,21 +39,6 @@
         },
         data: function () {
             return {
-                tab: 1,
-                menus: [
-                    {
-                        name: 'ОСНОВНОЕ', id: 1
-                    },
-                    {
-                        name: 'БАРНОЕ', id: 2
-                    },
-                    {
-                        name: 'ДЕТСКОЕ', id: 3
-                    },
-                    {
-                        name: 'КОМБО-ОБЕД', id: 4
-                    }
-                ]
             }
         },
         computed:{

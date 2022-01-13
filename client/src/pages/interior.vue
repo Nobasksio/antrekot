@@ -1,110 +1,229 @@
-<template >
-    <q-page class="" style="height: 1px">
-        <div class="row tl_padding_page" >
+<template>
+  <q-page class="container" >
+    <div class="row tl_padding_page">
 
-            <div class="col-auto-md">
-            <header-page name_page="Интерьеры"></header-page>
+
+        <header-page name_page="ИНТЕРЬЕР"></header-page>
+
+      <div class="col-md-auto col-12">
+        <div class="row block-hide-mob q-mb-md">
+          <div class="col-auto">
+            <div class="col-7 row justify-start  text-white bg-black items-start menu-button"
+                 @click="showInterior"
+            v-if="activeInterior">
+              {{ activeInterior.short_name }}
+              <div class="active-line block-hide-mob"></div>
             </div>
-            <div class="col-md-auto col-12" >
-                <q-tabs
-                        v-model="tab"
-                        dense
-                        narrow-indicator
-                        class="text-white my-mbold"
-                >
-                    <q-tab :name="item.id" :key="index" :label="item.short_name" v-for="(item, index) in restaurants" />
+          </div>
+          <div class="col-3 cursor-pointer" @click="showInterior">
+            <img src="../assets/arrowdown.png" v-if="isShowInterior === true" class="q-ml-sm q-my-sm-sm q-my-xs-sm">
+            <img src="../assets/arrowUp.png" v-if="isShowInterior === false" class="q-ml-sm q-my-sm-sm q-my-xs-sm">
 
-                </q-tabs >
-            </div >
+          </div>
+        </div>
+        <div class="col-md-8 col-12 q-mb-md" v-if="isShowInterior === true">
+          <div class="row-md column-xs  select-box  text-white items-center-md q-mb-lg">
 
-        </div >
-        <div class="" >
+            <div class="menu-button q-mt-sm q-mr-lg row "
+                 v-for="(item, index) in restaurants"
+                 @click="chooseInterior(item)">
+              <div class=""
+                   :class="{
+              'red-point col-1': activeInterior === item,
+              'col-1': activeInterior !== item,
+            }"></div>
+              {{ item.short_name }}
+              <div class="col-12 interior-class"
+                   :class="{
+              'active-line': activeInterior === item,
+              '': activeInterior !== item,
+            }"></div>
+            </div>
 
-        </div >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-7 row justify-start  text-white bg-black items-start photo-field block-hide-mob"
+        >ФОТО
+    </div>
 
-        <q-tab-panels v-model="tab" animated class="bg-black full-height" >
-            <q-tab-panel :name="item.id" class="q-px-none" :key="`tab${item.id}`" v-for="(item, index) in restaurants" >
-                <interior-courusel :restaurant="item"></interior-courusel>
-            </q-tab-panel >
+    <interior-courusel v-if="activeInterior"
+       :key="activeInterior.id"
+                       :restaurant="activeInterior"></interior-courusel>
+  </q-page>
+</template>
 
-        </q-tab-panels >
+<script>
 
-    </q-page >
-</template >
+import {mapState} from 'vuex';
 
-<script >
+import interiorCourusel from '../components/interior/interior-courusel'
+import headerPage from '../components/header-page'
 
-    import {mapState} from 'vuex';
-
-    import interiorCourusel from '../components/interior/interior-courusel'
-    import headerPage from '../components/header-page'
-    export default {
-        name: "interior",
-        components: {
-            interiorCourusel,
-            headerPage
-        },
-        meta:{
-            title:`Интерьеры Гриль Баров Антрекот Иркутск Ангарск`,
-            meta: {
-                description: { name: 'description', content: 'Интерьеры Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске' },
-                keywords: { name: 'keywords', content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная' },
-                equiv: { 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' }
-            },
-            noscript: {
-                default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
-            }
-        },
-        preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
-            try {
-                return store.dispatch('common/getRestaurant')
-            } catch (e) {
-               console.log(e);
-            }
-
-        },
-        data: function () {
-            return {
-                tab: 1,
-            }
-        },
-        methods: {
-
-
-        },
-        computed: {
-            ...mapState('common', ['restaurants']),
-
-        }
-    }
-</script >
-
-<style scoped >
-
-    .text-h4 {
-        font-family: mblack;
+export default {
+  name: "interior",
+  preFetch({store, currentRoute, previousRoute, redirect, ssrContext}) {
+    try {
+      return store.dispatch('common/getRestaurant')
+    } catch (e) {
+      console.log(e);
     }
 
-    .zag {
-        margin-bottom: -38px;
-        z-index: 100;
-        position: relative;
-        margin-left: 70px;
+  },
+  components: {
+    interiorCourusel,
+    headerPage
+  },
+  meta: {
+    title: `Интерьеры Гриль Баров Антрекот Иркутск Ангарск`,
+    meta: {
+      description: {
+        name: 'description',
+        content: 'Интерьеры Гриль-бар Антрекот в иркутске рад приветствовать своих гостей. На сайте вы сможете ознакомиться с меню ресторана Антрекот посмотреть интерьеры шашлыкбара Антрекот в Иркутске и узнать об акциях кафе атрекот в иркутске'
+      },
+      keywords: {
+        name: 'keywords',
+        content: 'Гриль-бар Антрекот Иркутск меню, интерьер, акции, кафе, шашлыкбар, шашлык, ресторан, стильный интерьер, подача блюд, грильбар, грильная'
+      },
+      equiv: {'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8'}
+    },
+    noscript: {
+      default: 'В вашем браузере отключен JavaScript. Без него вы не сможете открыть наш сайт. Но вы всегда можете позвонить нам 50-61-70'
+    }
+  },
+  data: function () {
+    return {
+      tab: 1,
+      activeInterior: null,
+      isShowInterior: true,
+      scrollMobileOffset: 0,
+    }
+  },
+  methods: {
+    chooseInterior(item) {
+      this.activeInterior = item;
+    },
+    showInterior() {
+      this.isShowInterior = !this.isShowInterior;
+    },
+    next() {
+      const el = document.getElementById(
+        'horizontal-scroll',
+      );
+      el.scrollLeft -= this.scrollMobileOffset - 250;
+    },
+    undo() {
+      const el = document.getElementById(
+        'horizontal-scroll',
+      );
+      el.scrollLeft -= this.scrollMobileOffset + 250;
     }
 
-    .tag {
-        font-size: 56px;
-        color: #282828;
-        font-family: mblack;
-        z-index: 20;
-        position: relative;
-
+  },
+  computed: {
+    ...mapState('common', ['restaurants']),
+    slideCount() {
+      let count = 0;
+      if (this.isShowInterior === true) {
+        count = 2;
+      } else {
+        count = 6;
+      }
+      return count;
     }
 
-    .h-100 {
-        height: 400px;
+  },
+  mounted() {
+    if (this.restaurants[0] !== undefined) {
+      [this.activeInterior] = this.restaurants;
     }
+  },
+}
+</script>
 
+<style scoped>
+.interior-class.red-point {
+  display: none;
+}
 
+.menu-button {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 17px;
+  font-family: mbold;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
 
-</style >
+.active-line {
+  background-image: url("../assets/activeMenuLine.png");
+  background-position: bottom;
+  height: 3px;
+  width: 100%
+}
+
+.red-point {
+  background-image: url("../assets/redPoint.svg");
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.h-100 {
+  height: 400px;
+}
+
+.block-hide-desc {
+  display: flex;
+}
+
+.block-hide-mob {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+
+  .select-box {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .block-hide-desc {
+    display: none;
+  }
+
+  .block-hide-mob {
+    display: flex;
+  }
+
+  .interior-class.active-line {
+    display: none;
+  }
+
+  .interior-class.red-point {
+    display: block;
+  }
+
+  .photo-field {
+    font-size: 12px;
+    line-height: 15px;
+    font-family: mbold;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  ::-webkit-scrollbar {
+    background: transparent;
+  }
+
+  .arrow {
+  }
+
+  .next-arrow {
+    transform: scale(-1, 1);
+  }
+
+}
+
+</style>
