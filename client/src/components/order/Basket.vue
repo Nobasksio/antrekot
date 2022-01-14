@@ -404,7 +404,7 @@ export default {
       this.$q.notify({
         message: text,
         color: colorType,
-        position: 'bottom',
+        position: 'center',
         multiLine: true,
         actions: [
           {
