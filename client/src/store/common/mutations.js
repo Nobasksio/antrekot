@@ -76,7 +76,11 @@ export function removeOneProduct(state, product) {
 }
 
 export function setPhone(state, phone) {
-  state.order.phone = phone
+  state.order.phone = phone;
+}
+
+export function setEmptyOrderProducts(state) {
+  state.orderProducts = [];
 }
 
 export function setDepartment(state, department) {

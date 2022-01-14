@@ -343,7 +343,7 @@ export default {
       'setName',
       'setForks',
       'setBusinessLunch',
-      'setPromocode'
+      'setPromocode',
     ]),
     showMap() {
       this.isShowMap = !this.isShowMap;
@@ -473,7 +473,15 @@ export default {
       }
       const newProducts = _.map(products, _.clone);
       return newProducts.sort(mySort)
-    }
+    },
+    sortCategories(categoriesMenu) {
+      const sort = (a, b) => {
+        return a.sort_index - b.sort_index;
+      }
+      const newCategories = _.map(categoriesMenu, _.clone);
+      this.newSortCategories =  newCategories;
+      return newCategories.sort(sort);
+    },
   },
   computed: {
     ...mapState('common', ['order', 'orderProducts', 'orderMenu', 'categoriesMenu']),
@@ -506,10 +514,12 @@ export default {
       return nowDate.getHours();
     },
     pasteBusinnesLunch() {
-      let newCategoriesMenu = [];
-      newCategoriesMenu = [...this.categoriesMenu];
-      newCategoriesMenu.splice(5, 0, {Name: 'Бизнес ланч', id: 10})
-      return newCategoriesMenu;
+      const sort = (a, b) => {
+        return a.sort_index - b.sort_index;
+      }
+      const newCategories = [...this.categoriesMenu];
+      newCategories.splice(5, 0, {Name: 'Бизнес ланч', id: 10, sort_index: 5})
+      return newCategories.sort(sort);
 
     },
   },
@@ -520,9 +530,10 @@ export default {
     this.windowWidth = window.innerWidth;
     this.$store.dispatch('common/getOrderMenu').then(() => {
       if (this.categoriesMenu[0] !== undefined) {
-        [this.activeCategory] = this.categoriesMenu;
+        this.activeCategory = this.categoriesMenu.find((item) => item.sort_index === 1);
       }
-    })
+    });
+    window.scrollTo(0, 1);
   },
   watch: {
     // totalSum(newValue) {

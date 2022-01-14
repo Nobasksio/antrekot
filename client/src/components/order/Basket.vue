@@ -261,7 +261,7 @@
               </div>
             </div>
             <div class="q-pb-md text-center delivery-text col-6 ">
-              <nobr>Минимальная сумма заказа 500 рублей</nobr>
+              <nobr>Минимальная сумма заказа 600 рублей</nobr>
             </div>
           </div>
           <q-scroll-area
@@ -389,7 +389,8 @@ export default {
       'setName',
       'setForks',
       'setBusinessLunch',
-      'setPromocode'
+      'setPromocode',
+      'setEmptyOrderProducts',
     ]),
     showMap() {
       this.isShowMap = !this.isShowMap;
@@ -399,25 +400,56 @@ export default {
       this.thanks != this.thanks;
 
     },
+    createNotify(text, colorType = 'negative') {
+      this.$q.notify({
+        message: text,
+        color: colorType,
+        position: 'bottom',
+        multiLine: true,
+        actions: [
+          {
+            label: 'Ok',
+            color: 'white',
+            handler: () => {
+              /* ... */
+            },
+          },
+        ],
+      });
+    },
     sendOrder() {
-      this.loading = true;
-      yaCounter27721593.reachGoal('order');
-      axios.post('https://repairs.rest38.ru/api/antrekot',
-        {
-          order: this.order,
-          products: this.orderProducts
-        }
-      )
-        .then((res) => {
-          this.thanks = true
-          this.loading = false;
-        })
-        .catch((error) => {
+      if (this.orderProducts.length === 0) {
+        this.createNotify(
+          'Выбери блюда в заказ',
+        );
+      } else if (this.order.phone === null) {
+        this.createNotify(
+          'Введи номер телефона',
+        );
+      } else if (this.totalSum < 600) {
+        this.createNotify(
+          'Минимальная сумма доставки - 600 рублей. Выбери что-то ещё',
+        );
+      } else {
+        this.loading = true;
+        yaCounter27721593.reachGoal('order');
+        axios.post('https://repairs.rest38.ru/api/antrekot',
+          {
+            order: this.order,
+            products: this.orderProducts
+          }
+        )
+          .then((res) => {
+            this.thanks = true;
+            this.setEmptyOrderProducts();
+            this.loading = false;
+          })
+          .catch((error) => {
 
-          this.loading = false
-          this.error = true
-        });
-
+            this.loading = false
+            this.error = true
+          });
+      }
     },
 
   },
