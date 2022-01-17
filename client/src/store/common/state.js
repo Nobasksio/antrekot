@@ -17,6 +17,7 @@ export default function () {
           payment: '1',
           comment: null,
           isCostume: false,
+          paymentType: 'Наличными',
           forks: 1,
           department: 'IRK',
           promocode: '',

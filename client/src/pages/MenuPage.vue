@@ -89,6 +89,7 @@ export default {
     },
     chooseMenu(item) {
       this.activeMenu = item;
+      this.activeMenu.code = this.activeMenu.code.replace('&mode=mini', '');
     },
     next() {
       const el = document.getElementById(
@@ -112,11 +113,16 @@ export default {
       computedActiveMenu = this.menus[0];
       return computedActiveMenu;
     },
+    // getNewFrame() {
+    //   const newCode = this.activeMenu.code.replace('&mode=mini', '');
+    //   return newCode;
+    // },
   },
   mounted() {
     this.$store.dispatch('common/getMenu').then(() => {
     if (this.menus[0] !== undefined) {
       [this.activeMenu] = this.menus;
+      this.activeMenu.code = this.activeMenu.code.replace('&mode=mini', '');
     }
     });
   }

@@ -208,6 +208,37 @@
             <div class="basket-hint q-mt-sm">Доставка в среднем занимает 1,5 часа</div>
 
           </div>
+          <div class="q-mb-sm name-field2 mregular">Время доставки</div>
+          <div class="row q-py-sm col-12">
+            <q-btn-group push>
+            <q-btn color=""
+                   push
+                   class="q-mr-xs col basket-item"
+                   :class="order.paymentType === 'Наличными' ? 'active-button' : 'nonactive-button'"
+                   @click="setPaymentType('Наличными')"
+            >
+              <div class="row items-center">
+                <div>
+                  наличными
+                </div>
+              </div>
+            </q-btn>
+            <q-btn
+              color=""
+                   push
+                   class="col basket-item"
+                   @click="setPaymentType('Картой')"
+              :class="order.paymentType === 'Картой' ? 'active-button' : 'nonactive-button'"
+            >
+              <div class="row items-center">
+                <div>
+                  картой при получении
+                </div>
+              </div>
+            </q-btn>
+            </q-btn-group>
+
+          </div>
           <div class="q-my-md">
             <div class="q-mb-sm name-field2 mregular">Комментарий</div>
             <q-input dense
@@ -390,6 +421,7 @@ export default {
       'setForks',
       'setBusinessLunch',
       'setPromocode',
+      'setPaymentType',
       'setEmptyOrderProducts',
     ]),
     showMap() {
@@ -526,6 +558,16 @@ export default {
 }
 
 .order-button {
+  background-color: #E84437;
+  height: 45px;
+}
+
+.nonactive-button {
+  background-color: #d5847b;
+  height: 45px;
+}
+
+.active-button {
   background-color: #E84437;
   height: 45px;
 }

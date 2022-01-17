@@ -75,6 +75,10 @@ export function removeOneProduct(state, product) {
   }
 }
 
+export function setPaymentType(state, typeString) {
+  state.order.paymentType = typeString;
+}
+
 export function setPhone(state, phone) {
   state.order.phone = phone;
 }
