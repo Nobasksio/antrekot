@@ -214,8 +214,8 @@
             <q-btn color=""
                    push
                    class="q-mr-xs col basket-item"
-                   :class="order.paymentType === 'Наличными' ? 'active-button' : 'nonactive-button'"
-                   @click="setPaymentType('Наличными')"
+                   :class="order.payment === '1' ? 'active-button' : 'nonactive-button'"
+                   @click="setPayment('1')"
             >
               <div class="row items-center">
                 <div>
@@ -227,8 +227,8 @@
               color=""
                    push
                    class="col basket-item"
-                   @click="setPaymentType('Картой')"
-              :class="order.paymentType === 'Картой' ? 'active-button' : 'nonactive-button'"
+                   @click="setPayment('2')"
+              :class="order.payment === '2' ? 'active-button' : 'nonactive-button'"
             >
               <div class="row items-center">
                 <div>
