@@ -2,7 +2,7 @@
   <fragment>
     <div class="col-12 col-md-3 col-lg-3 column justify-between block-hide-desc q-mb-xl q-mr-xl">
       <div v-if="productItem.photo[0] !== undefined">
-        <img :src="`${api_link}${productItem.photo[0].url}`" alt="" class="full-width">
+        <img :src="`${api_link}${productItem.photo[0].url}`" alt="" class="fit">
       </div>
       <div class="text-white name-dish">
         {{ productItem.name }}
