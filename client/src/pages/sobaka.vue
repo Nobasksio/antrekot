@@ -148,6 +148,7 @@ export default {
   font-size: 24px;
   padding: 25px;
   background-color: #E84437;
+  text-decoration: underline;
 }
 
 .sobaka-name {
