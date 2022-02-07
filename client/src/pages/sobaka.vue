@@ -15,24 +15,24 @@
     </div>
     <div class="column q-pa-xl text-white ">
       <div class="column q-pa-xl col-6">
-      <div class="q-mb-md">
+      <div class="q-mb-xl">
         <q-btn color=""
-               class="full-width my-mbold choose-button basket-item"
+               class="full-width my-mbold choose-button "
                @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/people/143467')"
         >
           <div class="row items-center">
-            <div>
-              НОМИНАЦИЯ:<br>
-              ЛУЧШАЯ РЕСТОРАННАЯ КОМАНДА
+            <div class="column">
+              <div>НОМИНАЦИЯ:</div>
+              <div>ЛУЧШАЯ РЕСТОРАННАЯ КОМАНДА</div>
             </div>
           </div>
         </q-btn>
 
       </div>
-      <div class="row col-12   q-my-xl">
+      <div class="row col-12   q-mb-lg q-mt-lg">
         <div class="col q-pr-md">
           <q-btn color=""
-                 class="full-width my-mbold choose-button basket-item"
+                 class="full-width my-mbold choose-button"
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/project/143465')"
           >
             <div class="row items-center">
@@ -47,7 +47,7 @@
         </div>
         <div class="col q-pl-md">
           <q-btn color=""
-                 class="full-width my-mbold choose-button basket-item"
+                 class="full-width my-mbold choose-button "
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/people/143553')"
           >
             <div class="row items-center">
@@ -63,7 +63,7 @@
       <div class="row">
         <div class="col q-pr-md">
           <q-btn color=""
-                 class="full-width my-mbold choose-button basket-item"
+                 class="full-width my-mbold choose-button "
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/people/143552')"
           >
             <div class="row items-center">
@@ -77,7 +77,7 @@
         </div>
         <div class="col q-pl-md">
           <q-btn color=""
-                 class="full-width my-mbold choose-button basket-item"
+                 class="full-width my-mbold choose-button"
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/food/143466')"
           >
             <div class="row items-center">
@@ -157,9 +157,5 @@ export default {
   letter-spacing: 0.25em;
 }
 
-
-.h-100 {
-  height: 400px;
-}
 
 </style>
