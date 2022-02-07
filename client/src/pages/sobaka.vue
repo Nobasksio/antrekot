@@ -15,7 +15,7 @@
     </div>
     <div class="column q-pa-xl text-white ">
       <div class="column q-pa-xl col-6">
-      <div class="q-mb-xl">
+      <div class="q-mb-lg col">
         <q-btn color=""
                class="full-width my-mbold choose-button "
                @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/people/143467')"
@@ -29,9 +29,9 @@
         </q-btn>
 
       </div>
-      <div class="row col-12   q-mb-lg q-mt-lg">
-        <div class="col q-pr-md">
-          <q-btn color=""
+      <div class="row col-12   q-mb-xl q-mt-lg">
+        <div class="col row q-pr-lg">
+          <q-btn color="col"
                  class="full-width my-mbold choose-button"
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/project/143465')"
           >
@@ -45,9 +45,9 @@
           </q-btn>
 
         </div>
-        <div class="col q-pl-md">
+        <div class="col row q-pl-lg">
           <q-btn color=""
-                 class="full-width my-mbold choose-button "
+                 class=" col  my-mbold choose-button "
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/people/143553')"
           >
             <div class="row items-center">
@@ -61,9 +61,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col q-pr-md">
+        <div class="col row q-pr-lg">
           <q-btn color=""
-                 class="full-width my-mbold choose-button "
+                 class="col full-width my-mbold choose-button "
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/people/143552')"
           >
             <div class="row items-center">
@@ -75,9 +75,9 @@
           </q-btn>
 
         </div>
-        <div class="col q-pl-md">
+        <div class=" row col q-pl-lg">
           <q-btn color=""
-                 class="full-width my-mbold choose-button"
+                 class=" col full-width my-mbold choose-button"
                  @click="goToSobaka('http://best-restaurant.irk.sobaka.ru/vote/food/143466')"
           >
             <div class="row items-center">
