@@ -350,15 +350,9 @@ export default {
     chooseCategory(item) {
       this.activeCategory = item;
       const scrollTop = window.pageYOffset;
-      if (scrollTop !== 0) {
         const el = document.getElementById(item.Name);
         const scrollTarget = getScrollTarget(el);
         setScrollPosition(scrollTarget, el.offsetTop - 200, 100);
-      } else {
-        window.scrollTo({
-          top: 1,
-        });
-      }
     },
     hideCategory() {
       this.isHideCategory = !this.isHideCategory;
