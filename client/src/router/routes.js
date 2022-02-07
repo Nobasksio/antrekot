@@ -14,6 +14,7 @@ const routes = [
             {path: 'order', component: () => import('pages/order2.vue')},
             // {path: 'order2', component: () => import('pages/order2.vue')},
             {path: 'camera', component: () => import('pages/camera.vue')},
+            {path: 'sobaka', component: () => import('pages/sobaka.vue')},
         ]
 
 

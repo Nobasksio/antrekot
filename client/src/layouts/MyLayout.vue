@@ -52,6 +52,8 @@
           <!--href='https://docs.google.com/forms/d/e/1FAIpQLSezX3g-AbKCiT-MCl_YIB5ZTYWKWu7m0SNLDjPhdFEAQIZ4gA/viewform'-->
           <!--class='text-uppercase q-btn_my' label="Вакансии" />-->
         </div >
+        <div class="my-black text-uppercase test text-h6 q-pl-md cursor-pointer "
+             clickable v-ripple @click="toSobaka">ПРЕМИЯ "СОБАКА"</div>
         <div class="col-auto q-pb-xl" >
           <div class="row justify-center items-stretch" >
             <div class="col-auto self-center" >
@@ -99,7 +101,6 @@
       </div >
 
     </q-drawer >
-
     <q-drawer
       side="right"
       v-model="right"
@@ -265,19 +266,19 @@ export default {
     headerPage
   },
   created() {
-    if ( typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.addEventListener('resize', this.updateWidth);
     }
   },
-  mounted(){
+  mounted() {
     this.width = window.innerWidth
   },
   data() {
     return {
-      width:null,
+      width: null,
       activePoint: 'null',
       left: false,
-      right:false,
+      right: false,
       menu: [
         {name: 'Меню', link: '/menu'},
         {name: 'Акции', link: '/promotions'},
@@ -292,8 +293,13 @@ export default {
   },
   computed: {
     ...mapState('age', ['check', 'isOld'])
-  }
-}
+  },
+  methods: {
+    toSobaka() {
+      this.$router.push('/sobaka');
+    },
+  },
+};
 </script >
 <style scope >
 ::-webkit-scrollbar {
