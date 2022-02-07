@@ -15,11 +15,12 @@
   "dependencies": {
     "@quasar/extras": "^1.8.2",
     "axios": "^0.18.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "hooper": "^0.3.4",
     "js-cookie": "^2.2.1",
     "quasar": "^1.12.11",
     "showdown": "^1.9.1",
+    "vue-dadata": "^1.4.12",
     "vue-fragment": "^1.5.1",
     "vue-scrollto": "^2.20.0",
     "vue-yandex-maps": "^0.10.8",

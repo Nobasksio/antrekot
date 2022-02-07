@@ -30,7 +30,6 @@
           <q-btn color="red" label="Вернуться к каталогу" class='text-uppercase q-btn_my_red col-sm-12 col-xs-12'
                  v-close-popup
                  @click="returnToOrder">
-
           </q-btn>
         </div>
       </div>
@@ -80,7 +79,7 @@
                 <div
                   v-if="loadMap === true"
                   style="position:relative;overflow:hidden;">
-                  <iframe src="https://yandex.ru/map-widget/v1/-/CCUaFBgVpC" width="560" height="400" frameborder="1"
+                  <iframe src="https://yandex.ru/map-widget/v1/-/CCU5IPG9pD" width="560" height="400" frameborder="1"
                           allowfullscreen="true" style="position:relative;"></iframe>
                   <q-card-actions align="right">
                     <q-btn class="my-bold" flat label="закрыть" color="red" v-close-popup/>
@@ -133,15 +132,21 @@
                 </div>
               </div>
             </div>
-            <q-input
-              dark
-              square
-              color="grey-3"
-              placeholder="Пример: ул. Пушкина, д.34"
-              :value="order.address"
-              @input="setAddress"
-              outlined dense>
-            </q-input>
+            <vue-dadata v-model="order.address"
+              class="address-box"
+                        placeholder="Пример: ул. Пушкина, д.34"
+                        :token="token"
+                        :locationOptions="locations"
+                        :onChange="sendAddress"></vue-dadata>
+<!--            <q-input-->
+<!--              dark-->
+<!--              square-->
+<!--              color="grey-3"-->
+<!--              placeholder="Пример: ул. Пушкина, д.34"-->
+<!--              :value="order.address"-->
+<!--              @input="setAddress"-->
+<!--              outlined dense>-->
+<!--            </q-input>-->
             <div class="basket-hint q-mt-sm">Пока мы, к сожалению, не доставляем в ленинский район и за пределы города
             </div>
             <div class="q-my-md">
@@ -292,7 +297,7 @@
               </div>
             </div>
             <div class="q-pb-md text-center delivery-text col-6 ">
-              <nobr>Минимальная сумма заказа 600 рублей</nobr>
+              <nobr>Минимальная сумма заказа - 800 рублей</nobr>
             </div>
           </div>
           <q-scroll-area
@@ -339,7 +344,7 @@
             </div>
           </q-scroll-area>
           <div v-else class="q-mt-xl">
-            <div class="name-field text-16 q-mt-xl q-mb-xl">Ваша корзина пуста</div>
+            <div class="name-field text-16 q-mt-xl q-mb-xl" >Ваша корзина пуста</div>
           </div>
           <div class="text-white basket-sum-item my-bold q-mt-xl q-mb-sm-xl q-mb-xs-xl q-mb-md-none">
             Сумма заказа:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ totalSum }} ₽
@@ -354,13 +359,16 @@
 <script>
 import {mapGetters, mapMutations, mapState} from "vuex";
 import HeaderPage from "../header-page";
+import VueDadata from 'vue-dadata';
+import getZone from '../../utils/getZoneByCoordinates';
+
 
 const axios = require('axios').default;
 var _ = require('lodash');
 
 export default {
   name: "Basket",
-  components: {HeaderPage},
+  components: { HeaderPage, VueDadata },
   props: {
     action: {
       type: Function,
@@ -368,6 +376,17 @@ export default {
   },
   data() {
     return {
+      token: process.env.DADATA_TOKEN,
+      dadataAddress: [],
+      departmentOfDelivery: null,
+      locations: {
+        language: 'ru',
+        locations: [
+          {
+            region: 'иркутская',
+          },
+        ],
+      },
       isShowMap: false,
       api_link: process.env.API_LINK,
       loadMap: false,
@@ -424,6 +443,24 @@ export default {
       'setPaymentType',
       'setEmptyOrderProducts',
     ]),
+    getToken() {},
+    sendAddress(suggestion) {
+      const data = suggestion.data;
+        // generate custom event "show:address"
+        this.dadataAddress = suggestion;
+        this.$emit("show:address", data);
+      if (data.house) {
+        let lat = suggestion.data.geo_lat;
+        let long = suggestion.data.geo_lon;
+        // let result = getZone(suggestion.dadata.geo_lat, suggestion.dadata.geo_lon);
+        this.departmentOfDelivery = getZone(lat, long);
+        this.setDepartment(this.departmentOfDelivery.description.name);
+      } else {
+        this.createNotify(
+          'Укажи номер дома',
+        );
+      }
+    },
     showMap() {
       this.isShowMap = !this.isShowMap;
       setTimeout(this.loadMap = true, 2000);
@@ -458,9 +495,17 @@ export default {
         this.createNotify(
           'Введи номер телефона',
         );
-      } else if (this.totalSum < 600) {
+      } else if (this.totalSum < +this.departmentOfDelivery.description.summa) {
         this.createNotify(
-          'Минимальная сумма доставки - 600 рублей. Выбери что-то ещё',
+          `Минимальная сумма доставки в твой район - ${+this.departmentOfDelivery.description.summa} рублей. Выбери что-то ещё`,
+        );
+      } else if (this.dadataAddress.data) {
+        this.createNotify(
+          'Укажи адрес',
+        );
+      } else if (this.dadataAddress.data.house) {
+        this.createNotify(
+          'Укажи номер дома, куда доставить заказ',
         );
       } else {
         this.loading = true;
@@ -486,12 +531,49 @@ export default {
 
   },
   mounted() {
+    console.log(this.token);
   }
 }
 
 </script>
 
-<style>
+<style lang="scss">
+ .address-box {
+   color: #b1b1b1;
+   border: 0.8px #999999;
+   border-color: #999999;
+
+   input {
+     padding: 0 12px;
+     font-weight: 400;
+     color: #b1b1b1;
+     background-color: #000000;
+     border-color: #999999;
+
+     &:focus {
+       color: #b1b1b1;
+       border-color: white;
+       outline: 0;
+     }
+   }
+   div {
+     background-color: #383535;
+
+     span{
+
+       &:hover {
+         background-color: red;
+         color: black;
+       }
+
+       mark {
+         background: inherit;
+         color: inherit;
+       }
+     }
+   }
+}
+
 .delivery-zone {
   background-image: url("../../assets/dottedLine.svg");
   background-repeat: no-repeat;

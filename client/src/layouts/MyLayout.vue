@@ -223,7 +223,6 @@
         </div >
       </div >
       <div class="burger-blk-mobile z-top row justify-center  items-center desktop-hide" v-if='!right'>
-
 <!--        <q-img-->
 <!--          src="/statics/logo.svg"-->
 <!--          spinner-color="white"-->
