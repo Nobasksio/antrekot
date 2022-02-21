@@ -255,9 +255,9 @@
                           :getAddbasketButtonType="getAddbasketButtonType"
                           v-for="product in sortProducts(categoryItem.products)">
             </catalog-item>
-            <div v-if="categoryItem.id === 10">
-              <business-lunch></business-lunch>
-            </div>
+<!--            <div v-if="categoryItem.id === 10">-->
+<!--              <business-lunch></business-lunch>-->
+<!--            </div>-->
           </div>
         </div>
       </div>
@@ -511,7 +511,7 @@ export default {
         return a.sort_index - b.sort_index;
       }
       const newCategories = [...this.categoriesMenu];
-      newCategories.splice(5, 0, {Name: 'Бизнес ланч', id: 10, sort_index: 5})
+      // newCategories.splice(5, 0, {Name: 'Бизнес ланч', id: 10, sort_index: 5})
       return newCategories.sort(sort);
 
     },
