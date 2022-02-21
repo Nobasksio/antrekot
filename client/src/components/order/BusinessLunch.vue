@@ -190,7 +190,7 @@
               <div class="row items-center col-md-6 col-xs-12">
                 <div>
                   <div class="business-lunch-text mregular">
-                    <b>+ Подарок: </b> эклер
+                    <b>+ Подарок: </b> булочка "ШУ"
                   </div>
                 </div>
               </div>
@@ -283,7 +283,7 @@ export default {
           name: 'Мимоза',
           weight: '(140гр)',
           image: 'mimoza.jpg',
-          consist: 'бсайра, картофель, морковь, лук, майонез, яйцо, зелёный горошек, микрозелень'
+          consist: 'сайра, картофель, морковь, лук, майонез, яйцо, зелёный горошек, микрозелень'
         },
         {
           name: 'Азиатский',
